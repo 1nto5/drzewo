@@ -12,7 +12,7 @@
       <div class="card-kind"><span class="k">${esc(t.kind)}</span>${t.c ? A.certBadge(t.c) : ""}${t.year ? `<span>${t.year}</span>` : ""}${(t.people || []).length ? `<span>${t.people.map(id => A.plink(id, A.byId.get(id).given) + (A.rel(id) ? ` <span class="rel">(${esc(A.rel(id))})</span>` : "")).join(", ")}</span>` : ""}</div>
       <h3>${esc(t.title)}</h3>
       <p>${esc(t.text)}</p>
-      <div class="src">${A.actRefs(t.acts)}${A.srcLinks(t.sources)}</div>
+      <div class="src">${A.actRefs(t.acts)}${A.srcLinks(t.sources)}${t.link ? `<a href="${esc(t.link[0])}">${esc(t.link[1])} →</a>` : ""}</div>
     </li>`;
   const listC = arr => `<ul class="facts">${arr.map(x => `<li>${typeof x === "string" ? esc(x) : `${x.c ? A.mark(x.c) : ""}${esc(x.t)}${x.note ? ` <span class="muted small">(${esc(x.note)})</span>` : ""}${x.sources || x.acts ? ` <span class="src">${A.actRefs(x.acts)} ${A.srcLinks(x.sources)}</span>` : ""}`}</li>`).join("")}</ul>`;
   const genItem = g => {
@@ -47,6 +47,7 @@
       ["os-czasu.html", "Oś czasu", "Życie przodków na tle historii Połoni, 1750–1970."],
       ["ciekawostki.html", "Ciekawostki", `${D.trivia.length} historii: fakty o rodzinie, kontekst i hipotezy.`],
       ["mapa.html", "Mapa rodu", "Gdzie żyli przodkowie i dokąd wyjeżdżali — Połoń, Kurpie, Mazury, USA."],
+      ["dwie-linie.html", "Dwa razy od Pawła", "Wincenty i Eleonora mieli wspólnych przodków — dwie linie, jeden początek."],
       ["kurpie.html", "Kurpie i „Godowie”", "Region, stroje, pieśni prababci i przezwisko mieszkańców Połoni."],
       ["obrazy.html", "Historia wsi w obrazach", "Stare mapy, zdjęcia z 1915 r., sosna bartna, kościół."],
       ["siec.html", "Sieć sąsiadów", "Kto trzymał dzieci do chrztu i świadkował na ślubach."],
@@ -101,13 +102,13 @@
       ${groups.map(([t, arr], i) => `<h2>${t}</h2><ul class="people-index">${(i ? sortByName(arr) : arr).map(p => `<li>${markFor(p)}${A.plink(p.id)}${A.lifeShort(p) ? `<span class="yrs">${esc(A.lifeShort(p))}</span>` : ""}</li>`).join("")}</ul>`).join("")}`;
   }
   /* ── diagram pokrewieństwa z Adrianem ─────────── */
-  function kinship(id) {
+  function kinship(id, opt = {}) {
     const K = A.kinPath(id); if (!K) return "";
     const cert = (child, par) => { const c = A.byId.get(child); const a = A.altOf(child, par); return (a && a.c) || (c && c.parentsCert) || "ok"; };
     const node = (nid, o = {}) => {
       const q = A.byId.get(nid); if (!q) return "";
       const life = A.lifeShort(q), r = A.rel(nid);
-      return `<a class="kn${o.cur ? " cur" : ""}${o.up ? " up c-" + o.up : ""}${o.bar ? " bar-" + o.bar : ""}" href="osoba.html?id=${encodeURIComponent(nid)}"><b>${esc(A.fullName(q))}</b>${life ? `<span class="kn-y">${esc(life)}</span>` : ""}${r ? `<span class="kn-rel">${esc(r)}</span>` : ""}</a>`;
+      return `<a class="kn${o.cur ? " cur" : ""}${o.up ? " up c-" + o.up : ""}${o.bar ? " bar-" + o.bar : ""}" href="osoba.html?id=${encodeURIComponent(nid)}"><b>${esc(A.fullName(q))}</b>${life ? `<span class="kn-y">${esc(life)}</span>` : ""}${r ? `<span class="kn-rel">${esc(r)}</span>` : ""}${o.dn ? `<i class="dn dn-${o.dn}" aria-hidden="true"></i>` : ""}</a>`;
     };
     const anon = o => `<span class="kn anon up c-ok${o.bar ? " bar-" + o.bar : ""}"><b>mama lub tata</b><span class="kn-rel">rodzic Adriana</span></span>`;
     const me = `<span class="kn me up c-ok"><b>Adrian (Ty)</b><span class="kn-rel">wnuk Mariana i Henryki</span></span>`;
@@ -124,8 +125,23 @@
     const target = K.spouse || id;
     const lastCur = nid => nid === target && !K.spouse;
     const certs = [];
-    let body;
-    if (K.kind === "anc") {
+    let body, title = "Jak jesteśmy spokrewnieni";
+    if (K.kind === "dbl") {
+      title = "Dwie linie pochodzenia";
+      const { top, L, R, suf } = K; const f = top[top.length - 1];
+      const partner = (L[0] ? A.parents(L[0]) : []).find(q => q !== f && A.spouses(f).some(sp => sp.id === q) && (!R[0] || A.parents(R[0]).includes(q)));
+      const topRows = top.map((nid, i) => {
+        const last = i === top.length - 1, c = i ? cert(nid, top[i - 1]) : "ok"; if (i) certs.push(c);
+        if (last && partner) { used.add(nid); return `<div class="kr">${node(nid, { up: i ? c : "", cur: nid === id && !K.spouse })}${hl}${node(partner, { cur: partner === id && !K.spouse })}</div>`; }
+        return row(nid, { up: i ? c : "", cur: nid === id && !K.spouse, spouseHere: K.spouse && i === 0 }, "r");
+      }).join("");
+      const mate = (nid, next) => { if (!opt.couples) return ""; const q = next ? A.parents(next).find(x => x !== nid && A.spouses(nid).some(sp => sp.id === x)) : null; return q || ""; };
+      const col = (list, parent, side) => list.map((nid, i) => { const c = cert(nid, i ? list[i - 1] : parent); certs.push(c); const m = mate(nid, list[i + 1]); const me1 = node(nid, { up: c, bar: i === 0 ? side : "", dn: i === list.length - 1 ? side : "" }); const sp = m ? node(m) : ""; return `${i && i === list.length - 1 ? `<i class="kgap" aria-hidden="true"></i>` : ""}<div class="kr">${m ? (side === "l" ? sp + hl + me1 : me1 + hl + sp) : me1}</div>`; }).join("");
+      const sufRows = suf.map((nid, i) => { const m = opt.couples && i === 0 && A.dist.get(nid) === 2 ? (A.spouses(nid)[0] || {}).id : ""; return `<div class="kr">${node(nid, { up: i ? "ok" : "" })}${m ? hl + node(m) : ""}</div>`; }).join("");
+      body = `<div class="kin-in"><div class="kin-top stack">${topRows}</div>
+        <div class="kin-col l1 dbl">${col(L, f, "l")}</div><div class="kin-col r1 dbl">${col(R, f, "r")}</div>
+        <div class="kin-bot"><div class="kin-col">${sufRows}<div class="kr">${anon({ up: 1 })}</div><div class="kr">${me}</div></div></div></div>`;
+    } else if (K.kind === "anc") {
       const rows = K.chain.map((nid, i) => {
         const c = i ? cert(K.chain[i - 1], nid) : "ok"; if (i) certs.push(c);
         return row(nid, { up: i ? c : "", cur: lastCur(nid), spouseHere: K.spouse && i === 0 }, "r");
@@ -145,11 +161,14 @@
     }
     const key = [["ok", "link-axis", "pewne"], ["prawd", "link-prawd", "prawdopodobne"], ["hyp", "link-hyp", "hipoteza"]].filter(([c]) => certs.includes(c) && c !== "ok");
     const alt = K.alt ? `<p class="muted small kin-alt">druga ścieżka: przez ${A.plink(K.alt, A.fullName(A.byId.get(K.alt)))} (${esc(A.rel(K.alt) || "")})</p>` : "";
-    return `<h2>Jak jesteśmy spokrewnieni</h2>
-      <p class="intro">${esc(A.fullName(A.byId.get(id)))} to ${esc(A.rel(id))}. Poniżej ścieżka od ${K.kind === "anc" ? "tej osoby do Adriana" : K.spouse ? "małżonka tej osoby do Adriana przez wspólnego przodka" : "wspólnego przodka do tej osoby i do Adriana"}.</p>
-      <div class="kin" role="group" aria-label="Diagram pokrewieństwa z Adrianem"><div class="kin-scroll">${body}</div></div>
-      ${key.length ? `<div class="legend">${key.map(([, m, t]) => `<span><i class="mark ${m}"></i>powiązanie ${t}</span>`).join("")}</div>` : ""}${alt}`;
+    const diagram = `<div class="kin" role="group" aria-label="Diagram pokrewieństwa z Adrianem"><div class="kin-scroll">${body}</div></div>
+      ${key.length ? `<div class="legend">${key.map(([, m, t]) => `<span><i class="mark ${m}"></i>powiązanie ${t}</span>`).join("")}</div>` : ""}`;
+    if (opt.bare) return diagram;
+    return `<h2>${title}</h2>
+      <p class="intro">${esc(A.fullName(A.byId.get(id)))} to ${esc(A.rel(id))}. Poniżej ścieżka od ${K.kind === "dbl" ? "tej osoby do Adriana — dwiema liniami, które łączą się w dziadkach" : K.kind === "anc" ? "tej osoby do Adriana" : K.spouse ? "małżonka tej osoby do Adriana przez wspólnego przodka" : "wspólnego przodka do tej osoby i do Adriana"}.</p>
+      ${diagram}${alt}${TWO.has(id) ? `<p class="small" style="margin-top:8px"><a href="dwie-linie.html">Dwa razy od Pawła i Jadwigi — opisane dokładniej →</a></p>` : ""}`;
   }
+  const TWO = new Set(["pawel", "jadwiga", "adam-p", "ewa-antosiak-debek", "wincenty", "eleonora"]);
 
   function osoba() {
     const id = new URLSearchParams(location.search).get("id");
@@ -199,6 +218,52 @@
       ${(p.refs || []).length ? `<h2>Inne akty i źródła</h2><div class="act-links">${A.refLinks(p.refs)}</div>` : ""}
       ${am.length ? `<h2>Ameryka</h2><ul class="facts">${am.map(x => `<li>${esc(x.trip || "")}${x.fate ? " — " + esc(x.fate) : ""} <a href="ameryka.html">więcej</a></li>`).join("")}</ul>` : ""}
       ${triv.length ? `<h2>Ciekawostki</h2><ul class="cards">${triv.map(card).join("")}</ul>` : ""}`;
+    for (const k of document.querySelectorAll(".kin-scroll")) k.scrollLeft = (k.scrollWidth - k.clientWidth) / 2;
+  }
+
+  /* ── dwa razy od Pawła i Jadwigi ───────────────── */
+  function dwieLinie() {
+    const P = id => A.plink(id, A.fullName(A.byId.get(id)));
+    const rows = [
+      ["kacper", "adam-p", "bracia (synowie Pawła i Jadwigi)", "Paweł i Jadwiga są ich rodzicami"],
+      ["walenty", "ewa-antosiak-debek", "kuzynostwo 1. stopnia (dzieci braci)", "Paweł i Jadwiga są dziadkami obojga"],
+      ["feliks", "grzegorz-d", "kuzyni 2. stopnia", "Paweł i Jadwiga są pradziadkami obu"],
+      ["franciszek", "adam-d", "kuzyni 3. stopnia", "Paweł i Jadwiga są prapradziadkami obu"],
+      ["wincenty", "eleonora", "kuzyni 4. stopnia", "Paweł i Jadwiga są ich 3× pradziadkami (5 pokoleń wstecz)"],
+    ];
+    const sources = ["s1750", "u1759-sk", "u1810-ewa", "z1832-159", "u1847-225", "z1880-4"].map(i => A.actById.get(i)).filter(Boolean);
+    $("#main").innerHTML = `<section class="page-h"><h1>Dwa razy od Pawła i Jadwigi<span class="dot">.</span></h1>
+        <p class="lead">Wincenty Antosiak i Eleonora z Dębków — rodzice dziadka Adriana, Mariana — mieli wspólnych przodków. Dlatego Paweł i Jadwiga stoją w drzewie Adriana dwa razy.</p>
+        ${A.legend()}</section>
+      <h2>W skrócie</h2>
+      <div class="prose">
+        <p>${P("wincenty")} i ${P("eleonora")} pobrali się w 1925 r. Nie wiedzieli (a przynajmniej nic na to nie wskazuje), że są dalekimi krewnymi. Ich wspólni przodkowie to ${P("pawel")} i ${P("jadwiga")}, którzy wzięli ślub 8.02.1750 w Chorzelach.</p>
+        <p>Paweł i Jadwiga mieli kilku synów. Dwóch z nich — ${P("adam-p")} (ur. 1754) i ${P("kacper")} (ur. 1759) — to bracia. Od Kacpra idzie linia Antosiaków: aż do Wincentego. Od Adama idzie inna droga: jego córka ${P("ewa-antosiak-debek")} (ur. 24.12.1810) wyszła za Józefa Dębka, a ich wnuk Adam Dębek był ojcem Eleonory. Obie linie spotykają się dopiero w 1925 r., na ślubie Wincentego i Eleonory.</p>
+      </div>
+      <h2>Dwie linie</h2>
+      <p class="intro">Po lewej linia Antosiaków od Kacpra, po prawej linia Dębków od Adama. Na dole łączą się w Marianie i Henryce, dziadkach Adriana. Każda osoba jest linkiem.</p>
+      ${kinship("pawel", { bare: true, couples: true })}
+      <h2>Kim byli dla siebie</h2>
+      <p class="intro">Kolejne pokolenia obu linii szły równolegle, jak dwie drabiny z jednego pnia — za każdym razem o jeden szczebel dalej od wspólnych przodków.</p>
+      <div class="scroll"><table class="today"><thead><tr><th>Z linii Kacpra</th><th>Z linii Adama</th><th>Kim byli dla siebie</th><th>Wspólni przodkowie</th></tr></thead><tbody>
+      ${rows.map(([a, b, r, c]) => `<tr><td>${P(a)}</td><td>${P(b)}</td><td>${esc(r)}</td><td>${esc(c)}</td></tr>`).join("")}
+      </tbody></table></div>
+      <h2>Skąd wiemy</h2>
+      <p class="intro">Powiązanie dwóch linii opiera się na kilku aktach. Kluczowe jest to, że ${P("adam-p")}, mąż Marianny Samsłówny, był synem Pawła i Jadwigi — a jego córką była Ewa Dębkowa.</p>
+      <ol class="acts">${sources.map(a => A.actHTML(a, { anchor: true })).join("")}</ol>
+      <ul class="facts" style="margin-top:14px">
+        <li>${A.mark("ok")}Chrzest Ewy (1810) podaje jej rodziców: Adama Antosiaka i Mariannę Samsłównę.</li>
+        <li>${A.mark("ok")}Zgon Adama (1832) mówi, że był synem Pawła i Jadwigi. Skorowidz z 1759 r. zapisuje Kacpra jako dziecko Pawła i Jadwigi, więc obaj są braćmi.</li>
+        <li>${A.mark("ok")}Zgon Ewy (1880) potwierdza, że była córką Adama i Marianny, a chrzest Grzegorza (1847) — że Ewa była żoną Józefa Dębka i matką Grzegorza, dziadka Eleonory.</li>
+        <li>${A.mark("prawd")}Wiek Adama w akcie zgonu („90 lat”) nie zgadza się z rokiem urodzenia przyjętym w drzewie (1754) — urzędnicy często zaokrąglali wiek.</li>
+      </ul>
+      <h2>Co to znaczy dla Adriana</h2>
+      <div class="prose">
+        <p>Paweł i Jadwiga (oraz ich przodkowie ${P("jakub-j")} i ${P("marianna-j")}) zajmują w drzewie Adriana <b>dwa miejsca</b>: raz po stronie ojca Mariana, Wincentego, i drugi raz po stronie jego matki, Eleonory. Gdy ktoś ma tego samego przodka w dwóch miejscach, w genealogii mówi się o „zapętleniu drzewa” (po angielsku <i>pedigree collapse</i>).</p>
+        <p>To zupełnie normalne w małych wsiach. Przez setki lat żeniło się tu kilka tych samych rodzin: Antosiakowie, Dębkowie, Kutowie, Chudzikowie, Bańkowie. Przy kilku pokoleniach odległości ludzie zwykle nie wiedzieli o pokrewieństwie — pięć pokoleń to dawno zapomniana rodzina.</p>
+        <p>${A.certBadge("prawd")} Ciekawostka z ogólnej wiedzy, nie z aktów: według kodeksu prawa kanonicznego z 1917 r. małżeństwo blokowało pokrewieństwo tylko do bliższych stopni (mniej więcej do drugich kuzynów). Wincenty i Eleonora byli kuzynami 4. stopnia, więc w 1925 r. dyspensa raczej nie była potrzebna. W streszczeniu aktu ślubu (${A.actRefs(["s1925-40"])}) o dyspensie nie ma wzmianki.</p>
+      </div>
+      <p class="small" style="margin-top:22px"><a href="ciekawostki.html">← Ciekawostki</a> · <a href="historie.html">Historie</a></p>`;
     for (const k of document.querySelectorAll(".kin-scroll")) k.scrollLeft = (k.scrollWidth - k.clientWidth) / 2;
   }
 
@@ -360,5 +425,5 @@
       <h2>Do zrobienia</h2><ol class="todo">${D.todo.map(t => `<li>${esc(t)}</li>`).join("")}</ol>`;
   }
 
-  ({ start, osoba, akty, ciekawostki, ameryka, babcia, zrodla })[page]?.();
+  ({ start, osoba, "dwie-linie": dwieLinie, akty, ciekawostki, ameryka, babcia, zrodla })[page]?.();
 })();

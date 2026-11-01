@@ -15,7 +15,7 @@ DRZEWO.trivia = [
   { title: "Chudzikowie przy rodzinie od 1750 r.", kind: "fakt o rodzinie", year: 1750, people: ["pawel", "marianna-ch"],
     text: "Na ślubie Pawła z Jadwigą świadkiem był Paweł Chudzik. W 1822 r. Walenty, wnuk Pawła, ożenił się z Marianną Chudzikówną. Czy jej dziadkiem był właśnie ten świadek — to już tylko hipoteza.",
     sources: ["fs1750"], acts: ["s1750", "s1822-fs"] },
-  { title: "Dwa razy od Pawła", kind: "fakt o rodzinie", c: "ok", year: 1810, people: ["pawel", "jadwiga", "kacper", "adam-p", "ewa-antosiak-debek", "wincenty", "eleonora"],
+  { title: "Dwa razy od Pawła", kind: "fakt o rodzinie", c: "ok", link: ["dwie-linie.html", "opisane dokładniej"], year: 1810, people: ["pawel", "jadwiga", "kacper", "adam-p", "ewa-antosiak-debek", "wincenty", "eleonora"],
     text: "Wincenty i Eleonora mieli wspólnych przodków — Pawła i Jadwigę (Kacper i Adam byli braćmi). Dowodzą tego dwa akty: chrzest Ewy z 1810 r. (córka Adama i Marianny Samsłówny) i zgon Adama z 1832 r. („syn niegdy Pawła i Jadwigi”, wdowa Maryanna z Samsłów). Adrian pochodzi od Pawła i Jadwigi dwiema liniami.",
     acts: ["u1810-ewa", "z1832-159"] },
   { title: "Zapomniani rodzice", kind: "fakt o rodzinie", year: 1828, people: ["kacper", "helena"],

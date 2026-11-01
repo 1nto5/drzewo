@@ -112,7 +112,23 @@
   function kinPath(id, depth = 0) {
     if (!byId.get(id)) return null;
     const down = from => { const out = [from]; let cur = from; while (dist.get(cur) > 2) { const nx = children(cur).find(c => dist.get(c) === dist.get(cur) - 1); if (!nx) return null; out.push(nx); cur = nx; } return out; };
-    if (dist.has(id)) { const chain = down(id); return chain && { kind: "anc", chain }; }
+    // wszystkie drogi w dół od przodka do dziadków (Marian/Henryka)
+    const downAll = from => { const out = []; const go = (cur, acc) => { if (out.length > 60) return; if (dist.get(cur) === 2) { out.push(acc); return; } for (const c of children(cur)) if (dist.has(c) && dist.get(c) < dist.get(cur) && !acc.includes(c)) go(c, [...acc, c]); }; go(from, [from]); return out; };
+    const pathsFrom = from => downAll(from).sort((a, b) => a.length - b.length);
+    if (dist.has(id)) {
+      const all = pathsFrom(id);
+      if (all.length >= 2) {
+        const sc = q => q.filter(n => /ntosiak$/.test((byId.get(n) || {}).surname || "")).length;
+        let p1 = all[0]; const cp = (a, b) => { let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++; return i; };
+        let p2 = all.slice(1).reduce((m, q) => (cp(p1, q) < cp(p1, m) ? q : m), all[1]);
+        if (p1 !== p2) {
+          if (sc(p2) > sc(p1)) [p1, p2] = [p2, p1];
+          const f = cp(p1, p2) - 1; let sf = 0; while (sf < p1.length - f - 1 && sf < p2.length - f - 1 && p1[p1.length - 1 - sf] === p2[p2.length - 1 - sf]) sf++;
+          return { kind: "dbl", top: p1.slice(0, f + 1), L: p1.slice(f + 1, p1.length - sf), R: p2.slice(f + 1, p2.length - sf), suf: p1.slice(p1.length - sf) };
+        }
+      }
+      const chain = down(id); return chain && { kind: "anc", chain };
+    }
     const prev = new Map(), seen = new Set([id]), q = [[id, 0]], cands = [];
     while (q.length) { const [x, b] = q.shift(); for (const par of parents(x)) { if (seen.has(par)) continue; seen.add(par); prev.set(par, x); if (dist.has(par)) cands.push({ x: par, a: dist.get(par), b: b + 1 }); else q.push([par, b + 1]); } }
     let best = null; for (const c of cands) if (!best || c.a < best.a || (c.a === best.a && c.b < best.b)) best = c;
@@ -120,7 +136,9 @@
       const left = [best.x]; while (left[left.length - 1] !== id) left.push(prev.get(left[left.length - 1]));
       const right = down(best.x); if (!right) return null;
       const other = cands.find(c => c !== best && c.x !== best.x && prev.get(c.x) !== prev.get(best.x) && !isAnc(c.x, best.x) && !isAnc(best.x, c.x));
-      return { kind: "lat", x: best.x, left, right, alt: other ? other.x : null };
+      let alt = other ? other.x : null;
+      if (!alt) { const ps = pathsFrom(best.x); const o = ps.find(q => q.some((n, i) => right[i] !== n)); if (o) { const i = o.findIndex((n, k) => right[k] !== n); alt = o[i]; } }
+      return { kind: "lat", x: best.x, left, right, alt };
     }
     if (!depth) for (const s of spouses(id)) { const k = kinPath(s.id, 1); if (k) return { ...k, spouse: s.id }; }
     return null;
@@ -203,7 +221,7 @@
 
   /* ── nawigacja, motyw, stopka ─────────────────── */
   const PAGES = [
-    ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["historie.html", "Historie"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
+    ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["historie.html", "Historie"], ["dwie-linie.html", "Dwie linie"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
     ["os-czasu.html", "Oś czasu"], ["mapa.html", "Mapa"], ["ciekawostki.html", "Ciekawostki"], ["kurpie.html", "Kurpie"],
     ["obrazy.html", "Obrazy"], ["siec.html", "Sieć"], ["statystyki.html", "Statystyki"], ["ameryka.html", "Ameryka"],
     ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"],

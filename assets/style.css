@@ -403,3 +403,13 @@ a.kn:hover { border-color: var(--accent); }
 .kn.c-prawd::before { border-left-style: dashed; } .kn.c-prawd::after { border-top-style: dashed; }
 .kn.c-hyp::before { border-left-style: dotted; } .kn.c-hyp::after { border-top-style: dotted; }
 .kin-alt { margin: 4px 0 0; }
+.kin-top.stack { flex-direction: column; align-items: center; gap: 18px; }
+.kin-bot { grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 36px; position: relative; }
+.kin-bot::before { content: ""; position: absolute; left: 50%; top: -18px; height: 18px; border-left: 1.5px solid var(--ink-3); }
+.kin-bot .kin-col { align-items: center; }
+.kn .dn { position: absolute; bottom: -18px; height: 0; border-top: 1.5px solid var(--ink-3); }
+.kn .dn::after { content: ""; position: absolute; top: -18px; left: 0; height: 18px; border-left: 1.5px solid var(--ink-3); }
+.kn .dn-l { left: 50%; right: -8px; } .kn .dn-r { right: 50%; left: -8px; }
+.kn .dn-r::after { left: auto; right: 0; }
+.kgap { flex: 1 0 18px; width: 150px; margin: -18px 0; position: relative; }
+.kgap::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1.5px solid var(--ink-3); }
