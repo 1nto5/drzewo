@@ -181,7 +181,7 @@ DRZEWO.trivia = [
     text: "Przed ślubem w 1902 r. Adam Dębek i Marianna Obrębska — rodzice prababci Eleonory — zawarli umowę przedślubną u notariusza w Przasnyszu. Umowę u notariusza (w Chorzelach) spisali też w 1926 r. Aleksander Antosiak i Marianna Folga.",
     acts: ["s1902-35", "s1926-36"] },
   { title: "Felcaki, Stańcaki, Walaski", kind: "fakt o rodzinie", c: "prawd", people: ["feliks", "stanislaw-k", "walenty"],
-    text: "W Połoni żyło tyle rodzin Antosiaków, że gałęzie dostały przydomki. Linia Adriana to „Felcaki” — od Feliksa (Felka), syna Walentego. „Stańcaki” — prawdopodobnie od Stanisława, syna Kacpra, albo jego syna Stanisława (ur. 1853), „Walaski” — od Walentego, syna Stanisława, a „Marciny” — od Marcina, syna Andrzeja. Wszystkie schodzą się na Kacprze.",
+    text: "W Połoni żyło tyle rodzin Antosiaków, że gałęzie dostały przydomki. Linia Adriana to „Felcaki” — od Feliksa (Felka), syna Walentego. „Stańcaki” — prawdopodobnie od Stanisława, syna Kacpra, albo jego syna Stanisława (ur. 1853), „Walaski” — od Walentego, syna Stanisława, a „Marciny” — od Marcina, syna Andrzeja. Wszystkie schodzą się na Kacprze. Jest jeszcze jeden trop do „Marcinów”: w 1841 r. w Połoni żył rolnik Marcin Antosiak, wdowiec po Tekli z Węgłów (akt zgonu Z 25/1841) — nie syn Kacpra; może od niego pochodzi przydomek (hipoteza).",
     sources: ["fb-matecznik"] },
   { title: "Bliźnięta z 1759 r.", kind: "fakt o rodzinie", year: 1759, people: ["kacper", "agnieszka-p"],
     text: "Kacper urodził się w 1759 r. jako bliźniak — razem z siostrą Agnieszką. Tak podaje skorowidz urodzeń parafii Chorzele: „Kacper i Agnieszka Jentosiaki, Pawła i Jadwigi”. Zgadza się to z jego aktem zgonu, który w 1828 r. podaje „lat siedmdziesiąt”.",

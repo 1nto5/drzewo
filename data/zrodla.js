@@ -101,7 +101,7 @@ DRZEWO.todo = [
   "Ślub Władysława Mieszały z Zofią Szczepanek (ok. 1930–1945): księgi Nowej Wsi k. Ostrołęki z lat 1937–1945 nie są zeskanowane — USC Olszewo-Borki / AP Pułtusk.",
   "Geneteka ręcznie: Mieszała w parafiach Myszyniec, Chorzele, Jednorożec, Przasnysz; para Antosiak × Mieszała w latach 1940–1970.",
   "Etnofon IS PAN: odsłuchać sesję T2667 z Połoni (1963), zwłaszcza zapowiedzi T2667.01 i T2667.17 — czy pada imię i wiek śpiewaczki.",
-  "S 9/1841: trzeci odczyt nazwiska rodowego Heleny, matki Stanisława („z F…orów?”).",
+  "S 9/1841: nazwisko rodowe Heleny, matki Stanisława, odczytane jako „z Fadorów” [?] (wariant Todor) — sprawdzić jeszcze raz na skanie.",
   "Wojciech Chudzik: D 117/1847 podaje rodziców Michała i Maryannę, a D 58/1829 wskazuje na Mateusza — wyjaśnić.",
   "Rozalia Sędrowska: S 35/1865 Anny Sendrowskiej podaje „niegdy Ludwika i Maryanny z Kutów” — czy to jej siostra i kim był Ludwik.",
   "Zgon Marianny z Chudzików — szukać po 1864 r.",
