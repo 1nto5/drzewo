@@ -105,6 +105,27 @@
     if (!depth) relCache.set(id, r);
     return r;
   }
+  /* ── ścieżka pokrewieństwa do diagramu ───────────
+     anc: chain = [osoba … dziadek/babcia]; lat: left = [wspólny przodek … osoba], right = [wspólny przodek … dziadek/babcia];
+     spouse = id małżonka-krewnego, przez którego liczona jest ścieżka (powinowaci); alt = druga możliwa ścieżka. */
+  const isAnc = (a, b) => { const seen = new Set([b]), q = [b]; while (q.length) { const x = q.shift(); if (x === a) return true; for (const p of parents(x)) if (!seen.has(p)) { seen.add(p); q.push(p); } } return false; };
+  function kinPath(id, depth = 0) {
+    if (!byId.get(id)) return null;
+    const down = from => { const out = [from]; let cur = from; while (dist.get(cur) > 2) { const nx = children(cur).find(c => dist.get(c) === dist.get(cur) - 1); if (!nx) return null; out.push(nx); cur = nx; } return out; };
+    if (dist.has(id)) { const chain = down(id); return chain && { kind: "anc", chain }; }
+    const prev = new Map(), seen = new Set([id]), q = [[id, 0]], cands = [];
+    while (q.length) { const [x, b] = q.shift(); for (const par of parents(x)) { if (seen.has(par)) continue; seen.add(par); prev.set(par, x); if (dist.has(par)) cands.push({ x: par, a: dist.get(par), b: b + 1 }); else q.push([par, b + 1]); } }
+    let best = null; for (const c of cands) if (!best || c.a < best.a || (c.a === best.a && c.b < best.b)) best = c;
+    if (best) {
+      const left = [best.x]; while (left[left.length - 1] !== id) left.push(prev.get(left[left.length - 1]));
+      const right = down(best.x); if (!right) return null;
+      const other = cands.find(c => c !== best && c.x !== best.x && prev.get(c.x) !== prev.get(best.x) && !isAnc(c.x, best.x) && !isAnc(best.x, c.x));
+      return { kind: "lat", x: best.x, left, right, alt: other ? other.x : null };
+    }
+    if (!depth) for (const s of spouses(id)) { const k = kinPath(s.id, 1); if (k) return { ...k, spouse: s.id }; }
+    return null;
+  }
+
   const rel = id => { const r = relOf(id); return r ? r.nom : ""; };
   const genPl = (n, c = "pl") => ANC(n + 1, "m", c);
 
@@ -210,6 +231,6 @@
   }
   chrome();
 
-  window.APP = { rel, relOf, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
+  window.APP = { rel, relOf, kinPath, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
     direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, burial, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
 })();

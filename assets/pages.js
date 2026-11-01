@@ -100,6 +100,57 @@
       ${A.legend()}</section>
       ${groups.map(([t, arr], i) => `<h2>${t}</h2><ul class="people-index">${(i ? sortByName(arr) : arr).map(p => `<li>${markFor(p)}${A.plink(p.id)}${A.lifeShort(p) ? `<span class="yrs">${esc(A.lifeShort(p))}</span>` : ""}</li>`).join("")}</ul>`).join("")}`;
   }
+  /* ── diagram pokrewieństwa z Adrianem ─────────── */
+  function kinship(id) {
+    const K = A.kinPath(id); if (!K) return "";
+    const cert = (child, par) => { const c = A.byId.get(child); const a = A.altOf(child, par); return (a && a.c) || (c && c.parentsCert) || "ok"; };
+    const node = (nid, o = {}) => {
+      const q = A.byId.get(nid); if (!q) return "";
+      const life = A.lifeShort(q), r = A.rel(nid);
+      return `<a class="kn${o.cur ? " cur" : ""}${o.up ? " up c-" + o.up : ""}${o.bar ? " bar-" + o.bar : ""}" href="osoba.html?id=${encodeURIComponent(nid)}"><b>${esc(A.fullName(q))}</b>${life ? `<span class="kn-y">${esc(life)}</span>` : ""}${r ? `<span class="kn-rel">${esc(r)}</span>` : ""}</a>`;
+    };
+    const anon = o => `<span class="kn anon up c-ok${o.bar ? " bar-" + o.bar : ""}"><b>mama lub tata</b><span class="kn-rel">rodzic Adriana</span></span>`;
+    const me = `<span class="kn me up c-ok"><b>Adrian (Ty)</b><span class="kn-rel">wnuk Mariana i Henryki</span></span>`;
+    const hl = `<i class="hl" aria-hidden="true"></i>`;
+    const used = new Set();
+    // rząd: węzeł krwi (S) i opcjonalnie małżonek T poziomo
+    const row = (nid, o, side) => {
+      used.add(nid);
+      const main = node(nid, { ...o, cur: o.cur || false });
+      if (K.spouse && o.spouseHere) { used.add(id); const sp = node(id, { cur: true }); return `<div class="kr">${side === "l" ? sp + hl + main : main + hl + sp}</div>`; }
+      return `<div class="kr">${main}</div>`;
+    };
+    const isEnd = nid => nid === (K.kind === "anc" ? K.chain[0] : K.left[K.left.length - 1]);
+    const target = K.spouse || id;
+    const lastCur = nid => nid === target && !K.spouse;
+    const certs = [];
+    let body;
+    if (K.kind === "anc") {
+      const rows = K.chain.map((nid, i) => {
+        const c = i ? cert(K.chain[i - 1], nid) : "ok"; if (i) certs.push(c);
+        return row(nid, { up: i ? c : "", cur: lastCur(nid), spouseHere: K.spouse && i === 0 }, "r");
+      }).join("");
+      body = `<div class="kin-in single"><div class="kin-col l1">${rows}<div class="kr">${anon({ up: 1 })}</div><div class="kr">${me}</div></div></div>`;
+    } else {
+      const x = K.x, L = K.left.slice(1), R = K.right.slice(1);
+      const L1 = L[0], R1 = R[0];
+      const partner = (L1 ? A.parents(L1) : []).find(q => q !== x && A.spouses(x).some(sp => sp.id === q) && (!R1 || A.parents(R1).includes(q)));
+      const topPair = `<div class="kr">${node(x)}${partner ? hl + node(partner) : ""}</div>`;
+      const lrows = L.map((nid, i) => { const c = cert(nid, i ? L[i - 1] : x); certs.push(c); return row(nid, { up: c, bar: i === 0 ? "l" : "", cur: lastCur(nid), spouseHere: K.spouse && i === L.length - 1 }, "l"); }).join("");
+      const rrows = R.map((nid, i) => { const c = cert(nid, i ? R[i - 1] : x); certs.push(c); return row(nid, { up: c, bar: i === 0 ? "r" : "" }, "r"); }).join("");
+      const rAnon = `<div class="kr">${anon({ up: 1, bar: R.length ? "" : "r" })}</div>`;
+      body = `<div class="kin-in"><div class="kin-top">${topPair}</div>
+        <div class="kin-col l1">${lrows}</div>
+        <div class="kin-col r1">${rrows}${rAnon}<div class="kr">${me}</div></div></div>`;
+    }
+    const key = [["ok", "link-axis", "pewne"], ["prawd", "link-prawd", "prawdopodobne"], ["hyp", "link-hyp", "hipoteza"]].filter(([c]) => certs.includes(c) && c !== "ok");
+    const alt = K.alt ? `<p class="muted small kin-alt">druga ścieżka: przez ${A.plink(K.alt, A.fullName(A.byId.get(K.alt)))} (${esc(A.rel(K.alt) || "")})</p>` : "";
+    return `<h2>Jak jesteśmy spokrewnieni</h2>
+      <p class="intro">${esc(A.fullName(A.byId.get(id)))} to ${esc(A.rel(id))}. Poniżej ścieżka od ${K.kind === "anc" ? "tej osoby do Adriana" : K.spouse ? "małżonka tej osoby do Adriana przez wspólnego przodka" : "wspólnego przodka do tej osoby i do Adriana"}.</p>
+      <div class="kin" role="group" aria-label="Diagram pokrewieństwa z Adrianem"><div class="kin-scroll">${body}</div></div>
+      ${key.length ? `<div class="legend">${key.map(([, m, t]) => `<span><i class="mark ${m}"></i>powiązanie ${t}</span>`).join("")}</div>` : ""}${alt}`;
+  }
+
   function osoba() {
     const id = new URLSearchParams(location.search).get("id");
     const p = id && A.byId.get(id);
@@ -134,6 +185,7 @@
         ${life.length || p.burial ? `<div class="life">${life.map(([a, b]) => `<div><b>${a}</b> ${esc(b)}</div>`).join("")}${p.burial ? `<div><b>pochówek</b><span class="burials">${A.burial(p.burial)}</span></div>` : ""}</div>` : ""}
         <p style="margin-top:16px"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>
       </section>
+      ${kinship(id)}
       <h2>Rodzina</h2>
       <div class="rel">${(alts.length ? "" : relBlock("Rodzice", A.parents(id))) + relBlock("Małżonkowie", A.spouses(id).map(s => s.id)) + relBlock("Dzieci", A.children(id)) + (alts.length ? "" : relBlock("Rodzeństwo", A.siblings(id))) || `<p class="muted">Brak znanych krewnych w drzewie.</p>`}</div>
       ${alts.length ? `<h2>${alts.length === 2 ? "Dwie możliwe ścieżki" : "Możliwe ścieżki"}</h2>
@@ -147,6 +199,7 @@
       ${(p.refs || []).length ? `<h2>Inne akty i źródła</h2><div class="act-links">${A.refLinks(p.refs)}</div>` : ""}
       ${am.length ? `<h2>Ameryka</h2><ul class="facts">${am.map(x => `<li>${esc(x.trip || "")}${x.fate ? " — " + esc(x.fate) : ""} <a href="ameryka.html">więcej</a></li>`).join("")}</ul>` : ""}
       ${triv.length ? `<h2>Ciekawostki</h2><ul class="cards">${triv.map(card).join("")}</ul>` : ""}`;
+    for (const k of document.querySelectorAll(".kin-scroll")) k.scrollLeft = (k.scrollWidth - k.clientWidth) / 2;
   }
 
   /* ── akty ──────────────────────────────────────── */
