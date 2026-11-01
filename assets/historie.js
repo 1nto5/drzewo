@@ -71,7 +71,7 @@
       <div class="prose">${N.intro.map(p => `<p>${rich(p)}</p>`).join("")}</div>
       <h3 class="sub">Kto od kogo</h3>
       <ul class="ntree" aria-label="Drzewko gałęzi">${N.tree.map(node).join("")}</ul>
-      <p class="small muted">Pomarańczowa gałąź to linia Adriana. Felcaki, Marciny i „Kapka” to potomkowie Walentego; Stańcaki i Walaski — Stanisława, jego młodszego brata. Orłowscy i Teofile idą od braci Kacpra, więc wspólnym przodkiem z linią Adriana jest dopiero Paweł.</p>
+      <p class="small muted">Pomarańczowa gałąź to linia Adriana. Felcaki, Marciny i „Kapka” to potomkowie Walentego; Stańcaki i Walaski — prawdopodobnie Stanisława, jego młodszego brata, albo jego syna Stanisława (1853) — to hipoteza. Orłowscy i Teofile idą od braci Kacpra, więc wspólnym przodkiem z linią Adriana jest dopiero Paweł.</p>
       <h3 class="sub">Gałęzie</h3>
       <ul class="cards nb">${N.branches.map(b => `<li class="card${b.me ? " me" : ""}">
         <div class="card-kind"><span class="k">${esc(b.name)}</span>${certBadge(b.c)}${b.me ? `<span class="you">linia Adriana</span>` : ""}</div>

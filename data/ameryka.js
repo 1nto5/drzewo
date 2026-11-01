@@ -60,11 +60,11 @@ DRZEWO.america = [
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280871/john-antosiak" }] },
   { name: "Frank Antosiak", person: "franciszek-aw", c: "prawd", born: "24.02.1877", died: "5.06.1951, St. Louis", places: ["newark", "stlouis"],
     fate: "Żona Leonora. Najpierw w Newark (dzieci urodzone tam w 1907 i 1911), potem w St. Louis.",
-    rel: { t: "Karta poborowa z II wojny podaje urodzenie w Budkach w 1877 r. Według wpisu FB I. Antosiaka z 2019 r. to Franciszek z gałęzi „Marciny”, syn Andrzeja, brata Feliksa — wspólni przodkowie z Adrianem: Walenty i Marianna. Rozbieżność: w innym miejscu notatek Franciszek 1877 trafił do gałęzi Wojciecha; przyjmujemy wersję „syn Andrzeja”.", c: "prawd" },
+    rel: { t: "Karta poborowa z II wojny podaje urodzenie w Budkach w 1877 r. Według wpisu FB I. Antosiaka z 2019 r. to Franciszek, syn Andrzeja (gałąź „Marciny” — nazwa wg FB, jej pochodzenie to hipoteza), brata Feliksa — wspólni przodkowie z Adrianem: Walenty i Marianna. Rozbieżność: w innym miejscu notatek Franciszek 1877 trafił do gałęzi Wojciecha; przyjmujemy wersję „syn Andrzeja”.", c: "prawd" },
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280593/frank-antosiak" }] },
   { name: "Józef Symeon Antosiak", alias: "Joseph", adrian: "kuzyn 2. stopnia prapradziadka Franciszka (wg strony FB)", c: "prawd", born: "1885", died: "1967", trip: "1905 → St. Louis, potem Chicago", places: ["stlouis", "chicago"],
     fate: "Żona Marianna z Pawłowskich (2.02.1890 Krzynowłoga – 28.08.1941 Chicago). Syn Stanley Joseph (1918/19–1980), porucznik 6. Dywizji Pancernej USA: 6 czerwca 1944 r. lądował na plaży Utah w Normandii, walczył w Ardenach, odznaczony Srebrną Gwiazdą.",
-    rel: { t: "Gałąź „Stańcaki” — potomkowie Stanisława, syna Kacpra (wg strony FB I. Antosiaka). Daleki kuzyn linii Adriana: wspólny przodek to Kacper.", c: "prawd" },
+    rel: { t: "Gałąź „Stańcaki” — wg strony FB I. Antosiaka; od Stanisława, syna Kacpra (1806), albo jego syna Stanisława (1853) — hipoteza. Daleki kuzyn linii Adriana: wspólny przodek to Kacper.", c: "prawd" },
     sources: [{ label: "grób Marianny (Find a Grave)", url: "https://www.findagrave.com/memorial/188385182/marianna-antosiak" }, { label: "grób Stanleya J. (Find a Grave)", url: "https://www.findagrave.com/memorial/206455497/stanley-j-antosiak" }] },
 ];
 

@@ -67,7 +67,7 @@ DRZEWO.people = [
     born: { y: 1754 }, died: { y: 1832, date: "24.06.1832", place: "Połoń" }, parents: ["pawel", "jadwiga"],
     facts: ["Akt zgonu: „lat Dziewięćdziesiąt mający, syn niegdy Pawła i Jadwigi”. Skorowidz urodzeń podaje jednak 1754 r. — miał więc 78 lat. W aktach z tamtych lat wiek podawano z pamięci.", "Dwukrotnie żonaty: z Klarą (ślub 2.10.1791, zm. 1797) i z Marianną. Z ich dziewięciorga dzieci co najmniej siedmioro zmarło w dzieciństwie."] },
   { id: "wojciech-a", given: "Wojciech", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok",
-    born: { y: 1805, approx: true }, parents: ["adam-p"], facts: ["W 1832 r., mając 27 lat, zgłosił zgon ojca Adama."] },
+    born: { y: 1805, approx: true, text: "ok. 1805–1807" }, parents: ["adam-p"], facts: ["W 1832 r., mając 27 lat, zgłosił zgon ojca Adama."] },
 
   /* ── Pokolenie 6: Kacper × Helena ─────────────────────────── */
   { id: "kacper", given: "Kacper", surname: "Antosiak", sex: "m", gen: 6, line: "prosta", certainty: "ok",
@@ -149,6 +149,9 @@ DRZEWO.people = [
   /* dzieci Stanisława i Franciszki z lat 1857–1862: czy to ten sam Stanisław — niepewne */
   { id: "rozalia-st", given: "Rozalia", surname: "Antosiak", sex: "f", line: "boczna", certainty: "ok", born: { y: 1857 }, parents: ["stanislaw-k", "franciszka-senda"], parentsCert: "hyp",
     facts: [{ t: "Akt podaje rodziców Stanisława i Franciszkę. Czy to Stanisław, brat Walentego — niepewne.", c: "hyp" }], refs: [{ label: "B 127/1857" }] },
+  { id: "stanislaw-st", given: "Stanisław", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1853 }, died: { y: 1939 }, parents: ["stanislaw-k", "franciszka-senda"], parentsCert: "hyp",
+    facts: ["Chrzest U 113/1853; matka zapisana jako Franciszka „z Sendrów?” (odczyt niepewny).", { t: "Według strony FB I. Antosiaka żył do 1939 r., żonaty z Julianną Panuś (1878), potem z Ewą Ferenc (1897); od niego — albo od jego ojca — pochodzi przydomek gałęzi „Stańcaki”.", c: "hyp" }, { t: "Czy jego ojciec to Stanisław (ur. 1806), brat 4× pradziadka Walentego — niepewne.", c: "hyp" }],
+    refs: [{ label: "U 113/1853" }] },
   { id: "walenty-st", given: "Walenty", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1860 }, parents: ["stanislaw-k", "franciszka-senda"], parentsCert: "hyp",
     facts: [{ t: "Akt podaje rodziców Stanisława i Franciszkę. Czy to Stanisław, brat Walentego — niepewne.", c: "hyp" }], refs: [{ label: "B 56/1860" }] },
   { id: "mateusz-st", given: "Mateusz", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1862 }, parents: ["stanislaw-k", "franciszka-senda"], parentsCert: "hyp",
@@ -216,7 +219,7 @@ DRZEWO.people = [
   { id: "andrzej-w", given: "Andrzej", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok",
     born: { y: 1842, date: "27.10/8.11.1842" }, parents: ["walenty", "marianna-ch"],
     spouses: [{ id: "marianna-les", married: { y: 1867, c: "prawd" } }],
-    facts: [{ t: "Ożenił się w 1867 r. z Marianną Leśnikowską; od jego syna Marcina wzięła nazwę gałąź „Marciny” — wg strony FB I. Antosiaka.", c: "prawd" }] },
+    facts: [{ t: "Ożenił się w 1867 r. z Marianną Leśnikowską — wg strony FB I. Antosiaka.", c: "prawd" }, { t: "Gałąź „Marciny” mogła wziąć nazwę od jego syna Marcina (ur. 1869) — strona FB nie mówi tego wprost.", c: "hyp" }] },
   { id: "marianna-les", given: "Marianna", surname: "Leśnikowska", sex: "f", line: "powinowaci", certainty: "prawd",
     facts: [{ t: "Żona Andrzeja (ślub 1867) — wg strony FB I. Antosiaka.", c: "prawd" }] },
   { id: "jan-aw", given: "Jan", surname: "Antosiak", sex: "m", line: "boczna", certainty: "prawd", born: { y: 1874 }, parents: ["andrzej-w", "marianna-les"],
@@ -405,7 +408,7 @@ DRZEWO.generations = [
     sum: "Rolnik w Połoni, co najmniej dwanaścioro dzieci.",
     facts: ["Walenty urodził się 13 lutego 1799 r. w Połoni — dzień przed św. Walentym. Rolnik w Połoni, zmarł 2.10.1861.", "Ślub 17 lutego 1822 r. w Chorzelach: Walenty, kawaler, 23 lata, i Marianna Chudzikówna, panna, 16 lat. Świadek: Adam Jentosiak.", "Marianna przeżyła męża o 10 lat: zmarła w 1871 r. w Budkach."],
     src: "Chorzele, chrzest 23/1799 i ślub 1822 (FamilySearch), chrzest 196/1839, ślub 34/1853, zgon 91/1861, śluby 24/1862, 28/1864",
-    more: ["Dzieci (co najmniej 12): Ewa (ok. 1824; w 1845 r. wyszła za Jakuba Bańkę), Józef (1827), Wawrzyniec (1829, zmarł po 3 tygodniach), drugi Wawrzyniec (1830; ślub 1850, zm. 1856 jako młody ojciec), Adam (ok. 1831–1832), Jakub (1833, zmarł po miesiącu), Jan (1834; w wieku 19 lat ożenił się z 40-letnią wdową i osiadł w Raszujce), Stanisław (23.04.1837; ślub 1862 z Marianną Bączek), Feliks (1839), Andrzej (1842), Szczepan (3.08.1845), Aleksander (1850).", "Walenty był chrzestnym swojej wnuczki Anny, córki Jana (1854).", "Ojciec Marianny: Mateusz Chudzik (ok. 1749–1829). Jego zgon zgłosił „Walenty Antosiak zięć zmarłego”. Brat Marianny, Wojciech Chudzik, był świadkiem przy chrztach jej dzieci.", "Wiek z aktów „pływa”: Walenty ma 36 lat w 1836, a 45 w 1850 — wtedy nikt nie znał dokładnej daty urodzenia.", "Zgon Walentego zgłosili sąsiedzi Jakub i Walenty Bańkowie."] },
+    more: ["Dzieci (co najmniej 12): Ewa (ok. 1824; w 1845 r. wyszła za Jakuba Bańkę), Józef (1827), Wawrzyniec (1829, zmarł po 3 tygodniach), drugi Wawrzyniec (1830; ślub 1850, zm. 1856 jako młody ojciec), Adam (ok. 1831–1832), Jakub (1833, zmarł po miesiącu), Jan (1834; w wieku 19 lat ożenił się z 40-letnią wdową i osiadł w Raszujce), Stanisław (23.04.1837; ślub 1862 z Marianną Bączek), Feliks (1839), Andrzej (1842), Szczepan (3.08.1845), Aleksander (1850).", "Walenty był chrzestnym swojej wnuczki Anny, córki Jana (1854).", "Ojciec Marianny: Mateusz Chudzik (ok. 1749–1829). Jego zgon zgłosił „Walenty Antosiak zięć zmarłego”. Brat Marianny, Wojciech Chudzik, był świadkiem przy chrztach jej dzieci.", "Wiek z aktów „pływa”: Walenty w aktach z 1827 r. ma 28 lat, z 1829 r. — 31, z 1832 r. — 33, z 1837 r. — 38. Nikt wtedy nie znał dokładnej daty urodzenia.", "Zgon Walentego zgłosili sąsiedzi Jakub i Walenty Bańkowie."] },
   { n: 4, yr: "1839", c: "ok", man: "feliks", woman: "rozalia-s",
     sum: "Ślub w lutym 1864 r., w środku powstania styczniowego.",
     facts: ["Feliks ur. 27.11.1839 w Połoni.", "Ślub 7.02.1864 w Chorzelach — w środku powstania styczniowego. Feliks, 24 lata, gospodarował przy matce.", "Rozalia ur. ok. 1.10.1843 w Połoni, córka Grzegorza Sędrowskiego i Marianny z Kutów."],
