@@ -543,7 +543,7 @@ DRZEWO.people = [
     burial: {c: "brak", note: "grobu nie odnaleziono w bazach online (grobonet, eCmentarze, Find a Grave, BillionGraves)"},
     given: "Katarzyna", surname: "Szczepanek", maiden: "z Radziejewskich", sex: "f", line: "prosta", certainty: "ok",
     born: { y: 1885, approx: true, place: "Mostowo" }, parents: ["jozef-radz", "agnieszka-rataj"],
-    facts: ["Babka babci Henryki, matka Zofii (relacja rodzinna, 2026; akt chrztu Zofii 10/1913).", "Urodzona i mieszkająca w Mostowie przy rodzicach, córka Józefa i Agnieszki z Ratajów; przy ślubie w 1909 r. miała 23 lata."] },
+    facts: ["Babka babci Henryki, matka Zofii (relacja rodzinna, 2026; akt chrztu Zofii 10/1913).", "Urodzona i mieszkająca w Mostowie przy rodzicach, córka Józefa i Agnieszki z Ratajów; przy ślubie w 1909 r. miała 23 lata.", { t: "Według relacji babci jeździła na roboty do Niemiec — najpewniej to saksy w Prusach przed 1909 r. (dwie córki urodzone w Prusach, akt ślubu 1909/4); w bazie robotników przymusowych 1940–45 jej nie ma.", c: "prawd" }] },
   { id: "franciszek-szcz",
     burial: {cemetery: "cmentarz parafialny w Nowej Wsi k. Ostrołęki", place: "ul. Kościelna", c: "prawd", note: "zmarł(a) w parafii Nowa Wieś — pochowany(a) najpewniej na cmentarzu parafialnym; grobu nie odnaleziono"},
     given: "Franciszek", surname: "Szczepanek", sex: "m", line: "prosta", certainty: "ok",
@@ -622,6 +622,14 @@ DRZEWO.people = [
     burial: {cemetery: "cmentarz parafialny w Nowej Wsi k. Ostrołęki", place: "ul. Kościelna", c: "prawd", note: "zmarł(a) w parafii Nowa Wieś — pochowany(a) najpewniej na cmentarzu parafialnym; grobu nie odnaleziono"},
     given: "Michalina Marianna", surname: "Szczepanek", sex: "f", line: "boczna", certainty: "ok", died: { y: 1929, place: "Chojniki" }, parents: ["aleksander-sz", "katarzyna-sz"],
     facts: ["Zmarła w 1929 r. w Chojnikach (akt 46)."] },
+  { id: "alicja-sz", given: "Alicja", surname: "Szczepanek", sex: "f", line: "boczna", certainty: "ok", parents: ["aleksander-sz", "katarzyna-sz"], private: true,
+    facts: ["Rodzeństwo Zofii — znana z relacji rodzinnej (2026); aktu urodzenia nie ma w sieci — urodzenia z 1914 r. i po 1919 r. są tylko w USC."] },
+  { id: "henryk-sz", given: "Henryk", surname: "Szczepanek", sex: "m", line: "boczna", certainty: "ok", parents: ["aleksander-sz", "katarzyna-sz"], private: true,
+    facts: ["Rodzeństwo Zofii — znana z relacji rodzinnej (2026); aktu urodzenia nie ma w sieci — urodzenia z 1914 r. i po 1919 r. są tylko w USC.", { t: "Może to Henryk Szczepanek (13.11.1921–27.09.1984), pochowany na cmentarzu komunalnym w Olsztynie (Find a Grave 268233334) — rodzice na grobie niepodani.", c: "hyp" }, { t: "Babcia Henryka mogła dostać imię po wujku Henryku.", c: "hyp" }] },
+  { id: "czeslaw-sz", given: "Czesław", surname: "Szczepanek", sex: "m", line: "boczna", certainty: "ok", parents: ["aleksander-sz", "katarzyna-sz"], private: true,
+    facts: ["Rodzeństwo Zofii — znana z relacji rodzinnej (2026); aktu urodzenia nie ma w sieci — urodzenia z 1914 r. i po 1919 r. są tylko w USC."] },
+  { id: "boleslawa-sz", given: "Bolesława", surname: "Szczepanek", sex: "f", line: "boczna", certainty: "ok", parents: ["aleksander-sz", "katarzyna-sz"], died: { text: "w czasie II wojny światowej" },
+    facts: ["Rodzeństwo Zofii — znana z relacji rodzinnej (2026); aktu urodzenia nie ma w sieci — urodzenia z 1914 r. i po 1919 r. są tylko w USC.", { t: "Według relacji rodzinnej Niemcy zabrali ją i zginęła.", c: "ok" }, "W bazie strat wojennych (straty.pl) jej nie ma — nie wiadomo, dokąd ją wywieziono."] },
 ];
 
 /* Narracja pokoleń linii prostej (start, panel drzewa, strony osób). n = numer pokolenia. */
