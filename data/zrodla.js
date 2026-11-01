@@ -7,6 +7,8 @@ DRZEWO.asof = "1 listopada 2026";
 
 DRZEWO.sources = [
   /* rodzina */
+  { id: "metryki-nw", group: "archiwa", label: "metryki.genealodzy.pl — księgi parafii Nowa Wieś (pow. ostrołęcki), zespół 0651d; ślub 1909/4", url: "https://metryki.genealodzy.pl/metryki.php?op=kt&ar=6&zs=0651d&sy=1909&kt=2" },
+  { id: "metryki-chorzele", group: "archiwa", label: "metryki.genealodzy.pl — skany ksiąg Chorzel 1866–1923 (np. śluby 1892)", url: "https://metryki.genealodzy.pl/id1483-sy1892-kt2" },
   { id: "rodzina-2026", group: "rodzina", short: "relacja rodzinna", label: "Relacja rodzinna, 2026 — rodzice i dziadkowie babci Henryki (Władysław Mieszała, Zofia ze Szczepanków, Aleksander i Katarzyna Szczepankowie)" },
   /* archiwa i indeksy */
   { id: "ap", group: "archiwa", label: "AP Warszawa Oddział w Pułtusku, akta stanu cywilnego parafii Chorzele (79/107/0)", url: "https://www.szukajwarchiwach.gov.pl/zespol/-/zespol/109048" },
@@ -68,7 +70,7 @@ DRZEWO.method = [
   "Dane ze strony FB „Połoń - Matecznik Rodziny Antosiak” (Ireneusz Antosiak) to źródło wtórne: oznaczamy je „wg strony FB I. Antosiaka” i najwyżej jako prawdopodobne, dopóki nie przeczytamy aktu.",
   "Każda osoba i każde powiązanie ma jeden z trzech poziomów pewności: pewne (akt metrykalny, indeks albo wiedza rodzinna), prawdopodobne (zgodne poszlaki) albo hipoteza (trop z naszych badań, wymaga sprawdzenia).",
   "Akty z lat 1826–1865 czytamy ze skanów Archiwum Państwowego w Pułtusku. „1 odczyt” — akt przeczytany raz; „2 odczyty” — sprawdzony drugi raz; „sprawdzone” — przeczytany osobiście przez Adriana.",
-  "Księgi z lat 1866–1923 nie mają skanów w internecie: te akty znamy tylko z indeksu Geneteki. Księgi sprzed 1826 r. (po łacinie) są na FamilySearch.",
+  "Księgi Chorzel z lat 1866–1923 nie są na szukajwarchiwach: te akty znamy z indeksu Geneteki, a skany są w serwisie metryki.genealodzy.pl. Księgi sprzed 1826 r. (po łacinie) są na FamilySearch.",
   "Skanów nie kopiujemy na stronę — link otwiera oryginał w serwisie archiwum (serwer blokuje pobieranie, przy dłuższym przeglądaniu trzeba robić przerwy).",
   "Geneteka blokuje automatyczne zapytania i podaje wtedy fałszywe wyniki — wyszukiwania robimy tylko ręcznie.",
   "Wiek w aktach „pływa”: podawano go z pamięci, więc rok urodzenia z aktu zgonu to zawsze „ok.”. Podwójne daty, np. 16/28 IV, to kalendarz juliański / gregoriański.",
@@ -92,7 +94,8 @@ DRZEWO.todo = [
   "Odpis zupełny aktu małżeństwa Mariana i Henryki z USC — potwierdzi rodziców babci (Władysław Mieszała, Zofia ze Szczepanków) i poda miejsce jej urodzenia.",
   "Zapytać rodzinę, skąd pochodzili Władysław Mieszała i Zofia ze Szczepanków i gdzie dziadkowie się poznali. Co wiadomo o Aleksandrze, który „wrócił z Ameryki”?",
   "FamilySearch: chrzest Jana Kantego, syna Kacpra (obraz 498, VIII 1803). Wyjaśnić „Wysocką” w aktach z lat 1805, 1806 i 1825 (ojczym? przydomek?) — czy Wojciech Wysocki był żonaty przed 1770 r.",
-  "AP Pułtusk, kwerenda: Chorzele 1866–1923 (bez skanów online) — ślub Franciszka z Marcjanną, zgon Feliksa.",
+  "Przeczytać skany z metryki.genealodzy.pl: ślub Franciszka z Marcjanną (1892), zgon Feliksa (1880, wiek), chrzty rodzeństwa Wincentego.",
+  "Parafia Nowa Wieś k. Ostrołęki (metryki.genealodzy.pl, zespół 0651d): przeczytać ślub 1909/4 i szukać chrztu Zofii Szczepanek w latach 1912–1914 (luka w indeksie) i po 1919; ślub Zofii z Władysławem Mieszałą — po 1936 r. albo w innej parafii.",
   "Geneteka ręcznie: Mieszała w parafiach Myszyniec, Chorzele, Jednorożec, Przasnysz; para Antosiak × Mieszała w latach 1940–1970.",
   "Etnofon IS PAN: odsłuchać sesję T2667 z Połoni (1963), zwłaszcza zapowiedzi T2667.01 i T2667.17 — czy pada imię i wiek śpiewaczki.",
   "S 9/1841: trzeci odczyt nazwiska rodowego Heleny, matki Stanisława („z F…orów?”).",
@@ -110,7 +113,6 @@ DRZEWO.todo = [
   "Geneteka: urodzenia Chorzele 1910 i 1916 — czy Stanisław (ur. 11.12.1910) i Czesław (ur. 29.10.1916) Antosiakowie z akt sprawy Wendlera to dzieci Franciszka i Marcjanny; ewentualnie kwerenda IPN, akta GK 629/4946.",
   "Geneteka: akt urodzenia Wincentego Dębka (Chorzele 1914) — potwierdzi, że to brat Eleonory.",
   "Arolsen Archives, dokument 70253100 (lista cudzoziemców, pow. Uffenheim): miejsce urodzenia Eugeniusza Mieszały (ur. 1924) — Kurpie czy Kielecczyzna.",
-  "Parafia Nowa Wieś k. Ostrołęki (gm. Olszewo-Borki): urodzenia i śluby Szczepanków z Wyszla 1885–1940 — czy Zofia to córka Aleksandra i siostra Wincentego (ur. 1903).",
   "AP Pułtusk: duplikaty małżeństw Myszyńca 1927–1937 (79/825/0/-/8, 9, 10) — ślub Władysława Mieszały z Zofią Szczepanek.",
   "Ellis Island (darmowe konto): Antosiak / Antosiac / Antoszak, lata 1900–1925, Chorzele / Przasnysz / Połoń.",
 ];

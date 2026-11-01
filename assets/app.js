@@ -81,7 +81,8 @@
     a.scan ? `<a href="${scanUrl(a.scan)}" target="_blank" rel="noopener">skan ↗</a>` : "",
     a.unit ? `<a href="${SW}${a.unit}" target="_blank" rel="noopener">księga ${a.y} w archiwum ↗</a>` : "",
     a.fs ? `<a href="${esc(a.fs)}" target="_blank" rel="noopener">skan w FamilySearch ↗ (wymaga darmowego konta)</a>` : "",
-    a.idx ? `<span>skan niedostępny online (AP Pułtusk)</span>` : "",
+    a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">skan w metryki.genealodzy.pl ↗</a>` : "",
+    a.idx && !a.url && !a.scan ? `<span>skan niedostępny online (AP Pułtusk)</span>` : "",
   ].join("");
   const actHTML = (a, opt = {}) => `
     <li class="act" id="${esc(a.id)}">

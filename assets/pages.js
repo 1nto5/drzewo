@@ -226,7 +226,7 @@
   function babcia() {
     const G = D.grandma;
     $("#main").innerHTML = `<section class="page-h"><h1>Babcia Henryka<span class="dot">.</span></h1>
-        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. To punkt wyjścia: imiona rodziców i dziadków znamy z relacji rodzinnej, dokumenty dopiero przed nami.</p>
+        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. Imiona rodziców i dziadków znamy z relacji rodzinnej; pierwsze dokumenty prowadzą do parafii Nowa Wieś koło Ostrołęki.</p>
         <p class="status" style="margin-top:14px">${esc(G.status.replace(/\.$/, ""))}</p>
         ${A.legend()}</section>
       <h2>Rodzina babci</h2>

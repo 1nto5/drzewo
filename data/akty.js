@@ -5,7 +5,7 @@
      t      tytuł;  q  cytat z aktu (pisownia oryginalna);  tr  „po współczesnemu”
      scan   hash skanu z photos.szukajwarchiwach.gov.pl (link: …/<hash>_max)
      unit   numer jednostki w szukajwarchiwach (gdy nie ma skanu konkretnej strony)
-     fs     link do FamilySearch;  idx  true = znany tylko z indeksu Geneteki
+     fs     link do FamilySearch;  idx  true = znany z indeksu Geneteki;  url  link do skanu (np. metryki.genealodzy.pl)
      parish parafia, gdy inna niż Chorzele (np. "Myszyniec")
      r      stan odczytu: "1 odczyt" | "2 odczyty" | "sprawdzone" (przeczytane osobiście przez Adriana) */
 window.DRZEWO = window.DRZEWO || {};
@@ -117,13 +117,19 @@ DRZEWO.acts = [
     { id: "s1864-28", osoby: ["feliks", "rozalia-s", "walenty", "marianna-ch", "jakub-banka"], y: 1864, k: "ślub", no: 28, g: 4, t: "Feliks Antosiak × Rozalia Sendrowska", scan: "24b94c89cdc0d01a14405d18cd6de2772722d1fcd12071917314238d3b334d54", r: "sprawdzone",
       q: "…Feliksem Antosiakiem młodzianem, synem niegdy Walentego i żyjącej Maryanny z Chudzików…",
       tr: "7 lutego 1864 r., Chorzele. 24-letni kawaler Feliks, syn zmarłego Walentego i żyjącej Marianny, gospodarujący przy matce w Połoni, żeni się z 20-letnią Rozalią Sendrowską, mieszkającą przy rodzicach. Świadkowie: Jakub Bańka i Mikołaj Wróbel; ślubu udzielił ks. Romuald Kiersnowski." },
-    { id: "u1868-104", osoby: ["franciszek", "feliks", "rozalia-s"], y: 1868, k: "chrzest", no: 104, g: 3, t: "Franciszek Antosiak", idx: true,
-      tr: "5 maja 1868 r., Połoń. Od 1868 r. akty pisano po rosyjsku. Księgi z lat 1866–1923 nie mają skanów w internecie — znamy tylko wpis w indeksie Geneteki." },
-    { id: "u1905-271", osoby: ["wincenty", "franciszek", "marcjanna-l"], y: 1905, k: "chrzest", no: 271, g: 2, t: "Wincenty Antosiak", idx: true, tr: "1905 r., Połoń. Akt po rosyjsku; znany z indeksu Geneteki." },
-    { id: "s1925-40", osoby: ["wincenty", "eleonora", "adam-d", "marianna-o"], y: 1925, k: "ślub", no: 40, g: 2, t: "Wincenty Antosiak × Eleonora Dębek", idx: true, tr: "1925 r., Chorzele. Eleonora — córka Adama Dębka i Marianny z Obrębskich. Znany z indeksu Geneteki." },
-    { id: "z1926-105", osoby: ["franciszek"], y: 1926, k: "zgon", no: 105, g: 3, t: "Franciszek Antosiak", idx: true, tr: "1926 r., Połoń. Znany z indeksu Geneteki." },
+    { id: "u1868-104", osoby: ["franciszek", "feliks", "rozalia-s"], y: 1868, k: "chrzest", no: 104, g: 3, t: "Franciszek Antosiak", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1868-kt1",
+      tr: "5 maja 1868 r., Połoń. Od 1868 r. akty pisano po rosyjsku. Akt znamy z indeksu Geneteki; skan księgi jest w serwisie metryki.genealodzy.pl (nieprzeczytany)." },
+    { id: "u1905-271", osoby: ["wincenty", "franciszek", "marcjanna-l"], y: 1905, k: "chrzest", no: 271, g: 2, t: "Wincenty Antosiak", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1905-kt1", tr: "1905 r., Połoń. Akt po rosyjsku; znany z indeksu Geneteki." },
+    { id: "s1925-40", osoby: ["wincenty", "eleonora", "adam-d", "marianna-o"], y: 1925, k: "ślub", no: 40, g: 2, t: "Wincenty Antosiak × Eleonora Dębek", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1925-kt2", tr: "1925 r., Chorzele. Eleonora — córka Adama Dębka i Marianny z Obrębskich. Znany z indeksu Geneteki." },
+    { id: "z1926-105", osoby: ["franciszek"], y: 1926, k: "zgon", no: 105, g: 3, t: "Franciszek Antosiak", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1926-kt3", tr: "1926 r., Połoń. Znany z indeksu Geneteki." },
+    { id: "z1880-273", osoby: ["feliks", "walenty", "marianna-ch"], y: 1880, k: "zgon", no: 273, g: 4, t: "Feliks Antosiak", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1880-kt3",
+      tr: "1880 r., Połoń. Zmarł Feliks Antosiak, syn Walentego i Marianny. Znany z indeksu Geneteki; skan nieprzeczytany — wiek przy zgonie do sprawdzenia (powinien wynosić ok. 41 lat)." },
+    { id: "s1892", osoby: ["franciszek", "marcjanna-l", "feliks", "rozalia-s", "franciszek-lip", "franciszka-fuks"], y: 1892, k: "ślub", no: "—", g: 3, t: "Franciszek Antosiak × Marcjanna Lipka", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1892-kt2",
+      tr: "1892 r., Chorzele. Franciszek Antosiak z Połoni, syn Feliksa i Rozalii z Sendrowskich, żeni się z Marcjanną Lipką, córką Franciszka i Franciszki z Fuksów. Znany z indeksu Geneteki (bez numeru aktu)." },
+    { id: "s1909-4", osoby: ["aleksander-sz", "katarzyna-sz", "franciszek-szcz", "marianna-ploch", "jozef-radz", "agnieszka-rataj"], parish: "Nowa Wieś k. Ostrołęki", y: 1909, k: "ślub", no: 4, g: null, t: "Aleksander Szczepanek × Katarzyna Radziejewska", idx: true, url: "https://metryki.genealodzy.pl/metryki.php?op=kt&ar=6&zs=0651d&sy=1909&kt=2", r: "1 odczyt",
+      tr: "1909 r., parafia Nowa Wieś k. Ostrołęki. Aleksander Szczepanek, syn Franciszka i Marianny z Płocharczyków, żeni się z Katarzyną Radziejewską, córką Józefa i Agnieszki z Ratajów. Znany z indeksu Geneteki. To prawdopodobnie rodzice Zofii, matki babci Henryki." },
     { id: "z1902-302", osoby: [], parish: "Myszyniec", y: 1902, k: "zgon", no: 302, g: null, t: "Stanisław Mieszała, 10 miesięcy (Dąbrowy)", scan: "6d653dc77fe49c329cbf1fbbac978574f505ec1c8136d6e53ca3d9e50015469f", r: "1 odczyt",
       q: "Мѣшала … (Stanisław Mieszała)",
       tr: "14/27 grudnia 1902 r., parafia Myszyniec, akt po rosyjsku. W Dąbrowach zmarł Stanisław Mieszała, 10 miesięcy. Matka: Rozalia Mieszała, właścicielka rolna w Dąbrowach (nazwisko rodowe ucięte na skanie); ojca akt nie wymienia. Pierwszy pewny ślad Mieszałów w Dąbrowach ok. 1900 r. Związek z babcią Henryką to wciąż hipoteza." },
-    { id: "s1926-36", osoby: ["aleksander-f", "marianna-f", "franciszek", "marcjanna-l"], y: 1926, k: "ślub", no: 36, g: 3, t: "Aleksander Antosiak × Marianna Folga", idx: true, tr: "1926 r., Chorzele. Aleksander, syn Franciszka i Marcjanny z Lipków, żeni się z Marianną Folgą z Zagat. Znany z indeksu Geneteki — to on potwierdza imię i nazwisko żony Franciszka." },
+    { id: "s1926-36", osoby: ["aleksander-f", "marianna-f", "franciszek", "marcjanna-l"], y: 1926, k: "ślub", no: 36, g: 3, t: "Aleksander Antosiak × Marianna Folga", idx: true, url: "https://metryki.genealodzy.pl/id1483-sy1926-kt2", tr: "1926 r., Chorzele. Aleksander, syn Franciszka i Marcjanny z Lipków, żeni się z Marianną Folgą z Zagat. Znany z indeksu Geneteki — to on potwierdza imię i nazwisko żony Franciszka." },
 ];
