@@ -61,9 +61,10 @@ button { font: inherit; color: inherit; }
   .top { min-height: 20px; }
   .nav { display: none; position: absolute; top: 100%; left: calc(-1 * var(--gutter)); right: -16px; margin: 8px 0 0; padding: 4px var(--gutter) 8px; overflow: visible; background: var(--bg); border: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0, 0, 0, .25); z-index: 30; }
   .nav.open { display: block; }
-  .nav ul { flex-direction: column; gap: 0; white-space: normal; }
+  .nav.open { max-height: calc(100dvh - 96px); overflow-y: auto; overscroll-behavior: contain; }
+  .nav ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; white-space: normal; }
   .nav a, .nav li:first-child a { display: flex; align-items: center; min-height: 48px; padding: 8px 12px; margin: 0; font-size: 15px; border-bottom: 1px solid var(--line); border-left: 2px solid transparent; }
-  .nav li:last-child a { border-bottom: 0; }
+
   .nav a[aria-current="page"] { border-left-color: var(--accent); background: var(--bg-2); }
 }
 @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
