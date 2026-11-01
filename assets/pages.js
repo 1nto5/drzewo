@@ -285,7 +285,7 @@
       <ol class="gens">${[...A.altParents("wladyslaw-m").map(a => [`prapradziadkowie — ścieżka ${a.key}, ${A.CERT[a.c]} (rodzice Władysława)`, a.parents, a.c]), ["prapradziadkowie (rodzice Zofii)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids, c]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : c || "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
       <p class="src">źródło: relacja rodzinna, 2026; ścieżki A i B — akty chrztu z Nowej Wsi · bez dat i miejsc</p>
       <h2>Dwie ścieżki Władysława</h2>
-      <p class="intro">Obie ścieżki są prawdopodobne; B minimalnie mocniejsza, ale tylko przez słabą poszlakę. Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
+      <p class="intro">Obie ścieżki są prawdopodobne; dziś żadnej nie można przedłożyć nad drugą. Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
       ${pathsTable("wladyslaw-m")}
       <h2>Co wiemy</h2>${listC(G.known)}
       <h2>Nazwisko Mieszała</h2>${listC(G.surname)}
