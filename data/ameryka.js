@@ -39,7 +39,7 @@ DRZEWO.america = [
     sources: [{ label: "lista pasażerów córki, 1903", url: AM_FS + "1:1:QGGW-7M5B" }] },
 
   { name: "Aleksander Mieszała", burial: {cemetery: "Mosinee Cemetery", place: "Mosinee, Wisconsin", url: "https://www.findagrave.com/memorial/127416908", c: "ok", note: "Alex Mieszała (1892–1968), pochowany z drugą żoną Agnes z d. Masko."}, alias: "Alexander Mesralo (1910)", adrian: "może kuzyn pradziadka Władysława (jeśli jego ojcem był Piotr) — hipoteza", c: "hyp", born: "ok. 1889–92, Grabówek (parafia Nowa Wieś k. Ostrołęki)", trip: "Rotterdam → Ellis Island, 2.05.1910, statek „Nieuw Amsterdam”", places: ["chicago"],
-    fate: "20 lat, kawaler, z „Grabowek, Russia”, syn Walentego; w USA czekał wuj Jakub Jędrzejczyk. 28 stycznia 1913 r. ożenił się w Chicago z Ludwiką Merchel (rodzice: Walenty i Katarzyna „Głodkówna”). Według cudzego drzewa zmarł w 1968 r. w Wisconsin — bez źródeł.",
+    fate: "20 lat, kawaler, z „Grabowek, Russia”, syn Walentego; w USA czekał wuj Jakub Jędrzejczyk. 28 stycznia 1913 r. ożenił się w Chicago z Ludwiką Merchel (rodzice: Walenty i Katarzyna „Głodkówna”). Zmarł w lutym 1968 r.; pochowany w Mosinee w Wisconsinie (Find a Grave, nekrolog: przyjechał do krewnych w Chicago, „ostatni ze swojej rodziny”).",
     rel: { t: "Strona babci: syn Walentego Mieszały i Katarzyny z Gładków z Grabówka (prawdopodobne). Krewny babci tylko wtedy, gdy jej ojciec Władysław pochodził z tej rodziny.", c: "hyp" },
     sources: [{ label: "lista pasażerów 1910", url: "https://www.familysearch.org/ark:/61903/1:1:JJN9-8PB" }, { label: "ślub w Chicago 1913", url: "https://www.familysearch.org/ark:/61903/1:1:QVMN-THQB" }] },
 
@@ -54,7 +54,7 @@ DRZEWO.america = [
     sources: [{ label: "lista pasażerów 1909", url: AM_FS + "1:1:JX1P-9NT" }, { label: "obraz listy", url: AM_FS + "3:1:3Q9M-C9T3-1PX5" }] },
   { name: "Teofil Lipka", c: "hyp", born: "ok. 1881", trip: "Ellis Island, 22.03.1902, statek „Assyria”", places: [],
     fate: "Jechał do brata Stanisława Lipki.",
-    rel: { t: "Połoń tylko w indeksie, obrazu nie otwarto. Może krewny prababci Marcjanny z Lipków.", c: "hyp" },
+    rel: { t: "Połoń tylko w indeksie, obrazu nie otwarto. Może krewny praprababci Marcjanny z Lipków.", c: "hyp" },
     sources: [{ label: "lista pasażerów 1902 (indeks)", url: AM_FS + "1:1:JFG6-7MF" }] },
   { name: "Stanley (Stanisław) Antosiak", c: "hyp", born: "25.07.1889", died: "17.10.1965, Chicago", places: ["chicago"],
     fate: "Rodzice: Mathew Antosiak i Mary „Obromski”. Żona Stella z domu Pawlak.",
@@ -89,7 +89,7 @@ DRZEWO.americaPlaces = {
 DRZEWO.americaInfo = {
   known: [
     { t: "Co najmniej czworo ludzi z Połoni na pewno trafiło do USA: Maryanna (1903), Mateusz (1905), jego siostra Marianna (1907) i Franciszek (1913). Połoń stoi w ich dokumentach.", c: "ok", sources: ["raport-a"] },
-    { t: "Franciszek, który w 1913 r. pojechał do Connecticut, mógł być bratem pradziadka Wincentego — ale ten według strony FB w 1922 r. ożenił się w Połoni. Albo wrócił, albo to inny Franciszek.", c: "hyp", person: "franciszek-f", sources: ["fs-1913", "fs-1917", "fb-matecznik"] },
+    { t: "Franciszek, który w 1913 r. pojechał do Connecticut, mógł być bratem pradziadka Wincentego — ale ten w 1922 r. ożenił się w Połoni (akt 81/1922) i zmarł tam w 1962 r. Albo wrócił, albo to inny Franciszek.", c: "hyp", person: "franciszek-f", sources: ["fs-1913", "fs-1917", "fb-matecznik"] },
     { t: "Według strony FB I. Antosiaka do USA wyjechała też część dzieci Teofila, młodszego brata pradziadka Wincentego (ich danych nie podajemy — mogą żyć).", c: "prawd", person: "teofil-f", sources: ["fb-matecznik"] },
     { t: "Daleki kuzyn z gałęzi „Stańcaków”, Stanley Joseph Antosiak, syn emigranta z 1905 r., lądował w 1944 r. na plaży Utah.", c: "prawd", sources: ["fb-matecznik"] },
     { t: "Aleksander Antosiak „wrócił z Ameryki” i postawił jedyny murowany dom w przedwojennej Połoni, wśród ok. 90 drewnianych pod strzechą.", c: "ok", sources: ["glos23"] },
@@ -131,7 +131,7 @@ DRZEWO.americaToday = {
     { branch: "Frank (Franciszek), ur. 1877, St. Louis — syn Andrzeja, brata Feliksa", count: 12, adrian: "potomkowie kuzyna prapradziadka Franciszka — kuzyni 3.–5. stopnia", common: "Walenty i Marianna z Chudzików", states: "MO (wnioskowany)", years: "2010, 2018" },
     { branch: "Józef Symeon, ur. 1885, St. Louis → Chicago („Stańcaki”)", count: 3, adrian: "potomkowie kuzyna 2. stopnia prapradziadka Franciszka — kuzyni 4.–5. stopnia", common: "Kacper i Helena", states: "TN (wnioskowany); u 2 osób nie podano", years: "2025" },
     { branch: "Mateusz, ur. 1885/86, i siostra Marianna, St. Louis — linia Wojciecha (1756)", count: 19, adrian: "potomkowie kuzyna 3. stopnia prapradziadka Franciszka — kuzyni 5.–7. stopnia", common: "Paweł i Jadwiga", states: "NC (1, podany), MO (2, podany), FL (12, wnioskowany), nie podano (4)", years: "2018–2022" },
-    { branch: "Walter (Walerian), ur. 1888 w Połoni, Chicago", count: 5, adrian: "dalecy kuzyni, stopień nieznany", common: "nieznani (prawdopodobnie Paweł)", states: "IL (wnioskowany)", years: "2020" },
+    { branch: "Walter (Walerian), ur. 1888 (Połoń tylko w indeksie), Chicago", count: 5, adrian: "dalecy kuzyni, stopień nieznany", common: "nieznani (prawdopodobnie Paweł)", states: "IL (wnioskowany)", years: "2020" },
   ],
   notes: [
     "Gałąź Teofila, brata pradziadka Wincentego: część jego dzieci wyjechała do USA; jest niepewny trop (stare dane adresowe sprzed ponad 20 lat), że dwoje z nich żyło ok. 2000–2004 r. Nie wliczamy ich.",
