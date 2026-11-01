@@ -1,0 +1,31 @@
+/* obrazy.html — siatka kart z obrazami + lightbox (<dialog>). Tokeny z style.css. */
+.ogrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media (min-width: 700px) { .ogrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; } }
+@media (min-width: 1050px) { .ogrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ocard { min-width: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); padding-top: 14px; }
+.othumb { display: block; width: 100%; padding: 0; border: 1px solid var(--line); background: var(--bg-2); cursor: zoom-in; aspect-ratio: 4 / 3; overflow: hidden; }
+.othumb img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .25s; }
+.othumb:hover img { transform: scale(1.03); }
+.othumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.obody { padding-top: 10px; min-width: 0; }
+.obody h3 { margin: 4px 0 6px; }
+.obody p { margin: 0 0 6px; font-family: var(--sans); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+.obody .ocap { color: var(--ink); }
+.owhy b { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--ink-3); letter-spacing: 0.04em; }
+.obody .onote { font-size: 13.5px; color: var(--ink-3); }
+.obody .opeople { font-size: 13.5px; }
+.ocard .rel { display: inline; color: var(--ink-3); font-size: 12.5px; }
+.obody .src { font-family: var(--mono); font-size: 12px; color: var(--ink-3); overflow-wrap: anywhere; }
+.card-kind .k { font-variant-numeric: tabular-nums; }
+.omiss li { margin-bottom: 4px; }
+
+.lb { padding: 0; border: 1px solid var(--line-2); background: var(--bg); color: var(--ink); width: min(1200px, 100vw - 16px); max-width: none; max-height: calc(100dvh - 16px); overflow: auto; }
+.lb::backdrop { background: rgb(0 0 0 / .8); }
+.lb-bar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; background: var(--bg); border-bottom: 1px solid var(--line); font-size: 13px; z-index: 1; }
+.lb-btns { display: flex; gap: 6px; }
+.lb-btns .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.lb-fig { margin: 0; padding: 10px; }
+.lb-fig img { display: block; margin: 0 auto; max-width: 100%; height: auto; max-height: calc(100dvh - 190px); width: auto; object-fit: contain; }
+.lb-fig figcaption { font-family: var(--sans); font-size: 14px; color: var(--ink-2); margin-top: 10px; max-width: 80ch; line-height: 1.5; }
+.lb-fig figcaption .src { font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
+.onote b { font-weight: 500; color: var(--ink-2); }

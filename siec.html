@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1e1e2e">
+<title>Sieć sąsiadów — Drzewo Antosiaków</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jetbrains-mono-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  (function () {
+    var t;
+    try { t = localStorage.getItem("aa_theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    document.documentElement.dataset.theme = t;
+    document.querySelector('meta[name="theme-color"]').content = t === "light" ? "#eff1f5" : "#1e1e2e";
+  })();
+</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/statystyki.css">
+<link rel="stylesheet" href="assets/siec.css">
+</head>
+<body data-page="siec">
+<div class="wrap">
+<div id="chrome"></div>
+<main id="main">
+<section class="page-h">
+  <h1>Sieć sąsiadów<span class="dot">.</span></h1>
+  <p class="lead">Kto trzymał małych Antosiaków do chrztu, kto świadkował na ślubach i zgłaszał zgony. 308 wpisów ze 127 aktów z lat 1720–1907 pokazuje, z którymi rodzinami w Połoni ród był najbliżej.</p>
+</section>
+<div id="net"></div>
+</main>
+<footer class="foot" id="foot"></footer>
+</div>
+<script src="data/osoby.js"></script>
+<script src="data/akty.js"></script>
+<script src="data/ciekawostki.js"></script>
+<script src="data/historia.js"></script>
+<script src="data/zrodla.js"></script>
+<script src="data/ameryka.js"></script>
+<script src="data/babcia.js"></script>
+<script src="data/siec.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/siec.js"></script>
+</body>
+</html>

@@ -153,8 +153,9 @@
 
   /* ── nawigacja, motyw, stopka ─────────────────── */
   const PAGES = [
-    ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
-    ["os-czasu.html", "Oś czasu"], ["ciekawostki.html", "Ciekawostki"], ["ameryka.html", "Ameryka"],
+    ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["historie.html", "Historie"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
+    ["os-czasu.html", "Oś czasu"], ["mapa.html", "Mapa"], ["ciekawostki.html", "Ciekawostki"], ["kurpie.html", "Kurpie"],
+    ["obrazy.html", "Obrazy"], ["siec.html", "Sieć"], ["statystyki.html", "Statystyki"], ["ameryka.html", "Ameryka"],
     ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"],
   ];
   const here = (location.pathname.split("/").pop() || "index.html");

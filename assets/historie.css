@@ -1,0 +1,65 @@
+/* HISTORIE — dodatki do style.css (tylko historie.html) */
+
+/* spis treści */
+.toc { margin-top: 30px; }
+.toc h2 { margin-top: 0; }
+.toc-g { margin: 18px 0 6px; color: var(--ink-3); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+.toc-l { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.toc-l li { border-bottom: 1px solid var(--line); }
+.toc-l a { display: grid; grid-template-columns: 2.4em 1fr auto; gap: 0 12px; align-items: baseline; padding: 9px 0; text-decoration: none; }
+.toc-l a:hover .t { color: var(--accent); }
+.toc-l .n { color: var(--ink-3); font-size: 12px; font-variant-numeric: tabular-nums; }
+.toc-l .t { font-family: var(--sans); font-size: 16px; color: var(--ink); }
+.toc-l .r { color: var(--ink-3); font-size: 12px; text-align: right; }
+@media (max-width: 560px) {
+  .toc-l a { grid-template-columns: 2.4em 1fr; }
+  .toc-l .r { grid-column: 2; text-align: left; }
+}
+
+/* historia */
+.story { margin-top: 64px; scroll-margin-top: 16px; }
+.story .gn { margin: 0; color: var(--accent); }
+.story-t { display: block; margin: 6px 0 10px; font-family: var(--sans); font-size: clamp(22px, 4.6vw, 28px); line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; text-transform: none; color: var(--ink); }
+.story-t::after { content: none; }
+.story .couple { font-size: 15px; gap: 2px 10px; margin: 0 0 18px; }
+.story .couple .hp { overflow-wrap: anywhere; }
+.story .couple .yrs { color: var(--ink-3); font-size: 13px; white-space: nowrap; }
+.story .prose { font-size: 17px; line-height: 1.65; }
+.story .prose p { margin: 0 0 14px; }
+.story .prose .badge { font-family: var(--mono); vertical-align: 1px; }
+.story .prose a, .nick .prose a { text-decoration-color: var(--line-2); }
+
+/* cytat z aktu */
+.hq { margin: 4px 0 18px; }
+.hq .act-q { margin: 0; overflow-wrap: anywhere; }
+.hq figcaption { margin: 6px 0 0 16px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 2px 14px; }
+.hq figcaption span { font-family: var(--sans); font-size: 14px; color: var(--ink-2); flex-basis: 100%; }
+
+/* akty i źródła pod historią */
+.hsrc { margin-top: 18px; padding-top: 12px; border-top: 1px dashed var(--line-2); max-width: 66ch; }
+.hsrc p { margin: 0 0 6px; color: var(--ink-3); font-size: 12.5px; display: flex; flex-wrap: wrap; gap: 2px 14px; overflow-wrap: anywhere; }
+.hsrc b { font-weight: 500; color: var(--ink-2); letter-spacing: 0.06em; text-transform: uppercase; font-size: 11.5px; flex-basis: 100%; }
+.top-link { display: inline-block; margin-top: 10px; color: var(--ink-3); font-size: 12.5px; text-decoration: none; }
+.top-link:hover { color: var(--accent); }
+
+/* przydomki */
+.nick { margin-top: 72px; scroll-margin-top: 16px; }
+.nick .sub { margin: 30px 0 10px; color: var(--ink-3); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+.ntree, .ntree ul { list-style: none; margin: 0; padding: 0; }
+.ntree { font-size: 13.5px; color: var(--ink-2); margin-bottom: 10px; }
+.ntree ul { margin-left: 7px; padding-left: 12px; border-left: 1px solid var(--line-2); }
+.ntree li { position: relative; padding: 3px 0; }
+.ntree ul > li::before { content: ""; position: absolute; left: -12px; top: 0.95em; width: 9px; border-top: 1px solid var(--line-2); }
+.ntree .nt { overflow-wrap: anywhere; }
+.ntree .nn { display: inline-block; margin-left: 4px; padding: 0 6px; border: 1px solid var(--line-2); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.ntree li.me > .nn { border-color: var(--accent); color: var(--accent); }
+.ntree li.me > .nt a { color: var(--accent); }
+.nick .cards.nb { margin-bottom: 8px; }
+.nick .card { padding-right: 18px; }
+.nick .card p + p { margin-top: 6px; }
+.nick .card .mem { font-size: 14.5px; color: var(--ink-3); }
+.nick .card .src { margin-top: 8px; overflow-wrap: anywhere; }
+.nick .card .you { color: var(--accent); font-size: 12px; }
+.nick .card.me .k::before { content: "● "; }
+.nick .note { margin-top: 18px; font-family: var(--sans); font-size: 15px; }
+.story .couple { flex-direction: column; align-items: flex-start; }

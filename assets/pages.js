@@ -41,10 +41,16 @@
     $("#gens").innerHTML = D.generations.map(genItem).join("");
     const T = [
       ["drzewo.html", "Drzewo", "Interaktywny graf rodziny: linia prosta, rodzeństwo, wszyscy."],
+      ["historie.html", "Historie", "Opowieści o każdej parze przodków — od Jakuba do dziadków."],
       ["osoba.html", "Osoby", `Indeks ${A.plural(D.people.length, "osoby", "osób", "osób")} — każda ma swoją stronę.`],
       ["akty.html", "Akty", `${D.acts.length} aktów z cytatami, tłumaczeniem i skanami. Filtry i słowniczek.`],
       ["os-czasu.html", "Oś czasu", "Życie przodków na tle historii Połoni, 1750–1970."],
       ["ciekawostki.html", "Ciekawostki", `${D.trivia.length} historii: fakty o rodzinie, kontekst i hipotezy.`],
+      ["mapa.html", "Mapa rodu", "Gdzie żyli przodkowie i dokąd wyjeżdżali — Połoń, Kurpie, Mazury, USA."],
+      ["kurpie.html", "Kurpie i „Godowie”", "Region, stroje, pieśni prababci i przezwisko mieszkańców Połoni."],
+      ["obrazy.html", "Historia wsi w obrazach", "Stare mapy, zdjęcia z 1915 r., sosna bartna, kościół."],
+      ["siec.html", "Sieć sąsiadów", "Kto trzymał dzieci do chrztu i świadkował na ślubach."],
+      ["statystyki.html", "Statystyki rodu", "Wiek przy ślubie i śmierci, śmiertelność dzieci, imiona."],
       ["ameryka.html", "Ameryka", "Kto z Połoni wyjechał do USA i co o nich wiemy."],
       ["babcia.html", "Babcia Henryka", "Mieszałowie i Szczepankowie — punkt wyjścia i tropy."],
       ["zrodla.html", "Źródła i metoda", "Archiwa, zasady odczytu, imiennicy, lista do zrobienia."],
