@@ -144,14 +144,14 @@ DRZEWO.stories = [
     acts: ["s1909-4", "z1909-70", "s1911-17", "z1911-28", "z1911-33", "u1913-10", "z1917-9", "z1931-17"],
     sources: ["metryki-nw", "rodzina-2026", "szczepanski", "raport-ms"] },
 
-  { id: "mieszalowie", side: "babcia", title: "Władysław i Zofia Mieszałowie — dwie ścieżki", people: ["wladyslaw-m", "zofia-m"],
+  { id: "mieszalowie", side: "babcia", title: "Władysław i Zofia Mieszałowie", people: ["wladyslaw-m", "zofia-m"],
     paragraphs: [
       "Władysław Mieszała i Zofia ze Szczepanków to rodzice babci Henryki (relacja rodzinna, 2026). Zofia urodziła się w 1913 r. w Chojnikach — jej rodzinę opisuje [[#szczepankowie|poprzednia historia]].",
       "O Władysławie wiemy najmniej. Ślubu Władysława i Zofii nie ma w księgach Nowej Wsi do 1936 r. ani w indeksie Myszyńca do 1940 r., a śluby z Nowej Wsi z lat 1937–1945 nie są zeskanowane.",
-      "{{prawd}} Mieszałowie żyli od ok. 1848 r. w Grabówku, w tej samej parafii co Szczepankowie. W 1904 r. urodziło się tam dwóch Władysławów — stąd dwie ścieżki: A, syn [[adam-mie|Adama]] i [[elzbieta-gas|Elżbiety z Gąsków]], oraz B, syn [[piotr-mie|Piotra]] i [[wiktoria-gla|Wiktorii z Gładków]].",
-      "{{prawd}} Ścieżka A jest prawdopodobna, B to hipoteza. Babcia pamięta, że brat jej ojca miał na imię Leopold i był jej ojcem chrzestnym (relacja rodzinna, 2026). Jedyny Leopold Mieszała w parafii to [[leopold-mie|syn Adama i Elżbiety]], ur. 1911, który w 1936 r. ożenił się z Jadwigą Wieczorek. W skorowidzach urodzeń 1911–1913 i 1915–16 innego Leopolda brak; luka: urodzenia z 1914 r. nie są online. Rozstrzygnie akt chrztu Henryki (chrzestni) albo akt ślubu Władysława i Zofii.",
+      "{{prawd}} Mieszałowie żyli od ok. 1848 r. w Grabówku, w tej samej parafii co Szczepankowie. Władysław, ojciec babci, urodził się tam w 1904 r. jako syn [[adam-mie|Adama]] i [[elzbieta-gas|Elżbiety z Gąsków]].",
+      "{{prawd}} Babcia pamięta, że brat jej ojca miał na imię Leopold i był jej ojcem chrzestnym (relacja rodzinna, 2026). Jedyny Leopold Mieszała w parafii to [[leopold-mie|syn Adama i Elżbiety]], ur. 1911, który w 1936 r. ożenił się z Jadwigą Wieczorek. W skorowidzach urodzeń 1911–1913 i 1915–16 innego Leopolda brak; luka: urodzenia z 1914 r. nie są online. Formalnie potwierdzi to akt chrztu Henryki (chrzestni) albo akt ślubu Władysława i Zofii.",
       "Rodzina pamięta, że Władysław został rozstrzelany w łapance „przez pomyłkę”. {{hyp}} W Grabówku żyło trzech Władysławów Mieszałów urodzonych w latach 1904–1908 — o pomyłkę tożsamości było łatwo.",
-      "{{hyp}} Jeśli to syn Piotra, to jego brat Eugeniusz urodził się w sierpniu 1915 r. „w czasie ruchu wojennego”, gdy rodzina uciekała przed frontem, a ich kuzyn Aleksander, syn Walentego, w 1910 r. wyjechał do Ameryki i ożenił się w Chicago.",
+      "{{hyp}} Jeśli [[piotr-mie|Piotr]] był bratem Adama, to jego syn Eugeniusz, urodzony w sierpniu 1915 r. „w czasie ruchu wojennego”, gdy rodzina uciekała przed frontem, był kuzynem pradziadka. Podobnie Aleksander, syn Walentego, który w 1910 r. wyjechał do Ameryki i ożenił się w Chicago — jeśli Walenty też był bratem Adama.",
       "{{hyp}} Słabszy trop prowadzi do Dąbrów w parafii Myszyniec, gdzie w 1902 r. zmarł 10-miesięczny Stanisław Mieszała. Więcej tropów jest na stronie [[babcia.html|babci]].",
     ],
     quotes: [{ act: "u1916-1", at: 3, text: "urodzone jest w Szlągach [?] parafii Czerwin w czasie ruchu wojennego na dniu czwartym sierpnia roku zeszłego" }],

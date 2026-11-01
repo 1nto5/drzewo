@@ -278,15 +278,12 @@
   function babcia() {
     const G = D.grandma;
     $("#main").innerHTML = `<section class="page-h"><h1>Babcia Henryka<span class="dot">.</span></h1>
-        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. Imiona rodziców i dziadków znamy z relacji rodzinnej; dokumenty prowadzą do parafii Nowa Wieś koło Ostrołęki. Rodzina Zofii jest ustalona; Władysław ma dwie możliwe ścieżki rodowe — A (syn Adama i Elżbiety z Gąsków) i B (syn Piotra i Wiktorii z Gładków), obie prawdopodobne. Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
+        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. Imiona rodziców i dziadków znamy z relacji rodzinnej; dokumenty prowadzą do parafii Nowa Wieś koło Ostrołęki. Rodzina Zofii jest ustalona; Władysław był synem Adama i Elżbiety z Gąsków. Formalnie potwierdzi to akt chrztu babci lub akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
         <p class="status" style="margin-top:14px">${esc(G.status.replace(/\.$/, ""))}</p>
         ${A.legend()}</section>
       <h2>Rodzina babci</h2>
-      <ol class="gens">${[...A.altParents("wladyslaw-m").map(a => [`prapradziadkowie — ścieżka ${a.key}, ${A.CERT[a.c]} (rodzice Władysława)`, a.parents, a.c]), ["prapradziadkowie (rodzice Zofii)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids, c]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : c || "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
-      <p class="src">źródło: relacja rodzinna, 2026; ścieżki A i B — akty chrztu z Nowej Wsi · bez dat i miejsc</p>
-      <h2>Dwie ścieżki Władysława</h2>
-      <p class="intro">Obie ścieżki są prawdopodobne; dziś żadnej nie można przedłożyć nad drugą. Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
-      ${pathsTable("wladyslaw-m")}
+      <ol class="gens">${[["prapradziadkowie (rodzice Władysława)", A.parents("wladyslaw-m")], ["prapradziadkowie (rodzice Zofii)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids, c]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : c || "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
+      <p class="src">źródło: relacja rodzinna, 2026; akty chrztu i ślubu z Nowej Wsi · bez dat i miejsc</p>
       <h2>Co wiemy</h2>${listC(G.known)}
       <h2>Nazwisko Mieszała</h2>${listC(G.surname)}
       <h2>Tropy</h2>

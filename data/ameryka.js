@@ -38,9 +38,9 @@ DRZEWO.america = [
     rel: { t: "Może Aleksander, syn Walentego i stryj Franciszka (ur. 1850); Aleksander z innej gałęzi (ur. ok. 1821) miałby w 1903 r. 82 lata.", c: "hyp" },
     sources: [{ label: "lista pasażerów córki, 1903", url: AM_FS + "1:1:QGGW-7M5B" }] },
 
-  { name: "Aleksander Mieszała", burial: {cemetery: "Mosinee Cemetery", place: "Mosinee, Wisconsin", url: "https://www.findagrave.com/memorial/127416908", c: "ok", note: "Alex Mieszała (1892–1968), pochowany z drugą żoną Agnes z d. Masko."}, alias: "Alexander Mesralo (1910)", adrian: "może kuzyn pradziadka Władysława (jeśli jego ojcem był Piotr) — hipoteza", c: "hyp", born: "ok. 1889–92, Grabówek (parafia Nowa Wieś k. Ostrołęki)", trip: "Rotterdam → Ellis Island, 2.05.1910, statek „Nieuw Amsterdam”", places: ["chicago"],
+  { name: "Aleksander Mieszała", burial: {cemetery: "Mosinee Cemetery", place: "Mosinee, Wisconsin", url: "https://www.findagrave.com/memorial/127416908", c: "ok", note: "Alex Mieszała (1892–1968), pochowany z drugą żoną Agnes z d. Masko."}, alias: "Alexander Mesralo (1910)", adrian: "stryjeczny brat pradziadka Władysława tylko jeśli Walenty był bratem Adama — hipoteza", c: "hyp", born: "ok. 1889–92, Grabówek (parafia Nowa Wieś k. Ostrołęki)", trip: "Rotterdam → Ellis Island, 2.05.1910, statek „Nieuw Amsterdam”", places: ["chicago"],
     fate: "20 lat, kawaler, z „Grabowek, Russia”, syn Walentego; w USA czekał wuj Jakub Jędrzejczyk. 28 stycznia 1913 r. ożenił się w Chicago z Ludwiką Merchel (rodzice: Walenty i Katarzyna „Głodkówna”). Zmarł w lutym 1968 r.; pochowany w Mosinee w Wisconsinie (Find a Grave, nekrolog: przyjechał do krewnych w Chicago, „ostatni ze swojej rodziny”).",
-    rel: { t: "Strona babci: syn Walentego Mieszały i Katarzyny z Gładków z Grabówka (prawdopodobne). Krewny babci tylko wtedy, gdy jej ojciec Władysław pochodził z tej rodziny.", c: "hyp" },
+    rel: { t: "Strona babci: syn Walentego Mieszały i Katarzyny z Gładków z Grabówka (prawdopodobne). Stryjeczny brat pradziadka Władysława tylko wtedy, gdy Walenty był bratem Adama (hipoteza).", c: "hyp" },
     sources: [{ label: "lista pasażerów 1910", url: "https://www.familysearch.org/ark:/61903/1:1:JJN9-8PB" }, { label: "ślub w Chicago 1913", url: "https://www.familysearch.org/ark:/61903/1:1:QVMN-THQB" }] },
 
   /* możliwi: bez twardego dowodu na Połoń */

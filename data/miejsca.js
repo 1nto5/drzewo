@@ -55,7 +55,7 @@ DRZEWO.places = [
   { id: "mostowo", name: "Mostowo", lon: 21.3710, lat: 53.1015, kind: "dom", map: "zoom", match: ["Mostowo"], re: "Mostow",
     note: "Wieś w parafii Nowa Wieś; stąd pochodziła Katarzyna z Radziejewskich." },
   { id: "grabowek", name: "Grabówek", lon: 21.3312, lat: 53.1154, kind: "dom", map: "zoom", match: ["Grabówek"], re: "Grabów",
-    note: "Wieś Mieszałów w parafii Nowa Wieś, w gminie Sypniewo; żyli tu od ok. 1848 r. W 1904 r. urodziło się tu dwóch Władysławów Mieszałów — trop do ojca babci (dwie ścieżki, A i B; hipoteza, zob. strona Babcia)." },
+    note: "Wieś Mieszałów w parafii Nowa Wieś, w gminie Sypniewo; żyli tu od ok. 1848 r. W 1904 r. urodził się tu Władysław Mieszała, syn Adama i Elżbiety z Gąsków — ojciec babci (zob. strona Babcia)." },
   { id: "sypniewo", name: "Sypniewo", lon: 21.3064, lat: 53.0052, kind: "miasto", map: "zoom", re: "Sypniew",
     note: "Siedziba gminy, do której należały Grabówek, Chojniki, Wyszel i Mostowo. W czasie okupacji Amtsbezirk Sypniewo w Landkreis Mackeim, z posterunkiem żandarmerii." },
   { id: "stylagi", name: "Stylągi", lon: 21.7487, lat: 52.9822, kind: "dom", map: "main", match: ["Stylągi"], re: "Styląg",
