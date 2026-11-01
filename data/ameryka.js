@@ -17,7 +17,7 @@ DRZEWO.america = [
   { name: "Franciszek Antosiak", alias: "Francixzek Antoszak (1913), Francis Antosiak (1917)", person: "franciszek-f", c: "ok",
     born: "ok. 1895, Połoń", trip: "Hamburg → Ellis Island, 4.09.1913, statek „Pennsylvania”", places: ["manchester", "middletown"],
     fate: "18 lat, kawaler, robotnik rolny. Jechał do szwagra Franka Jankowiaka w Manchesterze. W 1917 r. tkacz w Russell Company w Middletown, podpisywał się krzyżykiem. Dalsze losy nieznane.",
-    rel: { t: "Jako ojca wpisał „Franciszek Antoszak, Polon” — to pasuje do Franciszka (1868–1926). Ale według strony FB I. Antosiaka jego syn Franciszek (ur. 1895) w 1922 r. ożenił się w Połoni i tam został. Emigrant to więc albo on (i wrócił), albo inny Franciszek — w Połoni żył też Franciszek ur. ok. 1844.", c: "hyp" },
+    rel: { t: "Jako ojca wpisał „Franciszek Antoszak, Polon” — to pasuje do Franciszka (1868–1926). Ale syn Franciszka, Franciszek ur. 16.02.1895, w 1922 r. ożenił się w Połoni i zmarł tam w 1962 r. Emigrant to więc albo on (i wrócił), albo inny Franciszek — w 1895 r. w parafii ochrzczono dwóch Franciszków Antosiaków.", c: "hyp" },
     sources: [{ label: "lista pasażerów 1913", url: AM_FS + "1:1:JNTX-YJZ" }, { label: "obraz listy, s. 1", url: AM_FS + "3:1:3Q9M-C9T6-H97L-M" }, { label: "obraz listy, s. 2", url: AM_FS + "3:1:3Q9M-C9T6-H9CK-R" }, { label: "karta poborowa 1917", url: AM_FS + "1:1:WYRP-RM2M" }] },
   { name: "Mateusz Antosiak", alias: "Mateus Antoschak (1905), Mathew John Antosiak", c: "ok",
     born: "18.01.1885 (na grobie 1886), „Weis Polon”", died: "10.10.1955, St. Louis", trip: "Brema → Baltimore, 25.05.1905, S.S. „Cassel”", places: ["baltimore", "stlouis"],
