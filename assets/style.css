@@ -53,6 +53,15 @@ button { font: inherit; color: inherit; }
 .nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
 
 .top-btns { display: flex; align-items: center; gap: 14px; }
+.toggle { white-space: nowrap; }
+@media (max-width: 440px) { .brand-host { display: none; } }
+.site-search { margin: 12px 0 0; padding: 12px 0 14px; border-bottom: 1px solid var(--line); }
+.site-search input { width: 100%; font: inherit; font-size: 16px; padding: 10px 12px; background: var(--bg-2); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; }
+.site-search h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); margin: 14px 0 4px; font-weight: 500; }
+.site-search ul { list-style: none; margin: 0; padding: 0; }
+.site-search li { padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.site-search li:last-child { border-bottom: 0; }
+.site-search #ss-out { max-height: 60vh; overflow-y: auto; }
 .menu-btn { display: none; }
 @media (max-width: 760px) {
   #chrome { position: relative; }

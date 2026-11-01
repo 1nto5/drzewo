@@ -230,10 +230,12 @@
   function chrome() {
     const el = document.getElementById("chrome");
     if (el) {
-      el.innerHTML = `<header class="top"><a href="index.html">adrianantosiak.pl/drzewo</a>
-        <span class="top-btns"><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
+      el.innerHTML = `<header class="top"><a href="index.html"><span class="brand-host">adrianantosiak.pl/</span>drzewo</a>
+        <span class="top-btns"><button class="toggle" id="search-btn" type="button" aria-expanded="false" aria-controls="site-search">[ szukaj ]</button><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
         <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></span></header>
-        <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${PAGES.map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>`;
+        <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${PAGES.map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>
+        <div class="site-search" id="site-search" hidden><input id="ss-q" type="search" placeholder="Imię, nazwisko, miejsce, słowo z aktu…" autocomplete="off" aria-label="Szukaj na stronie"><div id="ss-out" aria-live="polite"></div></div>`;
+      siteSearch();
       const cur = el.querySelector('[aria-current="page"]');
       const nav = el.querySelector(".nav");
       if (cur && nav && cur.offsetLeft + cur.offsetWidth > nav.clientWidth) nav.scrollLeft = cur.offsetLeft - 16;
@@ -257,6 +259,53 @@
     const as = document.getElementById("asof"); if (as) as.textContent = "Stan: " + D.asof;
     const f = document.getElementById("foot");
     if (f) f.innerHTML = `<span>Stan: ${esc(D.asof)}</span><a href="../">adrianantosiak.pl</a>`;
+  }
+  /* ── wyszukiwarka w nagłówku: osoby, akty, historie, ciekawostki ── */
+  function siteSearch() {
+    const btn = document.getElementById("search-btn"), box = document.getElementById("site-search");
+    const q = document.getElementById("ss-q"), out = document.getElementById("ss-out");
+    if (!btn || !box) return;
+    const norm = t => String(t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ł/g, "l");
+    const strip = t => String(t || "").replace(/\[\[[^|\]]+\|([^\]]+)\]\]/g, "$1").replace(/\{\{\w+\}\}/g, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+    const facts = p => (p.facts || []).map(x => typeof x === "string" ? x : x.t).join(" ");
+    let idx = null;
+    const build = () => {
+      const r = [];
+      for (const p of D.people || []) r.push({ g: "Osoby", h: "osoba.html?id=" + encodeURIComponent(p.id), t: fullName(p), sub: lifeShort(p),
+        k1: norm(fullName(p) + " " + (p.nick || "")), k2: norm([p.born && p.born.place, p.died && p.died.place, p.burial && p.burial.place, p.private ? "" : facts(p)].join(" ")) });
+      for (const a of D.acts || []) r.push({ g: "Akty", h: "akty.html#" + a.id, t: a.t, sub: a.k + " " + a.y, k1: norm(a.t), k2: norm((a.q || "") + " " + (a.tr || "")) });
+      for (const s of D.stories || []) r.push({ g: "Historie", h: "historie.html#" + s.id, t: s.title, sub: "", k1: norm(s.title), k2: norm(strip((s.paragraphs || []).join(" "))) });
+      for (const c of D.trivia || []) r.push({ g: "Ciekawostki", h: "ciekawostki.html", t: c.title, sub: c.year || "", k1: norm(c.title), k2: norm(c.text) });
+      return r;
+    };
+    const run = () => {
+      const words = norm(q.value).split(/\s+/).filter(w => w.length > 1);
+      if (!words.length) { out.innerHTML = ""; return; }
+      idx = idx || build();
+      const res = words.map(w => new RegExp("[^a-z0-9]" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+      const hits = [];
+      for (const it of idx) {
+        const all = " " + it.k1 + " " + it.k2;
+        if (!res.every(re => re.test(all))) continue;
+        hits.push({ it, score: res.filter(re => re.test(" " + it.k1)).length * 10 + (it.k1.startsWith(words[0]) ? 5 : 0) });
+      }
+      if (!hits.length) { out.innerHTML = `<p class="muted">Nic nie znaleziono.</p>`; return; }
+      const groups = { Osoby: [], Akty: [], Historie: [], Ciekawostki: [] };
+      for (const h of hits.sort((a, b) => b.score - a.score)) (groups[h.it.g] = groups[h.it.g] || []).push(h.it);
+      out.innerHTML = Object.entries(groups).filter(([, l]) => l.length).map(([g, list]) => `<h3>${g} <span class="muted">${list.length}</span></h3><ul>${list.slice(0, 12).map(it =>
+        `<li><a href="${esc(it.h)}">${esc(it.t)}</a>${it.sub ? ` <span class="muted">${esc(String(it.sub))}</span>` : ""}</li>`).join("")}${list.length > 12 ? `<li class="muted">…i ${list.length - 12} więcej — doprecyzuj</li>` : ""}</ul>`).join("");
+    };
+    const set = open => {
+      box.hidden = !open; btn.setAttribute("aria-expanded", String(open));
+      if (open) { q.focus(); q.select(); }
+    };
+    btn.addEventListener("click", () => set(box.hidden));
+    q.addEventListener("input", run);
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !box.hidden) { set(false); btn.focus(); }
+      if (e.key === "/" && box.hidden && !/input|textarea|select/i.test(document.activeElement.tagName)) { e.preventDefault(); set(true); }
+    });
+    out.addEventListener("click", e => { if (e.target.closest("a")) set(false); });
   }
   chrome();
 
