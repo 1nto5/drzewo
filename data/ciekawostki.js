@@ -114,7 +114,23 @@ DRZEWO.trivia = [
     text: "1 listopada 1939 r. Połoń wcielono do III Rzeszy (Rejencja Ciechanowska w Prusach Wschodnich). Rodzina Wincentego i Eleonory przeżyła okupację w granicach Niemiec.",
     sources: ["wiki-polon"] },
 
+  { title: "Brat prababci w niewoli", kind: "fakt o rodzinie", year: 1939, people: ["wincenty-debek", "eleonora"],
+    text: "Wincenty Dębek z Połoni, ur. 4.08.1914, brat prababci Eleonory, służył w 4 pułku piechoty. 5 października 1939 r. trafił do niewoli niemieckiej pod Modlinem i do Stalagu I A Stablack koło Królewca, z numerem jenieckim 32112. Po wojnie był pierwszym naczelnikiem straży pożarnej w Połoni.",
+    sources: ["straty", "glos23"] },
+  { title: "„Godami” nazywani", kind: "kontekst", year: 1891,
+    text: "Według „Kalendarza Płockiego” z 1891 r. właściwi Kurpie nazywali mieszkańców Połoni i Jednorożca „z pogardą Godami”: ci nie byli wolnymi Kurpiami z puszczy, tylko odrabiali pańszczyznę do ekonomii Przasnysz.",
+    sources: ["kalendarz1891"] },
+  { title: "Połomia i „Połoń 58”", kind: "kontekst", year: 1931,
+    text: "Na Mapie Kwatermistrzostwa z ok. 1843 r. wieś podpisano „Połomia”. Na mapie WIG z 1931 r. — „Połoń 58”: liczba oznacza 58 domów stojących wzdłuż jednej drogi, typowa ulicówka.",
+    sources: ["kwatermistrz", "wig1931"] },
+  { title: "Szczepan Mierzejewski poległ w 1939 r.", kind: "kontekst", year: 1939,
+    text: "Szczepan Mierzejewski z Połoni, ur. 26.12.1912, syn Adama i Julianny z Antosiaków, zginął w kampanii wrześniowej 1939 r.; pochowano go w gminie Wojcieszków na Lubelszczyźnie. Jak Julianna była spokrewniona z naszą linią — nie wiadomo.",
+    sources: ["straty"] },
+
   /* ── hipotezy ── */
+  { title: "Sprawa żandarma Wendlera", kind: "hipoteza", year: 1943,
+    text: "W 1943 r. Niemcy zatrzymali w związku z zastrzeleniem żandarma Wendlera dwóch Antosiaków: Stanisława (ur. 11.12.1910) — „zastrzelonego podczas próby ucieczki” — i Czesława (ur. 29.10.1916), zwolnionego 26 czerwca, podejrzanego o kontakty z przemytnikami. Sprawę prowadziła żandarmeria z Jednorożca, więc byli prawdopodobnie z Połoni. Czy to bracia pradziadka Wincentego — hipoteza: strona FB wymienia wśród rodzeństwa Stanisława (choć z aktem chrztu z 1908 r.).",
+    sources: ["straty", "fb-matecznik"] },
   { title: "Troje dzieci w jednym miesiącu", kind: "hipoteza", year: 1832, people: ["stanislaw-k"],
     text: "W czerwcu 1832 r. zmarło troje dzieci Stanisława, brata Walentego. Tyle zgonów w jednej rodzinie w ciągu miesiąca może wskazywać na chorobę zakaźną — ale akty nie podają przyczyny.",
     sources: ["badania"] },

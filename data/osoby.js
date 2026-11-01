@@ -236,7 +236,7 @@ DRZEWO.people = [
     spouses: [{ id: "marcjanna-l" }] },
   { id: "marcjanna-l", given: "Marcjanna", surname: "Antosiakowa", maiden: "z Lipków", sex: "f", gen: 3, line: "prosta", certainty: "ok",
     born: { y: 1872, text: "1872 (wg strony FB I. Antosiaka)" }, parents: ["franciszek-lip", "franciszka-fuks"], parentsCert: "prawd",
-    facts: ["Imię i nazwisko podaje indeks ślubu jej syna Aleksandra (1926).", { t: "Ur. 1872, córka Franciszka Lipki i Franciszki z Fuksów z Budek; ślub z Franciszkiem w 1892 r. (akt 20) — wg strony FB I. Antosiaka. W rodzinie zachowało się jej zdjęcie.", c: "prawd" }, { t: "Według rodziny syn Władysław nauczył się od niej niemieckiego — i to uratowało mu życie w czasie wojny (wg strony FB I. Antosiaka).", c: "prawd" }, { t: "Możliwy grób: Marcjanna Antosiak, cmentarz w Szczytnie (ul. Śląska), „żyła lat 76”, bez dat. Wiek i pochówek po 1945 r. pasują, ale pasują też do innej Marcjanny (z Jóźwików).", c: "hyp" }],
+    facts: ["Imię i nazwisko podaje indeks ślubu jej syna Aleksandra (1926).", { t: "Ur. 1872, córka Franciszka Lipki i Franciszki z Fuksów z Budek; ślub z Franciszkiem w 1892 r. (akt 20) — wg strony FB I. Antosiaka. W rodzinie zachowało się jej zdjęcie.", c: "prawd" }, { t: "Według rodziny syn Władysław nauczył się od niej niemieckiego — i to uratowało mu życie w czasie wojny (wg strony FB I. Antosiaka).", c: "prawd" }, { t: "Możliwy grób: Marcjanna Antosiak, cmentarz w Szczytnie (ul. Śląska), „żyła lat 76”, bez dat; sąsiednie groby wskazują na zgon ok. 1954–58. Czy to Marcjanna z Lipków — niejasne: przy urodzeniu w 1872 r. 76 lat dałoby zgon ok. 1948. Pasuje też inna Marcjanna (z Jóźwików).", c: "hyp" }],
     refs: [{ label: "grób w Szczytnie (grobonet)", url: "https://grobonet.com/p/szczytno/5933/marcjanna-antosiak-szczytno" }] },
   { id: "franciszek-lip", given: "Franciszek", surname: "Lipka", sex: "m", line: "prosta", certainty: "prawd", born: { place: "Budki" },
     parents: ["samuel-lip", "ludwika-luma"], spouses: [{ id: "franciszka-fuks" }],
@@ -293,6 +293,10 @@ DRZEWO.people = [
     facts: [{ t: "Prawdopodobnie to ją, jako „Leonorę Antosiak”, nagrali 11.07.1963 r. etnografowie IS PAN (sygn. T2667). Wikipedia wymienia Eleonorę Antosiak wśród śpiewaczek z Połoni.", c: "prawd" }] },
   { id: "adam-d", given: "Adam", surname: "Dębek", sex: "m", line: "prosta", certainty: "ok", spouses: [{ id: "marianna-o" }] },
   { id: "marianna-o", given: "Marianna", surname: "Dębek", maiden: "z Obrębskich", sex: "f", line: "prosta", certainty: "ok" },
+  { id: "wincenty-debek", given: "Wincenty", surname: "Dębek", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1914, date: "4.08.1914", place: "Połoń" }, parents: ["adam-d", "marianna-o"],
+    facts: ["Brat prababci Eleonory: rekord PCK podaje ojca Adama i matkę z domu Obrębską, urodzonego w Połoni.", "Żołnierz 4 pułku piechoty. Od 5.10.1939 w niewoli niemieckiej (Modlin), Stalag I A Stablack koło Królewca, numer jeniecki 32112.", "Po wojnie pierwszy naczelnik OSP w Połoni (1949)."],
+    refs: [{ label: "straty.pl — rekord jeniecki (PCK)", url: "https://straty.pl/" }] },
 
   /* ── Pokolenie 1: dziadkowie (bez dat i miejsc) ─────────────── */
   { id: "marian", given: "Marian", surname: "Antosiak", sex: "m", gen: 1, line: "prosta", certainty: "ok", private: true,
@@ -301,7 +305,7 @@ DRZEWO.people = [
     parents: ["zofia-m"], parentsCert: "hyp",
     facts: ["Babcia, z domu Mieszała (wiedza rodzinna). Pochodzenie Mieszałów — poszukiwania w toku."] },
   { id: "zofia-m", given: "Zofia", surname: "Mieszałowa", sex: "f", line: "prosta", certainty: "hyp", private: true,
-    facts: [{ t: "Matka Henryki — prawdopodobnie Zofia. Pamięć rodzinna, niepewna; brak aktu.", c: "hyp" }] },
+    facts: [{ t: "Matka Henryki — prawdopodobnie Zofia. Pamięć rodzinna, niepewna; brak aktu.", c: "hyp" }, { t: "Kandydatka: „Sophia Mieszala”, ur. 10.05.1909, robotnica rolna, w latach 1941–42 na robotach przymusowych w powiecie Zeitz (karta PCK). Rekord nie podaje miejsca urodzenia ani rodziców.", c: "hyp" }] },
 ];
 
 /* Narracja pokoleń linii prostej (start, panel drzewa, strony osób). n = numer pokolenia. */

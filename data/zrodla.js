@@ -17,6 +17,10 @@ DRZEWO.sources = [
   { id: "grobonet-marcjanna", group: "archiwa", label: "grobonet — Marcjanna Antosiak, cmentarz w Szczytnie", url: "https://grobonet.com/p/szczytno/5933/marcjanna-antosiak-szczytno" },
   { id: "fb-matecznik", group: "archiwa", short: "strona FB I. Antosiaka", label: "Facebook — „Połoń - Matecznik Rodziny Antosiak” (strona Ireneusza Antosiaka; źródło wtórne: odczyty i indeksy autora)", url: "https://www.facebook.com/profile.php?id=100049282671892" },
   { id: "akt1902-mysz", group: "archiwa", label: "Myszyniec, akt zgonu 302/1902 — Stanisław Mieszała (skan)", url: "https://photos.szukajwarchiwach.gov.pl/6d653dc77fe49c329cbf1fbbac978574f505ec1c8136d6e53ca3d9e50015469f_max" },
+  { id: "straty", group: "archiwa", label: "straty.pl — straty osobowe i ofiary represji 1939–1945 (rekordy PCK, IPN, AAN)", url: "https://straty.pl/" },
+  { id: "wig1931", group: "archiwa", label: "Mapa WIG 1:100 000, arkusz Przasnysz (1931) — skan", url: "http://maps.mapywig.org/m/WIG_maps/series/100K/P36_S32_PRZASNYSZ_1931_600dpi_bcuj298316-287605.jpg" },
+  { id: "kwatermistrz", group: "archiwa", label: "Mapa Kwatermistrzostwa (Topograficzna Karta Królestwa Polskiego, ok. 1843), arkusz Myszyniec — skan", url: "http://maps.mapywig.org/m/Polish_maps/series/126K_Mapa_Kwatermistrzostwa/TKKP126K_ark-23_Kol_IV_Sek_I_Myszyniec_600dpi_BCPolona.jpg" },
+  { id: "ap-scalenie", group: "archiwa", label: "AP Pułtusk 79/95/0/2/763–765 — plany scalenia gruntów Połoni, 1936 (bez skanów online)", url: "https://1939.warszawa.ap.gov.pl/container/publikacje/Informator_pultusk.pdf" },
   /* opracowania i kontekst */
   { id: "sgkp", group: "kontekst", label: "Słownik geograficzny Królestwa Polskiego, t. VIII, s. 725 — Połoń", url: "https://dir.icm.edu.pl/pl/Slownik_geograficzny/Tom_VIII/725" },
   { id: "wiki-polon", group: "kontekst", label: "Wikipedia — Połoń", url: "https://pl.wikipedia.org/wiki/Po%C5%82o%C5%84" },
@@ -50,6 +54,7 @@ DRZEWO.sources = [
   { id: "genealogyindexer", group: "nazwiska", label: "genealogyindexer — Księga adresowa Polski 1926/27–1930 (J. Mieszała, Dąbrowy)", url: "https://genealogyindexer.org/" },
   { id: "plan-dabrowy", group: "nazwiska", label: "Plan odnowy miejscowości Dąbrowy (2022)", url: "https://bip-v1-files.idcom-jst.pl/sites/47211/wiadomosci/635574/files/plan_odnowy_miejscowosci__dabrowy_2022.pdf" },
   /* materiały robocze */
+  { id: "kalendarz1891", group: "kontekst", short: "Kalendarz Płocki 1891", label: "Kalendarz Płocki na rok 1891 — o Kurpiach znad Orzyca" },
   { id: "badania", group: "robocze", short: "nasze odczyty aktów", label: "Nasze odczyty aktów Chorzel (raporty z badań, X–XI 2026)" },
   { id: "raport-c", group: "robocze", short: "raport ciekawostek", label: "Raport ciekawostek z weryfikacją źródeł (1.11.2026)" },
 ];
@@ -96,5 +101,9 @@ DRZEWO.todo = [
   "FamilySearch: sprawdzić dane ze strony FB I. Antosiaka — chrzest Pawła 1720 (akt 4) i jego rodzice Jakub i Marianna (weryfikacja w toku).",
   "Numer aktu chrztu Franciszka: Geneteka podaje 104/1868, strona FB 117/1868 — sprawdzić.",
   "Myszyniec: Rozalia Mieszała z Dąbrów (matka Stanisława, zm. 1902) — szukać jej ślubu i innych dzieci ok. 1895–1910.",
+  "AP Pułtusk: plany scalenia gruntów Połoni z 1936 r. (79/95/0/2/763–765) — pokażą działki rodziny przed wojną.",
+  "Geneteka: urodzenia Chorzele 1910 i 1916 — czy Stanisław (ur. 11.12.1910) i Czesław (ur. 29.10.1916) Antosiakowie z akt sprawy Wendlera to dzieci Franciszka i Marcjanny; ewentualnie kwerenda IPN, akta GK 629/4946.",
+  "Geneteka: akt urodzenia Wincentego Dębka (Chorzele 1914) — potwierdzi, że to brat Eleonory.",
+  "Arolsen Archives: karta „Sophia Mieszala” (ur. 10.05.1909) — miejsce urodzenia i rodzice.",
   "Ellis Island (darmowe konto): Antosiak / Antosiac / Antoszak, lata 1900–1925, Chorzele / Przasnysz / Połoń.",
 ];
