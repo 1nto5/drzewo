@@ -11,6 +11,7 @@ DRZEWO.grandma = {
   known: [
     { t: "Henryka z domu Mieszała, żona dziadka Mariana Antosiaka.", c: "ok", note: "wiedza rodzinna", sources: ["rodzina-2026"] },
     { t: "Jej rodzice: Władysław Mieszała i Zofia z domu Szczepanek.", c: "ok", note: "relacja rodzinna, 2026", sources: ["rodzina-2026"] },
+    { t: "Zofia Mieszała zmarła 14.09.1976 r. i jest pochowana na cmentarzu w Wielbarku (pow. szczycieński); nagrobek ze zdjęciem: „Mieszała Zofia, żyła lat 63, zm. 14.09.1976”.", c: "ok", note: "zdjęcie rodzinne, 2026" },
     { t: "Zofia Szczepanek urodziła się 6/19 stycznia 1913 r. w Chojnikach (parafia Nowa Wieś k. Ostrołęki) jako córka Aleksandra Szczepanka i Katarzyny z Radziejewskich.", c: "ok", acts: ["u1913-10"] },
     { t: "Szczepankowie — cztery pokolenia: Aleksander (ur. ok. 1883 w Chojnikach) ← Franciszek (ok. 1849–1931) i Marianna z Płocharczyków (ok. 1843–1909, z Rżańca) ← Piotr Szczepanek i Marianna z Radochów oraz Grzegorz Płocharczyk i Franciszka ze Szlachetków.", c: "ok", acts: ["s1909-4", "z1909-70", "s1911-17", "z1931-17"] },
     { t: "Radziejewscy: Katarzyna (ur. ok. 1885 w Mostowie) ← Józef Radziejewski (ok. 1850–1917, Mostowo) i Agnieszka z Ratajów ← Jan Radziejewski i Rozalia z Andrzejczyków.", c: "ok", acts: ["z1917-9"] },
