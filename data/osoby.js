@@ -306,14 +306,14 @@ DRZEWO.people = [
     facts: ["Babcia, z domu Mieszała, córka Władysława Mieszały i Zofii ze Szczepanków (relacja rodzinna, 2026).", "Dat i miejsc jej życia na stronie nie podajemy."] },
   { id: "wladyslaw-m", given: "Władysław", surname: "Mieszała", sex: "m", line: "prosta", certainty: "ok", private: true,
     spouses: [{ id: "zofia-m" }],
-    facts: ["Ojciec babci Henryki (relacja rodzinna, 2026). Skąd pochodził — poszukiwania w toku."] },
+    facts: ["Ojciec babci Henryki (relacja rodzinna, 2026). Skąd pochodził — poszukiwania w toku.", { t: "Może pochodził z Kurpiów — z Dąbrów w parafii Myszyniec, gdzie Mieszałowie żyli już ok. 1900 r.", c: "hyp" }, { t: "Może to ojciec Eugeniusza Mięszały (1924–1995) — jedynego w bazie strat wojennych Mieszały z rodzicami Władysławem i Zofią.", c: "hyp" }] },
   { id: "zofia-m", given: "Zofia", surname: "Mieszałowa", maiden: "ze Szczepanków", sex: "f", line: "prosta", certainty: "ok", private: true,
     parents: ["aleksander-sz", "katarzyna-sz"],
-    facts: ["Matka babci Henryki, z domu Szczepanek (relacja rodzinna, 2026).", { t: "Może to ona jest „Sophią Mieszalą”, ur. 10.05.1909, robotnicą rolną, w latach 1941–42 na robotach przymusowych w powiecie Zeitz (karta PCK). Rekord nie podaje miejsca urodzenia ani rodziców.", c: "hyp" }] },
+    facts: ["Matka babci Henryki, z domu Szczepanek (relacja rodzinna, 2026).", { t: "Może pochodziła z Wyszla koło Ostrołęki (parafia Nowa Wieś): tam urodził się w 1903 r. Wincenty Szczepanek, syn Aleksandra — może jej brat.", c: "hyp" }, { t: "Jeśli Eugeniusz Mięszała (1924–1995) był jej synem, urodziła się najpóźniej ok. 1906 r., a ślub z Władysławem był ok. 1920–1924.", c: "hyp" }] },
   { id: "aleksander-sz", given: "Aleksander", surname: "Szczepanek", sex: "m", line: "prosta", certainty: "ok", private: true,
-    spouses: [{ id: "katarzyna-sz" }], facts: ["Dziadek babci Henryki, ojciec Zofii (relacja rodzinna, 2026)."] },
+    spouses: [{ id: "katarzyna-sz" }], facts: ["Dziadek babci Henryki, ojciec Zofii (relacja rodzinna, 2026).", { t: "Może to Aleksander Szczepanek z Wyszla (parafia Nowa Wieś k. Ostrołęki), ojciec Wincentego ur. 1903.", c: "hyp" }] },
   { id: "katarzyna-sz", given: "Katarzyna", surname: "Szczepanek", sex: "f", line: "prosta", certainty: "ok", private: true,
-    facts: ["Babka babci Henryki, matka Zofii (relacja rodzinna, 2026)."] },
+    facts: ["Babka babci Henryki, matka Zofii (relacja rodzinna, 2026).", { t: "Jeśli Wincenty Szczepanek z Wyszla był bratem Zofii, Katarzyna była z domu Tyrlik — tak rekord PCK zapisał nazwisko matki Wincentego.", c: "hyp" }] },
 ];
 
 /* Narracja pokoleń linii prostej (start, panel drzewa, strony osób). n = numer pokolenia. */

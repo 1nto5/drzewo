@@ -56,6 +56,9 @@ DRZEWO.sources = [
   { id: "genealogyindexer", group: "nazwiska", label: "genealogyindexer — Księga adresowa Polski 1926/27–1930 (J. Mieszała, Dąbrowy)", url: "https://genealogyindexer.org/" },
   { id: "plan-dabrowy", group: "nazwiska", label: "Plan odnowy miejscowości Dąbrowy (2022)", url: "https://bip-v1-files.idcom-jst.pl/sites/47211/wiadomosci/635574/files/plan_odnowy_miejscowosci__dabrowy_2022.pdf" },
   /* materiały robocze */
+  { id: "arolsen", group: "archiwa", label: "Arolsen Archives — dokumenty robotników przymusowych i jeńców", url: "https://collections.arolsen-archives.org/en/search" },
+  { id: "ijp-szczepanek", group: "nazwiska", label: "IJP PAN — nazwisko Szczepanek (pow. ostrołęcki 4. w kraju, szczycieński 7.)", url: "https://nazwiska.ijppan.pl/haslo/print/name/SZCZEPANEK" },
+  { id: "raport-ms", group: "robocze", short: "raport Mieszała × Szczepanek", label: "Raport „Mieszała × Szczepanek — rodzice Henryki” (1.11.2026)" },
   { id: "kalendarz1891", group: "kontekst", short: "Kalendarz Płocki 1891", label: "Kalendarz Płocki na rok 1891 — o Kurpiach znad Orzyca" },
   { id: "badania", group: "robocze", short: "nasze odczyty aktów", label: "Nasze odczyty aktów Chorzel (raporty z badań, X–XI 2026)" },
   { id: "raport-c", group: "robocze", short: "raport ciekawostek", label: "Raport ciekawostek z weryfikacją źródeł (1.11.2026)" },
@@ -106,6 +109,8 @@ DRZEWO.todo = [
   "AP Pułtusk: plany scalenia gruntów Połoni z 1936 r. (79/95/0/2/763–765) — pokażą działki rodziny przed wojną.",
   "Geneteka: urodzenia Chorzele 1910 i 1916 — czy Stanisław (ur. 11.12.1910) i Czesław (ur. 29.10.1916) Antosiakowie z akt sprawy Wendlera to dzieci Franciszka i Marcjanny; ewentualnie kwerenda IPN, akta GK 629/4946.",
   "Geneteka: akt urodzenia Wincentego Dębka (Chorzele 1914) — potwierdzi, że to brat Eleonory.",
-  "Arolsen Archives: karta „Sophia Mieszala” (ur. 10.05.1909) — miejsce urodzenia i rodzice.",
+  "Arolsen Archives, dokument 70253100 (lista cudzoziemców, pow. Uffenheim): miejsce urodzenia Eugeniusza Mieszały (ur. 1924) — Kurpie czy Kielecczyzna.",
+  "Parafia Nowa Wieś k. Ostrołęki (gm. Olszewo-Borki): urodzenia i śluby Szczepanków z Wyszla 1885–1940 — czy Zofia to córka Aleksandra i siostra Wincentego (ur. 1903).",
+  "AP Pułtusk: duplikaty małżeństw Myszyńca 1927–1937 (79/825/0/-/8, 9, 10) — ślub Władysława Mieszały z Zofią Szczepanek.",
   "Ellis Island (darmowe konto): Antosiak / Antosiac / Antoszak, lata 1900–1925, Chorzele / Przasnysz / Połoń.",
 ];
