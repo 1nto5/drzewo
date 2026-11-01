@@ -41,7 +41,7 @@ DRZEWO.timeline = [
   { y: 1905, date: "25 V 1905", kind: "kontekst", text: "Mateusz Antosiak z Połoni przypływa do Baltimore; od 1906 r. mieszka w St. Louis.", sources: ["raport-a"] },
   { y: 1907, kind: "kontekst", text: "Marianna Antosiak, siostra Mateusza, jedzie z Połoni do brata w St. Louis.", sources: ["raport-a"] },
   { y: 1908, kind: "kontekst", text: "Z powiatu przasnyskiego wyjeżdża do Ameryki Północnej 1317 osób — najwięcej w guberni płockiej.", sources: ["szczepanski"] },
-  { y: 1913, date: "4 IX 1913", kind: "kontekst", text: "Franciszek Antosiak z Połoni, prawdopodobnie brat pradziadka Wincentego, przypływa na Ellis Island i jedzie do Connecticut.", people: ["franciszek"], sources: ["fs-1913"] },
+  { y: 1913, date: "4 IX 1913", kind: "kontekst", text: "Franciszek Antosiak z Połoni, może brat pradziadka Wincentego (hipoteza), przypływa na Ellis Island i jedzie do Connecticut.", people: ["franciszek"], sources: ["fs-1913"] },
   { y: 1905, kind: "kontekst", text: "Rewolucja 1905 r.: bunt podatkowy w Jednorożcu, przysłano dragonów; sosna bartna znów miejscem kar i egzekucji.", people: ["franciszek", "wincenty"], sources: ["wiki-polon", "raport-c"] },
   { y: 1914, kind: "kontekst", text: "Aleksander Maciesza bada antropologicznie Kurpiów, w tym urodzonych w Połoni.", people: ["franciszek"], sources: ["kmoch-polon", "wiki-polon"] },
   { y: 1915, date: "3–4 VIII 1915", kind: "kontekst", text: "Niemcy zajmują Ostrołękę; rodzina Piotra Mieszały z Grabówka ucieka przed frontem.", sources: ["raport-ms"] },
