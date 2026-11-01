@@ -46,7 +46,7 @@
       ["os-czasu.html", "Oś czasu", "Życie przodków na tle historii Połoni, 1750–1970."],
       ["ciekawostki.html", "Ciekawostki", `${D.trivia.length} historii: fakty o rodzinie, kontekst i hipotezy.`],
       ["ameryka.html", "Ameryka", "Kto z Połoni wyjechał do USA i co o nich wiemy."],
-      ["babcia.html", "Babcia Henryka", "Strona Mieszałów — poszukiwania w toku."],
+      ["babcia.html", "Babcia Henryka", "Mieszałowie i Szczepankowie — punkt wyjścia i tropy."],
       ["zrodla.html", "Źródła i metoda", "Archiwa, zasady odczytu, imiennicy, lista do zrobienia."],
     ];
     $("#tiles").innerHTML = T.map(([h, t, d]) => `<li><a href="${h}"><b>${t}</b><span>${esc(d)}</span></a></li>`).join("");
@@ -226,9 +226,12 @@
   function babcia() {
     const G = D.grandma;
     $("#main").innerHTML = `<section class="page-h"><h1>Babcia Henryka<span class="dot">.</span></h1>
-        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}. Strona Antosiaków sięga 1750 r.; strona Mieszałów dopiero się zaczyna.</p>
+        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. To punkt wyjścia: imiona rodziców i dziadków znamy z relacji rodzinnej, dokumenty dopiero przed nami.</p>
         <p class="status" style="margin-top:14px">${esc(G.status.replace(/\.$/, ""))}</p>
         ${A.legend()}</section>
+      <h2>Rodzina babci</h2>
+      <ol class="gens">${[["dziadkowie babci", ["aleksander-sz", "katarzyna-sz"]], ["rodzice babci", ["wladyslaw-m", "zofia-m"]], ["babcia i dziadek", ["henryka", "marian"]]].map(([l, ids]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "babcia i dziadek" ? "me" : "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
+      <p class="src">źródło: relacja rodzinna, 2026 · bez dat i miejsc</p>
       <h2>Co wiemy</h2>${listC(G.known)}
       <h2>Nazwisko Mieszała</h2>${listC(G.surname)}
       <h2>Tropy</h2>
@@ -242,7 +245,7 @@
 
   /* ── źródła ────────────────────────────────────── */
   function zrodla() {
-    const GR = [["archiwa", "Archiwa i indeksy"], ["kontekst", "Historia i kontekst"], ["ameryka", "Ameryka"], ["nazwiska", "Nazwiska"], ["robocze", "Materiały robocze"]];
+    const GR = [["rodzina", "Rodzina"], ["archiwa", "Archiwa i indeksy"], ["kontekst", "Historia i kontekst"], ["ameryka", "Ameryka"], ["nazwiska", "Nazwiska"], ["robocze", "Materiały robocze"]];
     $("#main").innerHTML = `<section class="page-h"><h1>Źródła i metoda<span class="dot">.</span></h1>
         <p class="lead">Skąd pochodzą dane, jak je czytamy i oznaczamy oraz co zostało do sprawdzenia.</p></section>
       <h2>Metoda</h2>${A.legend()}<div style="height:12px"></div>${listC(D.method)}

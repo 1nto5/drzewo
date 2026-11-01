@@ -302,10 +302,18 @@ DRZEWO.people = [
   { id: "marian", given: "Marian", surname: "Antosiak", sex: "m", gen: 1, line: "prosta", certainty: "ok", private: true,
     parents: ["wincenty", "eleonora"], spouses: [{ id: "henryka" }], facts: ["Dziadek."] },
   { id: "henryka", given: "Henryka", surname: "Antosiak", maiden: "z Mieszałów", sex: "f", gen: 1, line: "prosta", certainty: "ok", private: true,
-    parents: ["zofia-m"], parentsCert: "hyp",
-    facts: ["Babcia, z domu Mieszała (wiedza rodzinna). Pochodzenie Mieszałów — poszukiwania w toku."] },
-  { id: "zofia-m", given: "Zofia", surname: "Mieszałowa", sex: "f", line: "prosta", certainty: "hyp", private: true,
-    facts: [{ t: "Matka Henryki — prawdopodobnie Zofia. Pamięć rodzinna, niepewna; brak aktu.", c: "hyp" }, { t: "Kandydatka: „Sophia Mieszala”, ur. 10.05.1909, robotnica rolna, w latach 1941–42 na robotach przymusowych w powiecie Zeitz (karta PCK). Rekord nie podaje miejsca urodzenia ani rodziców.", c: "hyp" }] },
+    parents: ["wladyslaw-m", "zofia-m"],
+    facts: ["Babcia, z domu Mieszała, córka Władysława Mieszały i Zofii ze Szczepanków (relacja rodzinna, 2026).", "Dat i miejsc jej życia na stronie nie podajemy."] },
+  { id: "wladyslaw-m", given: "Władysław", surname: "Mieszała", sex: "m", line: "prosta", certainty: "ok", private: true,
+    spouses: [{ id: "zofia-m" }],
+    facts: ["Ojciec babci Henryki (relacja rodzinna, 2026). Skąd pochodził — poszukiwania w toku."] },
+  { id: "zofia-m", given: "Zofia", surname: "Mieszałowa", maiden: "ze Szczepanków", sex: "f", line: "prosta", certainty: "ok", private: true,
+    parents: ["aleksander-sz", "katarzyna-sz"],
+    facts: ["Matka babci Henryki, z domu Szczepanek (relacja rodzinna, 2026).", { t: "Może to ona jest „Sophią Mieszalą”, ur. 10.05.1909, robotnicą rolną, w latach 1941–42 na robotach przymusowych w powiecie Zeitz (karta PCK). Rekord nie podaje miejsca urodzenia ani rodziców.", c: "hyp" }] },
+  { id: "aleksander-sz", given: "Aleksander", surname: "Szczepanek", sex: "m", line: "prosta", certainty: "ok", private: true,
+    spouses: [{ id: "katarzyna-sz" }], facts: ["Dziadek babci Henryki, ojciec Zofii (relacja rodzinna, 2026)."] },
+  { id: "katarzyna-sz", given: "Katarzyna", surname: "Szczepanek", sex: "f", line: "prosta", certainty: "ok", private: true,
+    facts: ["Babka babci Henryki, matka Zofii (relacja rodzinna, 2026)."] },
 ];
 
 /* Narracja pokoleń linii prostej (start, panel drzewa, strony osób). n = numer pokolenia. */
@@ -345,5 +353,5 @@ DRZEWO.generations = [
     more: ["W 1963 r. etnografowie IS PAN nagrali w Połoni pieśni w wykonaniu „Leonory Antosiak” — najpewniej Eleonory (sygn. T2667).", "Dębkowie i Antosiakowie byli spokrewnieni już wcześniej: w 1864 r. żyła Ewa z Antosiaków Dębkowa."] },
   { n: 1, yr: "XX w.", c: "me", man: "marian", woman: "henryka",
     sum: "Dziadkowie. Tu drzewo się kończy.",
-    facts: ["Dziadkowie.", "Henryka z domu Mieszała — pochodzenie jej rodziny: poszukiwania w toku."] },
+    facts: ["Dziadkowie.", "Henryka z domu Mieszała, córka Władysława Mieszały i Zofii ze Szczepanków (relacja rodzinna)."] },
 ];

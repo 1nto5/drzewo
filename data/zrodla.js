@@ -6,6 +6,8 @@ window.DRZEWO = window.DRZEWO || {};
 DRZEWO.asof = "1 listopada 2026";
 
 DRZEWO.sources = [
+  /* rodzina */
+  { id: "rodzina-2026", group: "rodzina", short: "relacja rodzinna", label: "Relacja rodzinna, 2026 — rodzice i dziadkowie babci Henryki (Władysław Mieszała, Zofia ze Szczepanków, Aleksander i Katarzyna Szczepankowie)" },
   /* archiwa i indeksy */
   { id: "ap", group: "archiwa", label: "AP Warszawa Oddział w Pułtusku, akta stanu cywilnego parafii Chorzele (79/107/0)", url: "https://www.szukajwarchiwach.gov.pl/zespol/-/zespol/109048" },
   { id: "akt1864", group: "archiwa", label: "Akt ślubu Feliksa i Rozalii, 28/1864 (księga 1864)", url: "https://www.szukajwarchiwach.gov.pl/jednostka/-/jednostka/14110494" },
@@ -84,8 +86,8 @@ DRZEWO.pitfalls = [
 
 /* Kolejność = priorytet. */
 DRZEWO.todo = [
-  "Odpis zupełny aktu małżeństwa Mariana i Henryki z USC — poda rodziców i miejsce urodzenia babci.",
-  "Zapytać rodzinę o rodziców Henryki, miejsce jej urodzenia i gdzie dziadkowie się poznali. Co wiadomo o Aleksandrze, który „wrócił z Ameryki”?",
+  "Odpis zupełny aktu małżeństwa Mariana i Henryki z USC — potwierdzi rodziców babci (Władysław Mieszała, Zofia ze Szczepanków) i poda miejsce jej urodzenia.",
+  "Zapytać rodzinę, skąd pochodzili Władysław Mieszała i Zofia ze Szczepanków i gdzie dziadkowie się poznali. Co wiadomo o Aleksandrze, który „wrócił z Ameryki”?",
   "FamilySearch: chrzest Stanisława, syna Kacpra (obrazy 526–545 filmu 8024884, V 1805–1806) i Jana Kantego (obraz 498, VIII 1803); rozstrzygnąć nazwisko Heleny (Dodor/Todor czy Wysocka).",
   "AP Pułtusk, kwerenda: Chorzele 1866–1923 (bez skanów online) — ślub Franciszka z Marcjanną, zgon Feliksa.",
   "Geneteka ręcznie: Mieszała w parafiach Myszyniec, Chorzele, Jednorożec, Przasnysz; para Antosiak × Mieszała w latach 1940–1970.",
