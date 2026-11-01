@@ -41,8 +41,8 @@
     if (b.attach) for (const a of b.attach) a.x += dx;
   }
   function connect(edges, ax, ay, a) {
-    const busY = a.y - BUS;
-    edges.push({ cls: a.cls, pts: [[ax, ay], [ax, busY], [a.x, busY], [a.x, a.stackEnd != null ? a.stackEnd : a.y]] });
+    const busY = a.y - (a.bus || BUS);
+    edges.push({ cls: a.cls, label: a.label, pts: [[ax, ay], [ax, busY], [a.x, busY], [a.x, a.stackEnd != null ? a.stackEnd : a.y]] });
   }
   function isLeaf(id, vis) {
     return !A.spouses(id).some(s => vis.has(s.id) && !axisSet.has(s.id)) && !A.children(id).some(k => vis.has(k) && !A.direct.has(k));
@@ -159,6 +159,23 @@
     }
     // prawa strona: przodkowie żon (rodzice, dziadkowie…), od najstarszych pokoleń osi
     const ancestors = (child, level, cx) => {
+      const alts = A.altParents(child);
+      if (alts.length) {
+        // dwie (lub więcej) możliwe pary rodziców: każda osobno, linia przerywana i etykieta ścieżki
+        alts.forEach((alt, i) => {
+          const ps = alt.parents.filter(p => vis.has(p) && !axisSet.has(p));
+          if (!ps.length) return;
+          const root = ps.find(p => A.byId.get(p).sex === "m") || ps[0];
+          const b = fam(root, level + 1, vis);
+          place(b, "R", placed);
+          const xs = b.nodes.filter(n => ps.includes(n.id)).map(n => n.x);
+          const ax = xs.length === 2 ? (Math.min(...xs) + W + Math.max(...xs)) / 2 : xs[0] + W / 2;
+          connect(b.edges, ax, rowY(level + 1) + (xs.length === 2 ? H / 2 : H), { x: cx + W / 2, y: rowY(level), cls: alt.c || "prawd", bus: BUS + 14 * i, label: alt.label });
+          nodes.push(...b.nodes); edges.push(...b.edges);
+          for (const p of ps) { const n = b.nodes.find(n => n.id === p); if (n) ancestors(p, level + 1, n.x); }
+        });
+        return;
+      }
       const ps = A.parents(child).filter(p => vis.has(p) && !axisSet.has(p));
       if (!ps.length) return;
       const root = ps.find(p => A.byId.get(p).sex === "m") || ps[0];
@@ -205,7 +222,10 @@
       g.style.transform = `translate(${n.x}px, ${n.y}px)`;
     }
     const ge = el("g", { id: "edges", class: "edges" + (animate && !reduce ? " enter" : "") });
-    for (const e of lay.edges) ge.append(el("path", { class: "edge " + e.cls, d: pathD(e.pts) }));
+    for (const e of lay.edges) {
+      ge.append(el("path", { class: "edge " + e.cls, d: pathD(e.pts) }));
+      if (e.label) { const t = el("text", { class: "edge-label", x: e.pts[0][0] + 6, y: e.pts[1][1] - 5 }); t.textContent = e.label + " · " + (A.CERT[e.cls] || ""); ge.append(t); }
+    }
     gEdges.replaceWith(ge); gEdges = ge;
     if (fresh.length || ge.classList.contains("enter")) requestAnimationFrame(() => requestAnimationFrame(() => { fresh.forEach(g => g.classList.remove("enter")); ge.classList.remove("enter"); }));
     if (selected) { const g = nodeEls.get(selected); if (g) g.classList.add("sel"); }
@@ -322,7 +342,9 @@
       if (p.died) lines.push(["zm.", A.dateStr(p.died)]);
     }
     for (const s of A.spouses(id)) if (s.married) lines.push(["ślub", A.dateStr(s.married) + " — " + A.fullName(A.byId.get(s.id))]);
-    const pc = p.parentsCert ? `<p class="small muted">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}</p>` : "";
+    const alts = A.altParents(id);
+    const pc = p.parentsCert ? `<p class="small muted">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}${alts.length ? ` — ${alts.length === 2 ? "dwie możliwe ścieżki" : alts.length + " możliwe ścieżki"}` : ""}</p>` : "";
+    const altBlocks = alts.map(a => relList(`Rodzice — ścieżka ${A.esc(a.key)} (${A.CERT[a.c]})`, a.parents) + relList(`Rodzeństwo — ścieżka ${A.esc(a.key)}`, A.children(a.parents[0]).filter(c => c !== id))).join("");
     const facts = (p.facts || []).map(A.fact);
     const acts = A.actsFor(id);
     return `<button class="panel-close" type="button" aria-label="Zamknij">✕</button>
@@ -335,10 +357,10 @@
       ${pc}
       ${facts.length ? `<div class="sec"><h3>Fakty</h3><ul class="facts">${facts.map(f => `<li>${f}</li>`).join("")}</ul></div>` : ""}
       ${g && g.facts ? `<div class="sec"><h3>Pokolenie ${g.n}</h3><ul class="facts">${g.facts.map(f => `<li>${A.esc(f)}</li>`).join("")}</ul></div>` : ""}
-      ${relList("Rodzice", A.parents(id))}
+      ${alts.length ? "" : relList("Rodzice", A.parents(id))}
       ${relList("Małżonkowie", A.spouses(id).map(s => s.id))}
       ${relList("Dzieci", A.children(id))}
-      ${relList("Rodzeństwo", A.siblings(id))}
+      ${alts.length ? altBlocks : relList("Rodzeństwo", A.siblings(id))}
       ${acts.length ? `<div class="sec"><h3>Akty (${acts.length})</h3><ul class="act-mini">${acts.map(a => `<li><span class="k">${A.esc(a.k)}</span><a href="akty.html#${a.id}">${a.y} · ${A.esc(a.t)}</a></li>`).join("")}</ul></div>` : ""}
       <p class="go"><a class="btn" href="osoba.html?id=${encodeURIComponent(id)}">Otwórz stronę osoby</a></p>`;
   }

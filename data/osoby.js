@@ -7,6 +7,11 @@
      born/died  { y: rok, date: "27.11.1839", approx: true (= „ok.”), place: "Połoń", text: "po 1864" }
      parents    [id ojca, id matki] (tylko znani)
      parentsCert  "prawd" | "hyp", gdy powiązanie z rodzicami jest niepewne (linia przerywana / kropkowana)
+     altParents   gdy rodziców nie rozstrzygnięto, a są dwie (lub więcej) możliwe pary — zamiast parents:
+                [{ key: "A", label: "Ścieżka A", parents: [ojciec, matka], c: "prawd" | "hyp", act: id aktu chrztu,
+                   born: "data, miejsce" kandydata, godparents, note, for: [poszlaki, jak facts] }]
+                Każda para to osobna ścieżka: w drzewie obie nad osobą (linie przerywane, etykiety A/B), przodkowie
+                i krewni z obu ścieżek dostają pokrewieństwo z dopiskiem „ścieżka A, prawdopodobne”.
      spouses    [{ id, married: { y, date, place, act, text } }]
                 wystarczy wpisać po jednej stronie, druga strona uzupełnia się sama
      certainty  "ok" (pewne: akt, indeks lub wiedza rodzinna) | "prawd" (prawdopodobne) | "hyp" (hipoteza z naszych badań)
@@ -17,7 +22,7 @@
      private    true = osoba mogła żyć niedawno: bez dat i miejsc
    Dane ze strony FB „Połoń - Matecznik Rodziny Antosiak” (źródło wtórne) oznaczamy w treści
    „wg strony FB I. Antosiaka” i pewnością co najwyżej "prawd", dopóki nie potwierdzi ich akt.
-   Dzieci i rodzeństwo wylicza się z pola parents. Akty łączą się z osobą przez DRZEWO.acts[].osoby.
+   Dzieci i rodzeństwo wylicza się z pól parents i altParents. Akty łączą się z osobą przez DRZEWO.acts[].osoby.
    ZASADA: hipotezy tylko z naszych badań, zawsze oznaczone; bez odwołań do starego drzewa;
    drzewo kończy się na dziadkach. */
 window.DRZEWO = window.DRZEWO || {};
@@ -349,8 +354,68 @@ DRZEWO.people = [
     parents: ["wladyslaw-m", "zofia-m"],
     facts: ["Babcia, z domu Mieszała, córka Władysława Mieszały i Zofii ze Szczepanków (relacja rodzinna, 2026).", "Dat i miejsc jej życia na stronie nie podajemy."] },
   { id: "wladyslaw-m", given: "Władysław", surname: "Mieszała", sex: "m", line: "prosta", certainty: "ok", private: true,
-    spouses: [{ id: "zofia-m" }],
-    facts: ["Ojciec babci Henryki (relacja rodzinna, 2026). Który to Władysław — nieustalone; ślub z Zofią (ok. 1932–45) nie jest dostępny online.", { t: "Kandydat A: Władysław ur. 21.02/5.03.1904 w Grabówku, syn Adama Mieszały (ok. 1867, żył w 1931) i Elżbiety z Gąsków (zm. 9.11.1931 w Grabówku, córki Józefa Gąski i Anny z Kochodzonów).", c: "hyp" }, { t: "Kandydat B: Władysław ur. 15/28.06.1904 w Grabówku, syn Piotra Mieszały (ok. 1864–67, umiał pisać — sam podpisał akt z 1899 r.) i Wiktorii z Gładków. Jego brat Eugeniusz urodził się 4.08.1915 w Stylągach „w czasie ruchu wojennego” — rodzina uciekała przed frontem; jako kapral 18 DP był jeńcem Stalagów I-A i I-B.", c: "hyp" }, { t: "Mieszałowie żyli w Grabówku co najmniej od ok. 1848 r. Piotr, Adam i Walenty Mieszałowie byli rówieśnikami i chrzestnymi u siebie nawzajem; może synowie Franciszka Mieszały seniora z Grabówka.", c: "hyp" }, { t: "Mało prawdopodobny: Władysław ur. 1908 (syn Walentego i Katarzyny z Gładków), zm. 1983 w Grabówku.", c: "hyp" }] },
+    spouses: [{ id: "zofia-m" }], parentsCert: "prawd",
+    altParents: [
+      { key: "A", label: "Ścieżka A", parents: ["adam-mie", "elzbieta-gas"], c: "prawd", act: "u1904-20",
+        born: "21.02/5.03.1904, Grabówek", godparents: "Adam Kizember [?] i Katarzyna",
+        note: "Syn Adama Mieszały, rolnika z Grabówka, i Elżbiety z Gąsków. Rodzina dobrze opisana: zgon matki w 1931 r. (Z 1931/44) podaje jej rodziców.",
+        for: ["Ten sam rok i ta sama wieś co Władysław ze ścieżki B; ta sama parafia co Szczepankowie.", "Osobnych poszlak za tą ścieżką brak."] },
+      { key: "B", label: "Ścieżka B", parents: ["piotr-mie", "wiktoria-gla"], c: "prawd", act: "u1904-53",
+        born: "15/28.06.1904, Grabówek", godparents: "Walenty i Katarzyna Mieszałowie",
+        note: "Syn Piotra Mieszały, rolnika z Grabówka, i Wiktorii z Gładków. Minimalnie mocniejsza — przez jedną słabą poszlakę.",
+        for: ["Ten sam rok i ta sama wieś co Władysław ze ścieżki A; ta sama parafia co Szczepankowie.", { t: "Siostra Genowefa wyszła w 1934 r. za Henryka Budnego, a babcia nosi imię Henryka — może po wujku (słaba poszlaka).", c: "hyp" }] },
+    ],
+    facts: ["Ojciec babci Henryki (relacja rodzinna, 2026).", { t: "Dwie możliwe ścieżki rodowe: w 1904 r. w Grabówku (parafia Nowa Wieś k. Ostrołęki) urodziło się dwóch Władysławów Mieszałów — syn Adama i Elżbiety z Gąsków (ścieżka A) oraz syn Piotra i Wiktorii z Gładków (ścieżka B). Obie są prawdopodobne; ścieżka B minimalnie mocniejsza.", c: "prawd" }, "Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki): poda imiona jego rodziców. Ślubu nie ma w księgach Nowej Wsi do 1936 r., a zgonu żadnego z dwóch Władysławów — w księgach parafii do 1936 r.", "Trzeci Władysław Mieszała z Grabówka, ur. 1908 (syn Walentego i Katarzyny z Gładków), żył do 1983 r. — to nie on.", "Relacja rodzinna: pradziadek został rozstrzelany w czasie łapanki we wsi, „przez pomyłkę”. Szczegóły nieznane.", { t: "Mocna hipoteza — trzech Władysławów z jednej wsi: w Grabówku żyło trzech Władysławów Mieszałów urodzonych w latach 1904–1908 (synowie Adama, Piotra i Walentego), a czwarty, ur. 1910, był synem Walentego i Marianny. Przy łapance o pomyłkę tożsamości było łatwo.", c: "hyp" }, { t: "Władysław ur. 1908 żył do 1983 r., więc to nie on zginął — ale mógł być tym, z kim pradziadka pomylono.", c: "hyp" }] },
+  /* ścieżka A: Adam Mieszała × Elżbieta z Gąsków (Grabówek) */
+  { id: "adam-mie", given: "Adam", surname: "Mieszała", sex: "m", line: "prosta", certainty: "prawd",
+    born: { y: 1867, approx: true, text: "ok. 1866/67" }, died: { text: "po 1931" }, spouses: [{ id: "elzbieta-gas" }],
+    facts: ["Rolnik w Grabówku (parafia Nowa Wieś k. Ostrołęki). W 1904 r. miał 37 lat (U 1904/20); żył jeszcze w 1931 r., gdy zmarła jego żona.", { t: "Ścieżka A: ojciec Władysława ur. 21.02/5.03.1904 — może pradziadka Adriana.", c: "prawd" }, { t: "Adam, Piotr i Walenty Mieszałowie z Grabówka byli rówieśnikami — może synowie Franciszka Mieszały seniora.", c: "hyp" }] },
+  { id: "elzbieta-gas", given: "Elżbieta", surname: "Mieszała", maiden: "z Gąsków", sex: "f", line: "prosta", certainty: "prawd",
+    born: { y: 1868, approx: true, place: "Grabówek" }, died: { y: 1931, date: "9.11.1931", place: "Grabówek" }, parents: ["jozef-gas", "anna-koch"],
+    facts: ["Urodzona w Grabówku, córka Józefa Gąski i Anny z Kochodzonów. Zmarła 9 listopada 1931 r. w Grabówku (Z 1931/44).", "W 1904 r. miała 34 lata (U 1904/20).", { t: "Ścieżka A: matka Władysława ur. 1904.", c: "prawd" }] },
+  { id: "jozef-gas", given: "Józef", surname: "Gąska", sex: "m", line: "prosta", certainty: "prawd", spouses: [{ id: "anna-koch" }],
+    facts: ["Ojciec Elżbiety (akt zgonu Z 1931/44)."] },
+  { id: "anna-koch", given: "Anna", surname: "Gąskowa", maiden: "z Kochodzonów", sex: "f", line: "prosta", certainty: "prawd",
+    facts: ["Matka Elżbiety (akt zgonu Z 1931/44)."] },
+  { id: "adolfa-mie", given: "Adolfa", surname: "Drężek", maiden: "z Mieszałów", sex: "f", line: "boczna", certainty: "ok",
+    born: { y: 1897, date: "19/31.08.1897", place: "Grabówek" }, parents: ["adam-mie", "elzbieta-gas"],
+    facts: ["Chrzest U 1897/108 (indeks Geneteki). W 1928 r. wyszła za Józefa Drężka (M 1928/4)."] },
+  { id: "aleksander-mie", given: "Aleksander", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1899 }, died: { y: 1900 }, parents: ["adam-mie", "elzbieta-gas"], facts: ["Chrzest U 1899/159, zgon Z 1900/8 (indeks Geneteki)."] },
+  { id: "stanislaw-mie-a", given: "Stanisław", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1901 }, died: { y: 1901 }, parents: ["adam-mie", "elzbieta-gas"], facts: ["Chrzest U 1901/31, zgon Z 1901/28 (indeks Geneteki)."] },
+  { id: "eleonora-mie", given: "Eleonora", surname: "Mieszała", sex: "f", line: "boczna", certainty: "ok",
+    born: { y: 1902 }, parents: ["adam-mie", "elzbieta-gas"], facts: ["Chrzest U 1902/28 (indeks Geneteki)."] },
+  { id: "boleslaw-mie", given: "Bolesław", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1905 }, parents: ["adam-mie", "elzbieta-gas"], facts: ["Chrzest U 1905/111 (indeks Geneteki). W 1935 r. ożenił się z Genowefą Lumą (M 1935/21)."] },
+  { id: "czeslaw-mie", given: "Czesław", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1909 }, parents: ["adam-mie", "elzbieta-gas"], facts: ["Chrzest U 1909/29 (indeks Geneteki). W 1932 r. ożenił się ze Stanisławą Czekałą (M 1932/14)."] },
+  { id: "leopold-mie", given: "Leopold", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1911 }, parents: ["adam-mie", "elzbieta-gas"], facts: ["Chrzest U 1911/87 (indeks Geneteki). W 1936 r. ożenił się z Jadwigą Wieczorek (M 1936/6)."] },
+  /* ścieżka B: Piotr Mieszała × Wiktoria z Gładków (Grabówek) */
+  { id: "piotr-mie", given: "Piotr", surname: "Mieszała", sex: "m", line: "prosta", certainty: "prawd",
+    born: { y: 1864, approx: true }, spouses: [{ id: "wiktoria-gla" }],
+    facts: ["Rolnik w Grabówku (parafia Nowa Wieś k. Ostrołęki). W 1904 r. miał 40 lat (U 1904/53). Umiał pisać — sam podpisał akt z 1899 r.", { t: "Ścieżka B: ojciec Władysława ur. 15/28.06.1904 — może pradziadka Adriana.", c: "prawd" }, "Z Walentym Mieszałą (ur. ok. 1863, mąż Katarzyny z Gładków) byli u siebie nawzajem chrzestnymi — przy chrzcie Władysława w 1904 r. chrzestnymi byli Walenty i Katarzyna.", { t: "Piotr i Walenty to prawdopodobnie bracia; może z Adamem — synowie Franciszka Mieszały seniora z Grabówka.", c: "hyp" }, "W sierpniu 1915 r. rodzina uciekała przed frontem — syn Eugeniusz urodził się w drodze, w Stylągach."] },
+  { id: "wiktoria-gla", given: "Wiktoria", surname: "Mieszała", maiden: "z Gładków", sex: "f", line: "prosta", certainty: "prawd",
+    born: { y: 1876, approx: true, text: "ok. 1875/76" },
+    facts: ["W 1904 r. miała 28 lat (U 1904/53).", { t: "Ścieżka B: matka Władysława ur. 1904.", c: "prawd" }] },
+  { id: "stanislawa-mie", given: "Stanisława", surname: "Mieszała", sex: "f", line: "boczna", certainty: "ok",
+    born: { y: 1899, date: "22.04/4.05.1899", place: "Grabówek" }, died: { y: 1926 }, parents: ["piotr-mie", "wiktoria-gla"],
+    facts: ["Chrzest U 1899/53, zgon Z 1926/48 (indeks Geneteki)."] },
+  { id: "stanislaw-mie-b", given: "Stanisław", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1902 }, parents: ["piotr-mie", "wiktoria-gla"], facts: ["Chrzest U 1902/57 (indeks Geneteki). W 1934 r. ożenił się w Krasnosielcu z Wacławą Budną."] },
+  { id: "wladyslawa-mie", given: "Władysława", surname: "Kania", maiden: "z Mieszałów", sex: "f", line: "boczna", certainty: "ok",
+    born: { y: 1907 }, parents: ["piotr-mie", "wiktoria-gla"], facts: ["Chrzest U 1907/20 (indeks Geneteki). W 1930 r. wyszła za Feliksa Kanię (M 1930/2)."] },
+  { id: "aleksandra-mie", given: "Aleksandra", surname: "Śladowska", maiden: "z Mieszałów", sex: "f", line: "boczna", certainty: "ok",
+    born: { y: 1910 }, parents: ["piotr-mie", "wiktoria-gla"], facts: ["Chrzest U 1910/66 (indeks Geneteki). W 1934 r. wyszła za Mariana Śladowskiego (M 1934/7)."] },
+  { id: "eugeniusz-mie", given: "Eugeniusz", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    born: { y: 1915, date: "4.08.1915", place: "Stylągi" }, parents: ["piotr-mie", "wiktoria-gla"],
+    facts: ["Urodzony 4 sierpnia 1915 r. w Stylągach (parafia Czerwin) „w czasie ruchu wojennego” — rodzina uciekała przed frontem. Ochrzczony w Nowej Wsi (U 1916/1).", "W 1939 r. kapral 18 Dywizji Piechoty, jeniec Stalagów I-A i I-B."] },
+  { id: "genowefa-mie", given: "Genowefa", surname: "Budna", maiden: "z Mieszałów", sex: "f", line: "boczna", certainty: "ok",
+    born: { y: 1917 }, parents: ["piotr-mie", "wiktoria-gla"],
+    facts: ["Chrzest U 1917/43 (indeks Geneteki). W 1934 r. wyszła za Henryka Budnego (M 1934/6).", { t: "Babcia nosi imię Henryka — może po wujku Henryku Budnym. To jedyna poszlaka za ścieżką B, słaba.", c: "hyp" }] },
+  { id: "franciszek-mie", given: "Franciszek", surname: "Mieszała", sex: "m", line: "boczna", certainty: "ok",
+    parents: ["piotr-mie", "wiktoria-gla"], facts: ["W 1924 r. ożenił się z Emilią Leppert (M 1924/20, indeks Geneteki)."] },
   { id: "zofia-m", given: "Zofia", surname: "Mieszałowa", maiden: "ze Szczepanków", sex: "f", line: "prosta", certainty: "ok",
     born: { y: 1913, date: "6/19.01.1913", place: "Chojniki" }, parents: ["aleksander-sz", "katarzyna-sz"],
     facts: ["Matka babci Henryki, z domu Szczepanek (relacja rodzinna, 2026).", "Urodzona 6/19 stycznia 1913 r. w Chojnikach (parafia Nowa Wieś k. Ostrołęki), córka Aleksandra Szczepanka i Katarzyny z Radziejewskich (akt 10/1913). Chrzestni: Franciszek i Katarzyna Szczepankowie.", "Ślubu z Władysławem Mieszałą nie ma w księgach Nowej Wsi do 1936 r.; śluby z lat 1937–1945 nie są zeskanowane."] },

@@ -144,11 +144,12 @@ DRZEWO.stories = [
     acts: ["s1909-4", "z1909-70", "s1911-17", "z1911-28", "z1911-33", "u1913-10", "z1917-9", "z1931-17"],
     sources: ["metryki-nw", "rodzina-2026", "szczepanski", "raport-ms"] },
 
-  { id: "mieszalowie", side: "babcia", title: "Władysław i Zofia Mieszałowie — wciąż zagadka", people: ["wladyslaw-m", "zofia-m"],
+  { id: "mieszalowie", side: "babcia", title: "Władysław i Zofia Mieszałowie — dwie ścieżki", people: ["wladyslaw-m", "zofia-m"],
     paragraphs: [
       "Władysław Mieszała i Zofia ze Szczepanków to rodzice babci Henryki (relacja rodzinna, 2026). Zofia urodziła się w 1913 r. w Chojnikach — jej rodzinę opisuje [[#szczepankowie|poprzednia historia]].",
       "O Władysławie wiemy najmniej. Ślubu Władysława i Zofii nie ma w księgach Nowej Wsi do 1936 r. ani w indeksie Myszyńca do 1940 r., a śluby z Nowej Wsi z lat 1937–1945 nie są zeskanowane.",
-      "{{hyp}} Najmocniejszy trop: Mieszałowie żyli od ok. 1848 r. w Grabówku, w tej samej parafii co Szczepankowie. W 1904 r. urodziło się tam dwóch Władysławów: syn Adama i Elżbiety z Gąsków oraz syn Piotra i Wiktorii z Gładków. Któryś z nich może być pradziadkiem Adriana.",
+      "{{prawd}} Mieszałowie żyli od ok. 1848 r. w Grabówku, w tej samej parafii co Szczepankowie. W 1904 r. urodziło się tam dwóch Władysławów — stąd dwie prawdopodobne ścieżki: A, syn [[adam-mie|Adama]] i [[elzbieta-gas|Elżbiety z Gąsków]], oraz B, syn [[piotr-mie|Piotra]] i [[wiktoria-gla|Wiktorii z Gładków]]. Rozstrzygnie akt ślubu Władysława i Zofii.",
+      "Rodzina pamięta, że Władysław został rozstrzelany w łapance „przez pomyłkę”. {{hyp}} W Grabówku żyło trzech Władysławów Mieszałów urodzonych w latach 1904–1908 — o pomyłkę tożsamości było łatwo.",
       "{{hyp}} Jeśli to syn Piotra, to jego brat Eugeniusz urodził się w sierpniu 1915 r. „w czasie ruchu wojennego”, gdy rodzina uciekała przed frontem, a ich kuzyn Aleksander, syn Walentego, w 1910 r. wyjechał do Ameryki i ożenił się w Chicago.",
       "{{hyp}} Słabszy trop prowadzi do Dąbrów w parafii Myszyniec, gdzie w 1902 r. zmarł 10-miesięczny Stanisław Mieszała. Więcej tropów jest na stronie [[babcia.html|babci]].",
     ],

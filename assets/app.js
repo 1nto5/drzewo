@@ -17,8 +17,11 @@
   const srcById = new Map(D.sources.map(s => [s.id, s]));
   const kids = new Map();
   const marr = new Map(); // id -> [{id, married}]
+  // altParents: każda para to możliwa ścieżka; do grafu (dzieci, przodkowie, pokrewieństwo) wchodzą wszystkie
+  const altSets = id => ((byId.get(id) || {}).altParents || []);
+  const allParents = p => [...new Set([...(p.parents || []), ...(p.altParents || []).flatMap(a => a.parents)])];
   for (const p of D.people) {
-    for (const par of p.parents || []) { if (!kids.has(par)) kids.set(par, []); kids.get(par).push(p.id); }
+    for (const par of allParents(p)) { if (!kids.has(par)) kids.set(par, []); kids.get(par).push(p.id); }
     for (const s of p.spouses || []) {
       const add = (a, b) => { if (!marr.has(a)) marr.set(a, []); if (!marr.get(a).some(x => x.id === b)) marr.get(a).push({ id: b, married: s.married || null }); };
       add(p.id, s.id); add(s.id, p.id);
@@ -31,7 +34,10 @@
   const person = id => byId.get(id);
   const children = id => (kids.get(id) || []).slice();
   const spouses = id => (marr.get(id) || []).slice();
-  const parents = id => ((byId.get(id) || {}).parents || []).slice();
+  const parents = id => { const p = byId.get(id); return p ? allParents(p) : []; };
+  const altParents = id => altSets(id).slice();
+  // ścieżka (klucz pary z altParents), przez którą osoba łączy się z rodziną; null = poza ścieżkami
+  const altOf = (child, par) => { const a = altSets(child).find(x => x.parents.includes(par)); return a || null; };
   const siblings = id => {
     const ps = parents(id); const out = new Set();
     for (const par of ps) for (const c of children(par)) if (c !== id) out.add(c);
@@ -48,8 +54,18 @@
   /* ── pokrewieństwo z perspektywy Adriana ─────────
      Adrian (wirtualny węzeł) = wnuk Mariana i Henryki. dist = liczba pokoleń od Adriana:
      2 dziadek, 3 pradziadek, 4 prapradziadek, 5+ „(dist−2)× pradziadek”. Rodzica Adriana nie pokazujemy. */
-  const dist = new Map();
-  (function () { const q = [["marian", 2], ["henryka", 2]]; while (q.length) { const [id, d] = q.shift(); if (dist.has(id) && dist.get(id) <= d) continue; dist.set(id, d); for (const p of parents(id)) q.push([p, d + 1]); } })();
+  const dist = new Map(), pathOf = new Map(); // pathOf: id przodka -> para z altParents (ścieżka A/B)
+  (function () {
+    const q = [["marian", 2, null], ["henryka", 2, null]];
+    while (q.length) {
+      const [id, d, path] = q.shift();
+      if (dist.has(id) && dist.get(id) <= d) continue;
+      dist.set(id, d); if (path) pathOf.set(id, path);
+      for (const p of (byId.get(id) || {}).parents || []) q.push([p, d + 1, path]);
+      for (const a of altSets(id)) for (const p of a.parents) q.push([p, d + 1, path || a]);
+    }
+  })();
+  const pathTag = a => ` (ścieżka ${a.key}, ${CERT[a.c] || a.c})`;
   const ANC = (d, sex, c) => {
     if (c === "pl") return d === 2 ? "dziadkowie" : d === 3 ? "pradziadkowie" : d === 4 ? "prapradziadkowie" : `${d - 2}× pradziadkowie`;
     if (c === "plgen") return d === 2 ? "dziadków" : d === 3 ? "pradziadków" : d === 4 ? "prapradziadków" : `${d - 2}× pradziadków`;
@@ -69,12 +85,13 @@
     const p = byId.get(id); if (!p) return null;
     const f = p.sex === "f";
     let r = null;
-    if (dist.has(id)) { const d = dist.get(id); r = { nom: ANC(d, p.sex, "nom"), gen: ANC(d, p.sex, "gen"), kind: "anc", d }; }
+    let path = null;
+    if (dist.has(id)) { const d = dist.get(id); r = { nom: ANC(d, p.sex, "nom"), gen: ANC(d, p.sex, "gen"), kind: "anc", d }; path = pathOf.get(id) || null; }
     else {
       let best = null; const seen = new Set([id]); const q = [[id, 0]];
       while (q.length) { const [x, b] = q.shift(); for (const par of parents(x)) { if (seen.has(par)) continue; seen.add(par); if (dist.has(par)) { const a = dist.get(par); if (!best || a < best.a || (a === best.a && b + 1 < best.b)) best = { x: par, a, b: b + 1 }; } else q.push([par, b + 1]); } }
       if (best) {
-        const { x, a, b } = best;
+        const { x, a, b } = best; path = pathOf.get(x) || null;
         const ancAt = t => { let cur = x; while (dist.get(cur) > t) { const nx = children(cur).find(c => dist.get(c) === dist.get(cur) - 1); if (!nx) return null; cur = nx; } return cur; };
         const t = a - b;
         if (b === 1 && a - 1 >= 2) { const c = ancAt(a - 1); if (c) { const tail = `${ANC(a - 1, byId.get(c).sex, "gen")} ${nameGen(c)}`; r = { nom: `${f ? "siostra" : "brat"} ${tail}`, gen: `${f ? "siostry" : "brata"} ${tail}`, kind: "sib" }; } }
@@ -84,6 +101,7 @@
         for (const s of spouses(id)) { const sr = relOf(s.id, 1); if (sr) { r = { nom: `${f ? "żona" : "mąż"} ${sr.gen}`, gen: `${f ? "żony" : "męża"} ${sr.gen}`, kind: "inlaw" }; break; } }
       }
     }
+    if (r && path) r = { ...r, nom: r.nom + pathTag(path), gen: r.gen + pathTag(path), path: path.key };
     if (!depth) relCache.set(id, r);
     return r;
   }
@@ -181,6 +199,6 @@
   }
   chrome();
 
-  window.APP = { rel, relOf, genPl, dist, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
+  window.APP = { rel, relOf, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
     direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
 })();

@@ -58,6 +58,9 @@ DRZEWO.sources = [
   { id: "genealogyindexer", group: "nazwiska", label: "genealogyindexer — Księga adresowa Polski 1926/27–1930 (J. Mieszała, Dąbrowy)", url: "https://genealogyindexer.org/" },
   { id: "plan-dabrowy", group: "nazwiska", label: "Plan odnowy miejscowości Dąbrowy (2022)", url: "https://bip-v1-files.idcom-jst.pl/sites/47211/wiadomosci/635574/files/plan_odnowy_miejscowosci__dabrowy_2022.pdf" },
   /* materiały robocze */
+  { id: "straty-mieszala", group: "archiwa", short: "straty.pl — Mieszałowie", label: "straty.pl — kwerenda: Mieszała (153 rekordy, 5 wariantów pisowni) i wsie rodziny babci (296 rekordów); sprawdzone m.in. rekordy id5726342, id4072156, id5877447, id4072979–83", url: "https://straty.pl/" },
+  { id: "indeks-repr", group: "archiwa", label: "Indeks Represjonowanych (Ośrodek KARTA) — kwerenda: Mieszała", url: "https://www.indeksrepresjonowanych.pl/" },
+  { id: "ipn-gk162", group: "archiwa", label: "IPN, sygn. GK 162/385 — akta żandarmerii Sypniewo (do kwerendy)" },
   { id: "arolsen", group: "archiwa", label: "Arolsen Archives — dokumenty robotników przymusowych i jeńców", url: "https://collections.arolsen-archives.org/en/search" },
   { id: "ijp-szczepanek", group: "nazwiska", label: "IJP PAN — nazwisko Szczepanek (pow. ostrołęcki 4. w kraju, szczycieński 7.)", url: "https://nazwiska.ijppan.pl/haslo/print/name/SZCZEPANEK" },
   { id: "raport-ms", group: "robocze", short: "raport Mieszała × Szczepanek", label: "Raport „Mieszała × Szczepanek — rodzice Henryki” (1.11.2026)" },

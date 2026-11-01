@@ -154,6 +154,11 @@ th { color: var(--ink-3); font-weight: 400; font-size: 12px; letter-spacing: 0.0
 .note b { color: var(--ink); font-weight: 500; }
 .note p { margin: 0 0 6px; }
 .note p:last-child { margin: 0; }
+.note.key { border: 1px solid var(--accent); }
+table.paths { max-width: 980px; }
+table.paths th[scope="row"] { width: 1%; white-space: nowrap; }
+table.paths td { color: var(--ink-2); min-width: 150px; }
+table.paths .facts li { text-indent: 0; padding-left: 0; }
 .status { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 13px; }
 .status::before { content: ""; width: 8px; height: 8px; border: 1px solid var(--accent); border-radius: 50%; }
 @media (prefers-reduced-motion: no-preference) { .status::before { animation: pulse 1.6s ease-in-out infinite; } @keyframes pulse { 50% { background: var(--accent); } } }
@@ -267,6 +272,7 @@ body.tree-page .top, body.tree-page .nav { max-width: 1100px; margin-left: auto;
 .edge.axis { stroke: var(--accent); stroke-width: 2; }
 .edge.axis.prawd { stroke-dasharray: 6 5; }
 .edge.marr { stroke: var(--accent); stroke-width: 1.2; }
+.edge-label { fill: var(--ink-3); font-size: 10.5px; letter-spacing: .02em; pointer-events: none; }
 .node { cursor: pointer; }
 .node rect.box { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1; }
 .node.l-prosta rect.box { stroke: var(--ink-3); }

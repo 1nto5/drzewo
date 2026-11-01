@@ -58,6 +58,29 @@
     $("#tiles").innerHTML = T.map(([h, t, d]) => `<li><a href="${h}"><b>${t}</b><span>${esc(d)}</span></a></li>`).join("");
   }
 
+  /* ── dwie (lub więcej) możliwe ścieżki rodowe: porównanie z pola altParents ── */
+  function pathsTable(id) {
+    const alts = A.altParents(id);
+    if (!alts.length) return "";
+    const who = pid => { const q = A.byId.get(pid); return q ? `${A.plink(pid)}${A.lifeShort(q) ? ` <span class="muted small">${esc(A.lifeShort(q))}</span>` : ""}` : ""; };
+    const sibs = a => A.children(a.parents[0]).filter(c => c !== id && A.parents(c).length);
+    const gp = a => a.parents.flatMap(pid => A.parents(pid)).map(who).join("<br>") || `<span class="muted">nieznani</span>`;
+    const rows = [
+      ["ocena", a => A.certBadge(a.c)],
+      ["urodzenie", a => esc(a.born || "")],
+      ["akt chrztu", a => A.actRefs([a.act])],
+      ["chrzestni", a => esc(a.godparents || "")],
+      ["ojciec", a => who(a.parents[0])],
+      ["matka", a => who(a.parents[1])],
+      ["dziadkowie", gp],
+      ["rodzeństwo", a => sibs(a).map(c => { const q = A.byId.get(c); return `${A.plink(c, q.given)}${q.born && q.born.y ? " " + q.born.y : ""}`; }).join(", ")],
+      ["poszlaki", a => listC([a.note, ...(a.for || [])].filter(Boolean))],
+    ];
+    return `<div class="scroll"><table class="paths"><thead><tr><th></th>${alts.map(a => `<th>${esc(a.label)}</th>`).join("")}</tr></thead><tbody>
+      ${rows.map(([l, fn]) => `<tr><th scope="row">${l}</th>${alts.map(a => `<td>${fn(a)}</td>`).join("")}</tr>`).join("")}
+      </tbody></table></div>`;
+  }
+
   /* ── osoba ─────────────────────────────────────── */
   const LINE = { prosta: "linia prosta", boczna: "krewny", powinowaci: "powinowaty" };
   function relBlock(title, ids) {
@@ -82,7 +105,7 @@
     const p = id && A.byId.get(id);
     if (!p) return peopleIndex(id);
     document.title = A.fullName(p) + " — Drzewo Antosiaków";
-    const g = A.genFor(id);
+    const g = A.genFor(id), alts = A.altParents(id);
     const life = [];
     if (!p.private) {
       if (p.born && (p.born.y || p.born.date || p.born.place || p.born.text)) life.push(["urodzenie", A.dateStr(p.born)]);
@@ -112,7 +135,11 @@
         <p style="margin-top:16px"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>
       </section>
       <h2>Rodzina</h2>
-      <div class="rel">${relBlock("Rodzice", A.parents(id)) + relBlock("Małżonkowie", A.spouses(id).map(s => s.id)) + relBlock("Dzieci", A.children(id)) + relBlock("Rodzeństwo", A.siblings(id)) || `<p class="muted">Brak znanych krewnych w drzewie.</p>`}</div>
+      <div class="rel">${(alts.length ? "" : relBlock("Rodzice", A.parents(id))) + relBlock("Małżonkowie", A.spouses(id).map(s => s.id)) + relBlock("Dzieci", A.children(id)) + (alts.length ? "" : relBlock("Rodzeństwo", A.siblings(id))) || `<p class="muted">Brak znanych krewnych w drzewie.</p>`}</div>
+      ${alts.length ? `<h2>${alts.length === 2 ? "Dwie możliwe ścieżki" : "Możliwe ścieżki"}</h2>
+        <p class="intro">Rodziców nie rozstrzygnięto. ${alts.map(a => `${esc(a.label)}: ${a.parents.map(pid => A.plink(pid, A.byId.get(pid).given)).join(" i ")}`).join("; ")} — ${alts.every(a => a.c === "prawd") ? "obie prawdopodobne" : "zob. ocenę"}. Krewni z obu ścieżek mają przy pokrewieństwie dopisek ścieżki.</p>
+        ${pathsTable(id)}
+        <div class="rel">${alts.map(a => relBlock(`Rodzice — ścieżka ${esc(a.key)}`, a.parents) + relBlock(`Rodzeństwo — ścieżka ${esc(a.key)}`, A.children(a.parents[0]).filter(c => c !== id))).join("")}</div>` : ""}
       ${(p.facts || []).length ? `<h2>Fakty</h2><ul class="facts">${p.facts.map(f => `<li>${A.fact(f)}</li>`).join("")}</ul>` : ""}
       ${g ? `<h2>Pokolenie ${g.n}</h2><ul class="facts">${g.facts.map(f => `<li>${esc(f)}</li>`).join("")}</ul>${g.more ? `<details><summary>szczegóły z aktów</summary><div class="more">${g.more.map(m => `<p>${esc(m)}</p>`).join("")}</div></details>` : ""}${g.src ? `<div class="src">akty: ${esc(g.src)}</div>` : ""}` : ""}
       ${ev.length > 1 ? `<h2>Oś życia</h2><ol class="lifeline">${ev.map(e => `<li class="${e.own ? "own" : ""}"><span class="y">${e.y}</span>${e.t}${e.own || e.hist ? "" : ""}${!e.own ? age(e.y) : ""}</li>`).join("")}</ol>` : ""}
@@ -243,15 +270,23 @@
   }
 
   /* ── babcia ────────────────────────────────────── */
+  const shootingHTML = S => `<h2>${esc(S.title)}</h2>
+      ${S.key ? `<div class="note key"><p>${A.mark(S.key.c)}<b>${esc(S.key.title)}</b> — ${esc(S.key.label || A.CERT[S.key.c])}</p>${S.key.t.map(t => `<p>${esc(t)}</p>`).join("")}${S.key.note ? `<p class="muted small">${esc(S.key.note)}</p>` : ""}</div>` : ""}
+      <div style="height:14px"></div>${listC(S.items)}
+      <p class="muted small" style="margin-top:12px">co to rozstrzygnie</p><ol class="todo">${S.resolve.map(t => `<li>${esc(t)}</li>`).join("")}</ol>
+      <p class="src" style="display:flex;flex-wrap:wrap;gap:2px 12px">${A.srcLinks(S.sources)}</p>`;
   function babcia() {
     const G = D.grandma;
     $("#main").innerHTML = `<section class="page-h"><h1>Babcia Henryka<span class="dot">.</span></h1>
-        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. Imiona rodziców i dziadków znamy z relacji rodzinnej; pierwsze dokumenty prowadzą do parafii Nowa Wieś koło Ostrołęki.</p>
+        <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. Imiona rodziców i dziadków znamy z relacji rodzinnej; dokumenty prowadzą do parafii Nowa Wieś koło Ostrołęki. Rodzina Zofii jest ustalona; Władysław ma dwie możliwe ścieżki rodowe — A (syn Adama i Elżbiety z Gąsków) i B (syn Piotra i Wiktorii z Gładków), obie prawdopodobne. Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
         <p class="status" style="margin-top:14px">${esc(G.status.replace(/\.$/, ""))}</p>
         ${A.legend()}</section>
       <h2>Rodzina babci</h2>
-      <ol class="gens">${[["prapradziadkowie (dziadkowie babci)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
-      <p class="src">źródło: relacja rodzinna, 2026 · bez dat i miejsc</p>
+      <ol class="gens">${[...A.altParents("wladyslaw-m").map(a => [`prapradziadkowie — ścieżka ${a.key}, ${A.CERT[a.c]} (rodzice Władysława)`, a.parents, a.c]), ["prapradziadkowie (rodzice Zofii)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids, c]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : c || "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
+      <p class="src">źródło: relacja rodzinna, 2026; ścieżki A i B — akty chrztu z Nowej Wsi · bez dat i miejsc</p>
+      <h2>Dwie ścieżki Władysława</h2>
+      <p class="intro">Obie ścieżki są prawdopodobne; B minimalnie mocniejsza, ale tylko przez słabą poszlakę. Rozstrzygnie akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
+      ${pathsTable("wladyslaw-m")}
       <h2>Co wiemy</h2>${listC(G.known)}
       <h2>Nazwisko Mieszała</h2>${listC(G.surname)}
       <h2>Tropy</h2>
@@ -259,6 +294,7 @@
         <p class="muted small">co za tym przemawia</p>${listC(l.for)}
         <p class="muted small" style="margin-top:8px">co przeciw</p>${listC(l.against)}
         <p class="src" style="display:flex;flex-wrap:wrap;gap:2px 12px">${A.srcLinks(l.sources)}</p></div>`).join("")}
+      ${G.shooting ? shootingHTML(G.shooting) : ""}
       <h2>Uwaga na imienniczki</h2>${listC(G.pitfalls)}
       <h2>Co to rozstrzygnie</h2><ol class="todo">${G.resolve.map(t => `<li>${esc(t)}</li>`).join("")}</ol>`;
   }
