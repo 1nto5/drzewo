@@ -157,18 +157,20 @@
       for (const a of r.attach) connect(r.edges, 0, rowY(g.n) + H / 2, a);
       nodes.push(...r.nodes); edges.push(...r.edges);
     }
-    // prawa strona: rodzice żon, od najstarszych
-    for (const g of AXIS) {
-      const ps = A.parents(g.woman).filter(p => vis.has(p));
-      if (!ps.length) continue;
+    // prawa strona: przodkowie żon (rodzice, dziadkowie…), od najstarszych pokoleń osi
+    const ancestors = (child, level, cx) => {
+      const ps = A.parents(child).filter(p => vis.has(p) && !axisSet.has(p));
+      if (!ps.length) return;
       const root = ps.find(p => A.byId.get(p).sex === "m") || ps[0];
-      const b = fam(root, g.n + 1, vis);
+      const b = fam(root, level + 1, vis);
       place(b, "R", placed);
       const xs = b.nodes.filter(n => ps.includes(n.id)).map(n => n.x);
       const ax = xs.length === 2 ? (Math.min(...xs) + W + Math.max(...xs)) / 2 : xs[0] + W / 2;
-      connect(b.edges, ax, rowY(g.n + 1) + (xs.length === 2 ? H / 2 : H), { x: womanX + W / 2, y: rowY(g.n), cls: linkCls(g.woman) });
+      connect(b.edges, ax, rowY(level + 1) + (xs.length === 2 ? H / 2 : H), { x: cx + W / 2, y: rowY(level), cls: linkCls(child) });
       nodes.push(...b.nodes); edges.push(...b.edges);
-    }
+      for (const p of ps) { const n = b.nodes.find(n => n.id === p); if (n) ancestors(p, level + 1, n.x); }
+    };
+    for (const g of AXIS) ancestors(g.woman, g.n, womanX);
     return { nodes, edges };
   }
 
@@ -374,7 +376,12 @@
     render(layout(m), !initial);
     syncURL();
   }
-  chips.forEach(c => c.addEventListener("click", () => setMode(c.dataset.mode)));
+  // po zmianie trybu: jeśli w kadrze nie ma żadnej osoby, wróć do osi
+  function inView() {
+    const { w, h } = size();
+    return current.nodes.some(n => { const x = tx + n.x * k, y = ty + n.y * k; return x + W * k > 0 && x < w && y + H * k > 0 && y < h; });
+  }
+  chips.forEach(c => c.addEventListener("click", () => { setMode(c.dataset.mode); if (!inView()) home(); }));
   function syncURL() {
     const q = new URLSearchParams();
     if (mode !== defaultMode()) q.set("tryb", mode);

@@ -14,6 +14,8 @@ DRZEWO.sources = [
   { id: "fs1750", group: "archiwa", label: "FamilySearch — skan aktu ślubu Pawła i Jadwigi, 1750", url: "https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSXV-D3L7-2?cat=317312&view=explore&lang=en&groupId=M999-NYD" },
   { id: "etnofon", group: "archiwa", label: "Etnofon IS PAN — nagrania z Połoni (raport „Utwory”, sesja T2667)", url: "https://etnofon.ispan.pl/raport/show?raport=sounds" },
   { id: "grobonet-marcjanna", group: "archiwa", label: "grobonet — Marcjanna Antosiak, cmentarz w Szczytnie", url: "https://grobonet.com/p/szczytno/5933/marcjanna-antosiak-szczytno" },
+  { id: "fb-matecznik", group: "archiwa", short: "strona FB I. Antosiaka", label: "Facebook — „Połoń - Matecznik Rodziny Antosiak” (strona Ireneusza Antosiaka; źródło wtórne: odczyty i indeksy autora)", url: "https://www.facebook.com/profile.php?id=100049282671892" },
+  { id: "akt1902-mysz", group: "archiwa", label: "Myszyniec, akt zgonu 302/1902 — Stanisław Mieszała (skan)", url: "https://photos.szukajwarchiwach.gov.pl/6d653dc77fe49c329cbf1fbbac978574f505ec1c8136d6e53ca3d9e50015469f_max" },
   /* opracowania i kontekst */
   { id: "sgkp", group: "kontekst", label: "Słownik geograficzny Królestwa Polskiego, t. VIII, s. 725 — Połoń", url: "https://dir.icm.edu.pl/pl/Slownik_geograficzny/Tom_VIII/725" },
   { id: "wiki-polon", group: "kontekst", label: "Wikipedia — Połoń", url: "https://pl.wikipedia.org/wiki/Po%C5%82o%C5%84" },
@@ -52,6 +54,7 @@ DRZEWO.sources = [
 ];
 
 DRZEWO.method = [
+  "Dane ze strony FB „Połoń - Matecznik Rodziny Antosiak” (Ireneusz Antosiak) to źródło wtórne: oznaczamy je „wg strony FB I. Antosiaka” i najwyżej jako prawdopodobne, dopóki nie przeczytamy aktu.",
   "Każda osoba i każde powiązanie ma jeden z trzech poziomów pewności: pewne (akt metrykalny, indeks albo wiedza rodzinna), prawdopodobne (zgodne poszlaki) albo hipoteza (trop z naszych badań, wymaga sprawdzenia).",
   "Akty z lat 1826–1865 czytamy ze skanów Archiwum Państwowego w Pułtusku. „1 odczyt” — akt przeczytany raz; „2 odczyty” — sprawdzony drugi raz; „sprawdzone” — przeczytany osobiście przez Adriana.",
   "Księgi z lat 1866–1923 nie mają skanów w internecie: te akty znamy tylko z indeksu Geneteki. Księgi sprzed 1826 r. (po łacinie) są na FamilySearch.",
@@ -86,8 +89,11 @@ DRZEWO.todo = [
   "Rozalia Sędrowska: S 35/1865 Anny Sendrowskiej podaje „niegdy Ludwika i Maryanny z Kutów” — czy to jej siostra i kim był Ludwik.",
   "Zgon Marianny z Chudzików — szukać po 1864 r.",
   "Cmentarz w Szczytnie (ul. Śląska, kw. BXI/XIV/47): data pochówku Marcjanny Antosiak, potem akt zgonu w USC — poda nazwisko panieńskie.",
-  "Władysław Antosiak (1900–1982), wójt: chrzest z 1900 r. w parafii Chorzele — czy to syn Franciszka i Marcjanny.",
+  "Władysław Antosiak (1900–1982), wójt: chrzest 121/1900 w parafii Chorzele — potwierdzić aktem, że to syn Franciszka i Marcjanny (tak podaje strona FB).",
   "Uwłaszczenie Połoni: tabela nadawcza w AP Płock / AP Warszawa (Komisarz do Spraw Włościańskich pow. przasnyskiego) — działki rodziny po 1864 r.",
   "Parafia Chorzele: policzyć zgony miesięcznie w latach 1832 i 1848 — czy był szczyt epidemii.",
+  "FamilySearch: sprawdzić dane ze strony FB I. Antosiaka — chrzest Pawła 1720 (akt 4, rodzice Jakub i Marianna), ślub Pawła w Olszewce 1750 (akt 5), chrzest Kacpra 1759 (bliźnięta z Agnieszką), ślub Kacpra z Heleną 1786 (akt 28), chrzest Walentego 1799 (akt 23), ślub Walentego 1822 (akt 38).",
+  "Numer aktu chrztu Franciszka: Geneteka podaje 104/1868, strona FB 117/1868 — sprawdzić.",
+  "Myszyniec: Rozalia Mieszała z Dąbrów (matka Stanisława, zm. 1902) — szukać jej ślubu i innych dzieci ok. 1895–1910.",
   "Ellis Island (darmowe konto): Antosiak / Antosiac / Antoszak, lata 1900–1925, Chorzele / Przasnysz / Połoń.",
 ];

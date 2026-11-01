@@ -7,7 +7,8 @@
   const key = document.getElementById("tl-key");
   const chipBox = document.getElementById("tl-chips");
   const NS = "http://www.w3.org/2000/svg";
-  const cols = D.generations.filter(g => g.n >= 2).sort((a, b) => b.n - a.n);
+  const hasDates = id => { const p = A.byId.get(id); return !!((p.born && p.born.y) || (p.died && p.died.y) || A.spouses(id).some(s => s.married && s.married.y)); };
+  const cols = D.generations.filter(g => g.n >= 2 && (hasDates(g.man) || hasDates(g.woman))).sort((a, b) => b.n - a.n);
   const colOf = new Map();
   cols.forEach((g, i) => { colOf.set(g.man, { i, s: 0, g }); colOf.set(g.woman, { i, s: 1, g }); });
   const state = { prosta: true, krewni: false, historia: true };

@@ -6,6 +6,7 @@
      scan   hash skanu z photos.szukajwarchiwach.gov.pl (link: …/<hash>_max)
      unit   numer jednostki w szukajwarchiwach (gdy nie ma skanu konkretnej strony)
      fs     link do FamilySearch;  idx  true = znany tylko z indeksu Geneteki
+     parish parafia, gdy inna niż Chorzele (np. "Myszyniec")
      r      stan odczytu: "1 odczyt" | "2 odczyty" | "sprawdzone" (przeczytane osobiście przez Adriana) */
 window.DRZEWO = window.DRZEWO || {};
 
@@ -94,5 +95,8 @@ DRZEWO.acts = [
     { id: "u1905-271", osoby: ["wincenty", "franciszek", "marcjanna-l"], y: 1905, k: "chrzest", no: 271, g: 2, t: "Wincenty Antosiak", idx: true, tr: "1905 r., Połoń. Akt po rosyjsku; znany z indeksu Geneteki." },
     { id: "s1925-40", osoby: ["wincenty", "eleonora", "adam-d", "marianna-o"], y: 1925, k: "ślub", no: 40, g: 2, t: "Wincenty Antosiak × Eleonora Dębek", idx: true, tr: "1925 r., Chorzele. Eleonora — córka Adama Dębka i Marianny z Obrębskich. Znany z indeksu Geneteki." },
     { id: "z1926-105", osoby: ["franciszek"], y: 1926, k: "zgon", no: 105, g: 3, t: "Franciszek Antosiak", idx: true, tr: "1926 r., Połoń. Znany z indeksu Geneteki." },
+    { id: "z1902-302", osoby: [], parish: "Myszyniec", y: 1902, k: "zgon", no: 302, g: null, t: "Stanisław Mieszała, 10 miesięcy (Dąbrowy)", scan: "6d653dc77fe49c329cbf1fbbac978574f505ec1c8136d6e53ca3d9e50015469f", r: "1 odczyt",
+      q: "Мѣшала … (Stanisław Mieszała)",
+      tr: "14/27 grudnia 1902 r., parafia Myszyniec, akt po rosyjsku. W Dąbrowach zmarł Stanisław Mieszała, 10 miesięcy. Matka: Rozalia Mieszała, właścicielka rolna w Dąbrowach (nazwisko rodowe ucięte na skanie); ojca akt nie wymienia. Pierwszy pewny ślad Mieszałów w Dąbrowach ok. 1900 r. Związek z babcią Henryką to wciąż hipoteza." },
     { id: "s1926-36", osoby: ["aleksander-f", "marianna-f", "franciszek", "marcjanna-l"], y: 1926, k: "ślub", no: 36, g: 3, t: "Aleksander Antosiak × Marianna Folga", idx: true, tr: "1926 r., Chorzele. Aleksander, syn Franciszka i Marcjanny z Lipków, żeni się z Marianną Folgą z Zagat. Znany z indeksu Geneteki — to on potwierdza imię i nazwisko żony Franciszka." },
 ];

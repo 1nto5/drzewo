@@ -14,7 +14,7 @@
       <p>${esc(t.text)}</p>
       <div class="src">${A.actRefs(t.acts)}${A.srcLinks(t.sources)}</div>
     </li>`;
-  const listC = arr => `<ul class="facts">${arr.map(x => `<li>${typeof x === "string" ? esc(x) : `${x.c ? A.mark(x.c) : ""}${esc(x.t)}${x.note ? ` <span class="muted small">(${esc(x.note)})</span>` : ""}${x.sources ? ` <span class="src">${A.srcLinks(x.sources)}</span>` : ""}`}</li>`).join("")}</ul>`;
+  const listC = arr => `<ul class="facts">${arr.map(x => `<li>${typeof x === "string" ? esc(x) : `${x.c ? A.mark(x.c) : ""}${esc(x.t)}${x.note ? ` <span class="muted small">(${esc(x.note)})</span>` : ""}${x.sources || x.acts ? ` <span class="src">${A.actRefs(x.acts)} ${A.srcLinks(x.sources)}</span>` : ""}`}</li>`).join("")}</ul>`;
   const genItem = g => {
     const m = A.byId.get(g.man), w = A.byId.get(g.woman);
     return `<li class="gen ${g.c}">
@@ -193,13 +193,13 @@
     const entry = e => `<li class="act">
         <div class="yr">${esc(((e.trip || "").match(/\b1[89]\d\d\b/) || [""])[0])}</div>
         <div>
-          <div class="act-head"><span class="act-title">${e.person ? A.plink(e.person, e.name) : esc(e.name)}</span>${A.certBadge(e.c === "ok" ? "ok" : "hyp")}${e.alias ? `<span class="act-meta">${esc(e.alias)}</span>` : ""}</div>
+          <div class="act-head"><span class="act-title">${e.person ? A.plink(e.person, e.name) : esc(e.name)}</span>${A.certBadge(e.c)}${e.alias ? `<span class="act-meta">${esc(e.alias)}</span>` : ""}</div>
           <div class="life">${e.born ? `<div><b>ur.</b> ${esc(e.born)}</div>` : ""}${e.trip ? `<div><b>podróż</b> ${esc(e.trip)}</div>` : ""}${e.died ? `<div><b>zm.</b> ${esc(e.died)}</div>` : ""}</div>
           ${e.fate ? `<p class="act-tr">${esc(e.fate)}</p>` : ""}
           ${e.rel ? `<p class="act-tr"><b>rodzina</b>${A.mark(e.rel.c)}${esc(e.rel.t)}</p>` : ""}
           <div class="act-links">${(e.sources || []).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join("")}</div>
         </div></li>`;
-    const sure = all.filter(e => e.c === "ok"), maybe = all.filter(e => e.c !== "ok");
+    const sure = all.filter(e => e.c === "ok"), fb = all.filter(e => e.c === "prawd"), maybe = all.filter(e => e.c === "hyp");
     const P = D.americaPlaces;
     const placeRows = Object.keys(P).filter(k => !P[k].port).map(k => [k, all.filter(e => (e.places || []).includes(k))]).filter(([, v]) => v.length);
     $("#main").innerHTML = `<section class="page-h"><h1>Ameryka<span class="dot">.</span></h1>
@@ -209,12 +209,13 @@
       <h2>Emigranci z Połoni</h2>
       <p class="intro">Połoń stoi w ich dokumentach: na liście pasażerów, w karcie poborowej albo w petycji o obywatelstwo.</p>
       ${sure.length ? `<ol class="acts">${sure.map(entry).join("")}</ol>` : `<p class="empty">Nikogo jeszcze nie wpisano. Emigrantów dopisuje się w pliku data/ameryka.js.</p>`}
+      ${fb.length ? `<h2>Według strony FB I. Antosiaka</h2><p class="intro">Emigranci znani ze strony „Połoń - Matecznik Rodziny Antosiak” — źródło wtórne, do potwierdzenia dokumentami.</p><ol class="acts">${fb.map(entry).join("")}</ol>` : ""}
       <h2>Możliwi</h2>
       <p class="intro">Bez twardego dowodu na Połoń — hipotezy do sprawdzenia.</p>
       ${maybe.length ? `<ol class="acts">${maybe.map(entry).join("")}</ol>` : `<p class="empty">Brak.</p>`}
       <h2>Dokąd trafili</h2>
       <div class="map-wrap">${usMap(all)}</div>
-      <table class="places"><tbody>${placeRows.map(([k, v]) => `<tr><td>${esc(P[k].name)}</td><td>${v.map(e => `${esc(e.name)}${e.c === "ok" ? "" : " (?)"}`).join(", ")}</td></tr>`).join("")}</tbody></table>
+      <table class="places"><tbody>${placeRows.map(([k, v]) => `<tr><td>${esc(P[k].name)}</td><td>${v.map(e => `${esc(e.name)}${e.c === "hyp" ? " (?)" : ""}`).join(", ")}</td></tr>`).join("")}</tbody></table>
       <h2>Tło: dlaczego i jak wyjeżdżano</h2>${listC(I.context)}
       <h2>Nie ta rodzina</h2>${listC(I.notUs)}
       <h2>Jak szukać krewnych</h2>${listC(I.contact)}

@@ -5,7 +5,7 @@
      born     "ok. 1895, Połoń";  died  "10.10.1955, St. Louis"
      trip     "Hamburg → Ellis Island, 4.09.1913, statek Pennsylvania"
      places   [klucze z DRZEWO.americaPlaces];  fate  krótko o losach
-     c        "ok" = Połoń stoi w dokumencie | "hyp" = możliwy, bez twardego dowodu
+     c        "ok" = Połoń stoi w dokumencie | "prawd" = wg strony FB I. Antosiaka | "hyp" = możliwy, bez twardego dowodu
      rel      { t: "kim był dla rodziny", c: "ok" | "prawd" | "hyp" }
      sources  [{ label, url }] — listy pasażerów, karty poborowe, groby (Find a Grave)
    PRYWATNOŚĆ: tylko osoby zmarłe lub urodzone przed ok. 1920; bez potomków, którzy mogą żyć,
@@ -17,16 +17,16 @@ DRZEWO.america = [
   { name: "Franciszek Antosiak", alias: "Francixzek Antoszak (1913), Francis Antosiak (1917)", person: "franciszek-f", c: "ok",
     born: "ok. 1895, Połoń", trip: "Hamburg → Ellis Island, 4.09.1913, statek „Pennsylvania”", places: ["manchester", "middletown"],
     fate: "18 lat, kawaler, robotnik rolny. Jechał do szwagra Franka Jankowiaka w Manchesterze. W 1917 r. tkacz w Russell Company w Middletown, podpisywał się krzyżykiem. Dalsze losy nieznane.",
-    rel: { t: "Prawdopodobnie syn Franciszka (1868–1926) i brat pradziadka Wincentego — jako ojca wpisał „Franciszek Antoszak, Polon”. W Połoni żył jednak drugi Franciszek (ur. ok. 1844).", c: "prawd" },
+    rel: { t: "Jako ojca wpisał „Franciszek Antoszak, Polon” — to pasuje do Franciszka (1868–1926). Ale według strony FB I. Antosiaka jego syn Franciszek (ur. 1895) w 1922 r. ożenił się w Połoni i tam został. Emigrant to więc albo on (i wrócił), albo inny Franciszek — w Połoni żył też Franciszek ur. ok. 1844.", c: "hyp" },
     sources: [{ label: "lista pasażerów 1913", url: AM_FS + "1:1:JNTX-YJZ" }, { label: "obraz listy, s. 1", url: AM_FS + "3:1:3Q9M-C9T6-H97L-M" }, { label: "obraz listy, s. 2", url: AM_FS + "3:1:3Q9M-C9T6-H9CK-R" }, { label: "karta poborowa 1917", url: AM_FS + "1:1:WYRP-RM2M" }] },
   { name: "Mateusz Antosiak", alias: "Mateus Antoschak (1905), Mathew John Antosiak", c: "ok",
     born: "18.01.1885 (na grobie 1886), „Weis Polon”", died: "10.10.1955, St. Louis", trip: "Brema → Baltimore, 25.05.1905, S.S. „Cassel”", places: ["baltimore", "stlouis"],
     fate: "Od 1906 r. w St. Louis, robotnik; w 1942 r. w cementowni Portland Cement Co. Obywatelstwo USA w 1932 r. Żona Martha z domu Brodnicka (1891–1935). Pochowany na cmentarzu Calvary. Sprowadził do siebie siostrę Mariannę.",
-    rel: { t: "Gałąź nieustalona. Drzewo na FamilySearch podaje ojca Mateusza (ur. ok. 1866); w aktach Połoni jest Mateusz ur. 1864, syn Jakuba i Franciszki z Obrębskich — może to on.", c: "hyp" },
+    rel: { t: "Według strony FB I. Antosiaka z gałęzi „Teofile”, czyli potomków Wojciecha, brata Kacpra. Drzewo na FamilySearch podaje ojca Mateusza (ur. ok. 1866); w aktach Połoni jest Mateusz ur. 1864, syn Jakuba i Franciszki z Obrębskich — może to on.", c: "prawd" },
     sources: [{ label: "petycja naturalizacyjna", url: AM_FS + "1:1:68LS-XC2N" }, { label: "karta poborowa 1942", url: AM_FS + "1:1:QKVS-CT5V" }, { label: "karta poborowa I wojna", url: AM_FS + "1:1:7BL7-PMMM" }, { label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52281194/mateusz-antosiak" }] },
   { name: "Marianna Antosiak", c: "ok", born: "ok. 1889–1890, Połoń", trip: "Hamburg → Ellis Island, 1.02.1907, statek „Pennsylvania”", places: ["stlouis"],
     fate: "17 lat, panna. Jechała do brata Mateusza w St. Louis. Dalsze losy nieznane.",
-    rel: { t: "Siostra Mateusza; gałąź nieustalona.", c: "ok" },
+    rel: { t: "Siostra Mateusza; według strony FB I. Antosiaka ur. 1888, z gałęzi potomków Wojciecha, brata Kacpra.", c: "prawd" },
     sources: [{ label: "lista pasażerów 1907", url: AM_FS + "1:1:QGGD-9FQF" }, { label: "obraz listy", url: AM_FS + "3:1:3Q9M-C95S-Z34V-5" }] },
   { name: "Maryanna Antosiak", c: "ok", born: "ok. 1887, Połoń", trip: "Brema → Ellis Island, 26.03.1903, statek „König Albert”", places: ["millburn"],
     fate: "16 lat. Jechała do ojca: „father Alexand Antosiak, Milburn, N.Y.”.",
@@ -54,18 +54,18 @@ DRZEWO.america = [
     fate: "Rodzice: Mathew Antosiak i Mary „Obromski”. Żona Stella z domu Pawlak.",
     rel: { t: "„Obromski” może być zniekształconą Obrębską — nazwiskiem znanym w Połoni. Miejsce urodzenia na karcie poborowej nieczytelne.", c: "hyp" },
     sources: [{ label: "akt zgonu (indeks)", url: AM_FS + "1:1:Q2MX-HYB8" }, { label: "karta poborowa I wojna", url: AM_FS + "1:1:K68H-3DF" }] },
-  { name: "John Antosiak", c: "hyp", born: "27.05.1875", died: "20.11.1937, St. Louis", places: ["stlouis"],
+  { name: "John Antosiak", person: "jan-aw", c: "hyp", born: "27.05.1875", died: "20.11.1937, St. Louis", places: ["stlouis"],
     fate: "Żona Mary Ann z domu Brentek. Pochowany na tym samym cmentarzu co Mateusz.",
-    rel: { t: "Słaba poszlaka: St. Louis i wspólny cmentarz. Akt zgonu z Missouri poda miejsce urodzenia.", c: "hyp" },
+    rel: { t: "Według strony FB I. Antosiaka Jan, syn Andrzeja (brata Feliksa), ur. 1874, wyjechał do St. Louis — może to on. Akt zgonu z Missouri poda miejsce urodzenia.", c: "hyp" },
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280871/john-antosiak" }] },
-  { name: "Frank Antosiak", c: "hyp", born: "24.02.1877", died: "5.06.1951, St. Louis", places: ["newark", "stlouis"],
+  { name: "Frank Antosiak", person: "franciszek-aw", c: "hyp", born: "24.02.1877", died: "5.06.1951, St. Louis", places: ["newark", "stlouis"],
     fate: "Żona Leonora. Najpierw w Newark (dzieci urodzone tam w 1907 i 1911), potem w St. Louis.",
-    rel: { t: "Słaba poszlaka, jak u Johna.", c: "hyp" },
+    rel: { t: "Według strony FB I. Antosiaka Franciszek, syn Andrzeja (brata Feliksa), ur. 1877, wyjechał do USA — data urodzenia się zgadza, miejsce nie jest podane.", c: "hyp" },
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280593/frank-antosiak" }] },
-  { name: "Joseph Antosiak × Marianna z Pawłowskich", c: "hyp", born: "Marianna: 2.02.1890, Krzynowłoga", died: "Marianna: 28.08.1941, Chicago", places: ["chicago"],
-    fate: "Marianna pochodziła z sąsiedztwa Połoni; wieś męża nieznana.",
-    rel: { t: "Bez dowodu na Połoń.", c: "hyp" },
-    sources: [{ label: "grób Marianny (Find a Grave)", url: "https://www.findagrave.com/memorial/188385182/marianna-antosiak" }] },
+  { name: "Józef Symeon Antosiak", alias: "Joseph", c: "prawd", born: "1885", died: "1967", trip: "1905 → St. Louis, potem Chicago", places: ["stlouis", "chicago"],
+    fate: "Żona Marianna z Pawłowskich (2.02.1890 Krzynowłoga – 28.08.1941 Chicago). Syn Stanley Joseph (1918/19–1980), porucznik 6. Dywizji Pancernej USA: 6 czerwca 1944 r. lądował na plaży Utah w Normandii, walczył w Ardenach, odznaczony Srebrną Gwiazdą.",
+    rel: { t: "Gałąź „Stańcaki” — potomkowie Stanisława, syna Kacpra (wg strony FB I. Antosiaka). Daleki kuzyn linii Adriana: wspólny przodek to Kacper.", c: "prawd" },
+    sources: [{ label: "grób Marianny (Find a Grave)", url: "https://www.findagrave.com/memorial/188385182/marianna-antosiak" }, { label: "grób Stanleya J. (Find a Grave)", url: "https://www.findagrave.com/memorial/206455497/stanley-j-antosiak" }] },
 ];
 
 /* Miejsca na mapce: lon/lat do prostego rzutu. */
@@ -83,7 +83,9 @@ DRZEWO.americaPlaces = {
 DRZEWO.americaInfo = {
   known: [
     { t: "Co najmniej czworo ludzi z Połoni na pewno trafiło do USA: Maryanna (1903), Mateusz (1905), jego siostra Marianna (1907) i Franciszek (1913). Połoń stoi w ich dokumentach.", c: "ok", sources: ["raport-a"] },
-    { t: "Franciszek, który w 1913 r. pojechał do Connecticut, był prawdopodobnie bratem pradziadka Wincentego.", c: "prawd", person: "franciszek-f", sources: ["fs-1913", "fs-1917"] },
+    { t: "Franciszek, który w 1913 r. pojechał do Connecticut, mógł być bratem pradziadka Wincentego — ale ten według strony FB w 1922 r. ożenił się w Połoni. Albo wrócił, albo to inny Franciszek.", c: "hyp", person: "franciszek-f", sources: ["fs-1913", "fs-1917", "fb-matecznik"] },
+    { t: "Według strony FB I. Antosiaka do USA wyjechała też część dzieci Teofila, młodszego brata pradziadka Wincentego (ich danych nie podajemy — mogą żyć).", c: "prawd", person: "teofil-f", sources: ["fb-matecznik"] },
+    { t: "Daleki kuzyn z gałęzi „Stańcaków”, Stanley Joseph Antosiak, syn emigranta z 1905 r., lądował w 1944 r. na plaży Utah.", c: "prawd", sources: ["fb-matecznik"] },
     { t: "Aleksander Antosiak „wrócił z Ameryki” i postawił jedyny murowany dom w przedwojennej Połoni, wśród ok. 90 drewnianych pod strzechą.", c: "ok", sources: ["glos23"] },
     { t: "Którego Aleksandra to dotyczy — nie wiadomo. Brata pradziadka (ślub 1926) nie ma w żadnym rekordzie z USA. Starszy Aleksander z Połoni był w USA w 1903 r. — może to Aleksander, syn Walentego. Pamięć rodzinna mogła połączyć dwie osoby.", c: "hyp", person: "aleksander-f", acts: ["s1926-36"] },
   ],

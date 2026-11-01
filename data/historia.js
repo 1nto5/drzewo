@@ -6,6 +6,9 @@ window.DRZEWO = window.DRZEWO || {};
 
 DRZEWO.timeline = [
   { y: 1556, kind: "hipoteza", text: "Założenie wsi Sędrowo w Prusach, ok. 17 km od Połoni — może od niej pochodzi nazwisko Sędrowskich.", people: ["rozalia-s"], sources: ["raport-c"] },
+  { y: 1700, kind: "kontekst", text: "Najstarsza znana wzmianka nazwiska w parafii Chorzele: ślub Agnieszki „Jentosiówny” (akt 15) — wg strony FB I. Antosiaka.", sources: ["fb-matecznik"] },
+  { y: 1902, kind: "kontekst", text: "Myszyniec: w Dąbrowach umiera 10-miesięczny Stanisław Mieszała, syn Rozalii — pierwszy pewny ślad Mieszałów w Dąbrowach.", sources: ["akt1902-mysz"] },
+  { y: 1950, y2: 1959, kind: "kontekst", text: "Wincenty i Eleonora krótko w Pilcu koło Świętej Lipki, potem na stałe w Szymanach koło Szczytna (wg strony FB I. Antosiaka).", people: ["wincenty", "eleonora"], sources: ["fb-matecznik"] },
   { y: 1565, kind: "kontekst", text: "Połoń, wieś królewska: 30 kmieci.", sources: ["sgkp", "wiki-polon"] },
   { y: 1605, kind: "kontekst", text: "Połoń i Małowidz tworzą osobną „dzierżawę Małowidz” (królewszczyzna).", sources: ["raport-c"] },
   { y: 1633, kind: "kontekst", text: "Wieś w dzierżawie Krasińskich, w starostwie przasnyskim.", sources: ["wiki-polon"] },
@@ -37,7 +40,7 @@ DRZEWO.timeline = [
   { y: 1921, kind: "kontekst", text: "Połoń: 71 domów, 417 mieszkańców.", people: ["wincenty"], sources: ["wiki-polon"] },
   { y: 1925, kind: "kontekst", text: "Szkoła jednoklasowa w wynajętej izbie: 63 dzieci w sali 25 m².", people: ["wincenty", "eleonora"], sources: ["kmoch-polon"] },
   { y: 1930, y2: 1939, kind: "kontekst", text: "Komasacja pól, regulacja Orzyca; w urzędzie gminy biuro „wyjazdów do Ameryki”.", people: ["wincenty"], sources: ["raport-c"] },
-  { y: 1937, y2: 1939, kind: "hipoteza", text: "Wójtem gminy Jednorożec jest Władysław Antosiak z Połoni — pokrewieństwo z rodziną nieustalone.", sources: ["wiki-polon", "kmoch-1939"] },
+  { y: 1937, y2: 1939, kind: "kontekst", text: "Wójtem gminy Jednorożec jest Władysław Antosiak z Połoni — brat pradziadka Wincentego (wg strony FB I. Antosiaka).", people: ["wincenty"], sources: ["wiki-polon", "kmoch-1939", "fb-matecznik"] },
   { y: 1939, kind: "kontekst", text: "Połoń: 533 mieszkańców.", sources: ["wiki-polon"] },
   { y: 1939, date: "1 XI 1939", kind: "kontekst", text: "Połoń wcielona do III Rzeszy (Rejencja Ciechanowska, Prusy Wschodnie).", people: ["wincenty", "eleonora"], sources: ["wiki-polon"] },
   { y: 1939, y2: 1945, kind: "kontekst", text: "Okupacja: przesiedleńcy w domach (1941), roboty przymusowe, kontyngenty.", people: ["wincenty", "eleonora"], sources: ["raport-c"] },

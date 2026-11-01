@@ -87,7 +87,7 @@
     <li class="act" id="${esc(a.id)}">
       <div class="yr">${a.y}</div>
       <div>
-        <div class="act-head"><span class="act-kind">${esc(a.k)} · akt ${esc(a.no)}</span><span class="act-title">${esc(a.t)}</span><span class="act-meta">pokolenie ${a.g}${reading(a) ? " · " + esc(reading(a)) : ""}</span></div>
+        <div class="act-head"><span class="act-kind">${esc(a.k)} · akt ${esc(a.no)}</span><span class="act-title">${esc(a.t)}</span><span class="act-meta">${a.parish ? "parafia " + esc(a.parish) : "pokolenie " + a.g}${reading(a) ? " · " + esc(reading(a)) : ""}</span></div>
         ${a.q ? `<p class="act-q" lang="pl">„${esc(a.q)}”</p>` : ""}
         <p class="act-tr"><b>${a.idx ? "indeks" : "po współczesnemu"}</b>${esc(a.tr)}</p>
         ${opt.people !== false ? `<div class="act-people">${a.osoby.map(id => plink(id, shortName(byId.get(id)))).join("")}</div>` : ""}
