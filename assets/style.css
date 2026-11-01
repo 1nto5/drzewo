@@ -358,6 +358,8 @@ body.tree-page .top, body.tree-page .nav { max-width: 1100px; margin-left: auto;
 .usmap text { font: 11px var(--mono); fill: var(--ink); }
 .usmap text.s { fill: var(--accent); font-size: 10px; }
 table.places { margin-top: 12px; max-width: 720px; }
+table.today { font-size: 13.5px; min-width: 600px; max-width: 980px; }
+table.today td:nth-child(2) { font-variant-numeric: tabular-nums; }
 table.places td:first-child { white-space: nowrap; color: var(--ink); width: 1%; }
 table.places td { color: var(--ink-2); }
 .act-tr .mark { margin-right: 6px; }

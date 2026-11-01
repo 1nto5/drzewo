@@ -188,6 +188,17 @@
     return `<svg class="usmap" viewBox="-10 -14 ${Wd + 20} ${Hd + 30}" role="img" aria-label="Mapka: Chicago, St. Louis, Baltimore, Ellis Island, Newark, Connecticut">
       ${grid}${sea}${routes}${dots}${labels}<text x="${Wd}" y="${Hd + 12}" text-anchor="end" class="s">← z Bremy i Hamburga</text></svg>`;
   }
+  function todaySection(T) {
+    return `<h2>Rodzina w USA dziś</h2>
+      <p class="intro">Ilu żyjących krewnych — potomków emigrantów z Połoni — wymieniają publiczne nekrologi ich krewnych z lat 2010–2025. Na stronie tylko liczby, bez imion i nazwisk. Stan „podany” — źródło przypisuje go tej osobie; „wnioskowany” — to stan zmarłego krewnego.</p>
+      <dl class="stats" style="margin:8px 0 18px"><div><dt>żyjących krewnych</dt><dd>${T.total}</dd></div><div><dt>gałęzie</dt><dd>${T.branches}</dd></div><div><dt>niepewnych, niewliczonych</dt><dd>${T.uncertain}</dd></div></dl>
+      <div class="scroll"><table class="today"><thead><tr><th>Gałąź</th><th>Osób</th><th>Wspólni przodkowie z Adrianem</th><th>Stany</th><th>Źródła z lat</th></tr></thead><tbody>
+      ${T.rows.map(r => `<tr><td>${esc(r.branch)}</td><td>${r.count}</td><td>${esc(r.common)}</td><td>${esc(r.states)}</td><td>${esc(r.years)}</td></tr>`).join("")}
+      <tr><td><b>Razem</b></td><td><b>${T.total}</b></td><td></td><td>NC, MO, FL, IL, TN</td><td></td></tr>
+      </tbody></table></div>
+      ${listC(T.notes)}
+      <p class="src">Stan na ${esc(T.asof)}. Kontakt z żyjącymi krewnymi nawiązuje się poza stroną.</p>`;
+  }
   function ameryka() {
     const I = D.americaInfo, all = D.america || [];
     const entry = e => `<li class="act">
@@ -213,6 +224,7 @@
       <h2>Możliwi</h2>
       <p class="intro">Bez twardego dowodu na Połoń — hipotezy do sprawdzenia.</p>
       ${maybe.length ? `<ol class="acts">${maybe.map(entry).join("")}</ol>` : `<p class="empty">Brak.</p>`}
+      ${D.americaToday ? todaySection(D.americaToday) : ""}
       <h2>Dokąd trafili</h2>
       <div class="map-wrap">${usMap(all)}</div>
       <table class="places"><tbody>${placeRows.map(([k, v]) => `<tr><td>${esc(P[k].name)}</td><td>${v.map(e => `${esc(e.name)}${e.c === "hyp" ? " (?)" : ""}`).join(", ")}</td></tr>`).join("")}</tbody></table>

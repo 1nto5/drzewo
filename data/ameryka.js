@@ -22,11 +22,11 @@ DRZEWO.america = [
   { name: "Mateusz Antosiak", alias: "Mateus Antoschak (1905), Mathew John Antosiak", c: "ok",
     born: "18.01.1885 (na grobie 1886), „Weis Polon”", died: "10.10.1955, St. Louis", trip: "Brema → Baltimore, 25.05.1905, S.S. „Cassel”", places: ["baltimore", "stlouis"],
     fate: "Od 1906 r. w St. Louis, robotnik; w 1942 r. w cementowni Portland Cement Co. Obywatelstwo USA w 1932 r. Żona Martha z domu Brodnicka (1891–1935). Pochowany na cmentarzu Calvary. Sprowadził do siebie siostrę Mariannę.",
-    rel: { t: "Według strony FB I. Antosiaka z gałęzi „Teofile”, czyli potomków Wojciecha, brata Kacpra. Drzewo na FamilySearch podaje ojca Mateusza (ur. ok. 1866); w aktach Połoni jest Mateusz ur. 1864, syn Jakuba i Franciszki z Obrębskich — może to on.", c: "prawd" },
+    rel: { t: "Syn Mateusza (ur. 1847) i Katarzyny z Grabowskich; linia Wojciecha (ur. 1756), brata Kacpra — wspólni przodkowie z Adrianem to Paweł i Jadwiga. Rodziców potwierdza pośrednio wniosek siostry do Social Security; ogniwo Mateusz 1847 → Aleksander 1821 → Wojciech 1756 znamy tylko ze strony FB I. Antosiaka. Rodzice podani w drzewie na FamilySearch (Mateusz ok. 1866 × Małgorzata) to najpewniej pomyłka.", c: "prawd" },
     sources: [{ label: "petycja naturalizacyjna", url: AM_FS + "1:1:68LS-XC2N" }, { label: "karta poborowa 1942", url: AM_FS + "1:1:QKVS-CT5V" }, { label: "karta poborowa I wojna", url: AM_FS + "1:1:7BL7-PMMM" }, { label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52281194/mateusz-antosiak" }] },
   { name: "Marianna Antosiak", c: "ok", born: "ok. 1889–1890, Połoń", trip: "Hamburg → Ellis Island, 1.02.1907, statek „Pennsylvania”", places: ["stlouis"],
-    fate: "17 lat, panna. Jechała do brata Mateusza w St. Louis. Dalsze losy nieznane.",
-    rel: { t: "Siostra Mateusza; według strony FB I. Antosiaka ur. 1888, z gałęzi potomków Wojciecha, brata Kacpra.", c: "prawd" },
+    fate: "17 lat, panna. Jechała do brata Mateusza w St. Louis. Prawdopodobnie to Mary Barbara Forman z d. Antosiak, zm. w listopadzie 1985 r. w St. Louis: jej wniosek do Social Security podaje rodziców Mathew J. Antosiak i Catherine Grabowski.",
+    rel: { t: "Siostra Mateusza; według strony FB I. Antosiaka ur. 1888, córka Mateusza i Katarzyny z Grabowskich — z linii Wojciecha (ur. 1756), brata Kacpra. Wspólni przodkowie z Adrianem: Paweł i Jadwiga.", c: "prawd" },
     sources: [{ label: "lista pasażerów 1907", url: AM_FS + "1:1:QGGD-9FQF" }, { label: "obraz listy", url: AM_FS + "3:1:3Q9M-C95S-Z34V-5" }] },
   { name: "Maryanna Antosiak", c: "ok", born: "ok. 1887, Połoń", trip: "Brema → Ellis Island, 26.03.1903, statek „König Albert”", places: ["millburn"],
     fate: "16 lat. Jechała do ojca: „father Alexand Antosiak, Milburn, N.Y.”.",
@@ -58,9 +58,9 @@ DRZEWO.america = [
     fate: "Żona Mary Ann z domu Brentek. Pochowany na tym samym cmentarzu co Mateusz.",
     rel: { t: "Według strony FB I. Antosiaka Jan, syn Andrzeja (brata Feliksa), ur. 1874, wyjechał do St. Louis — może to on. Akt zgonu z Missouri poda miejsce urodzenia.", c: "hyp" },
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280871/john-antosiak" }] },
-  { name: "Frank Antosiak", person: "franciszek-aw", c: "hyp", born: "24.02.1877", died: "5.06.1951, St. Louis", places: ["newark", "stlouis"],
+  { name: "Frank Antosiak", person: "franciszek-aw", c: "prawd", born: "24.02.1877", died: "5.06.1951, St. Louis", places: ["newark", "stlouis"],
     fate: "Żona Leonora. Najpierw w Newark (dzieci urodzone tam w 1907 i 1911), potem w St. Louis.",
-    rel: { t: "Według strony FB I. Antosiaka Franciszek, syn Andrzeja (brata Feliksa), ur. 1877, wyjechał do USA — data urodzenia się zgadza, miejsce nie jest podane.", c: "hyp" },
+    rel: { t: "Karta poborowa z II wojny podaje urodzenie w Budkach w 1877 r. Według wpisu FB I. Antosiaka z 2019 r. to Franciszek z gałęzi „Marciny”, syn Andrzeja, brata Feliksa — wspólni przodkowie z Adrianem: Walenty i Marianna. Rozbieżność: w innym miejscu notatek Franciszek 1877 trafił do gałęzi Wojciecha; przyjmujemy wersję „syn Andrzeja”.", c: "prawd" },
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280593/frank-antosiak" }] },
   { name: "Józef Symeon Antosiak", alias: "Joseph", c: "prawd", born: "1885", died: "1967", trip: "1905 → St. Louis, potem Chicago", places: ["stlouis", "chicago"],
     fate: "Żona Marianna z Pawłowskich (2.02.1890 Krzynowłoga – 28.08.1941 Chicago). Syn Stanley Joseph (1918/19–1980), porucznik 6. Dywizji Pancernej USA: 6 czerwca 1944 r. lądował na plaży Utah w Normandii, walczył w Ardenach, odznaczony Srebrną Gwiazdą.",
@@ -113,4 +113,23 @@ DRZEWO.americaInfo = {
     "Rodzina w Polsce: listy i paczki z Ameryki, zdjęcia, adresy na starych kopertach.",
   ],
   rules: "Na tej stronie są tylko osoby zmarłe lub urodzone przed ok. 1920 r. i linki do publicznych źródeł. Nie wymieniamy żyjących potomków, adresów ani telefonów — kontakt nawiązuje się poza stroną.",
+};
+
+/* RODZINA W USA DZIŚ — tylko liczby. Żadnych imion, nazwisk ani danych identyfikujących żyjących.
+   „Żyjący” = krewni z krwi wymienieni jako żyjący w publicznym nekrologu krewnego (2010–2025).
+   Stan „podany” = źródło przypisuje stan osobie; „wnioskowany” = stan zmarłego krewnego lub gazety. */
+DRZEWO.americaToday = {
+  asof: "1 listopada 2026",
+  total: 39, branches: 4, uncertain: 6,
+  rows: [
+    { branch: "Frank (Franciszek), ur. 1877, St. Louis — syn Andrzeja, brata Feliksa", count: 12, common: "Walenty i Marianna z Chudzików", states: "MO (wnioskowany)", years: "2010, 2018" },
+    { branch: "Józef Symeon, ur. 1885, St. Louis → Chicago („Stańcaki”)", count: 3, common: "Kacper i Helena", states: "TN (wnioskowany); u 2 osób nie podano", years: "2025" },
+    { branch: "Mateusz, ur. 1885/86, i siostra Marianna, St. Louis — linia Wojciecha (1756)", count: 19, common: "Paweł i Jadwiga", states: "NC (1, podany), MO (2, podany), FL (12, wnioskowany), nie podano (4)", years: "2018–2022" },
+    { branch: "Walter (Walerian), ur. 1888 w Połoni, Chicago", count: 5, common: "nieznani (prawdopodobnie Paweł)", states: "IL (wnioskowany)", years: "2020" },
+  ],
+  notes: [
+    "Gałąź Teofila, brata pradziadka Wincentego: część jego dzieci wyjechała do USA; jest niepewny trop (stare dane adresowe sprzed ponad 20 lat), że dwoje z nich żyło ok. 2000–2004 r. Nie wliczamy ich.",
+    "Gałąź córek Aleksandra (New Jersey) i Franciszka z Connecticut: żyjących potomków nie znaleziono.",
+    "Dodatkowo 6 osób o niepewnym statusie albo pokrewieństwie — nie wliczone.",
+  ],
 };
