@@ -71,7 +71,7 @@ DRZEWO.places = [
   { id: "szymany", name: "Szymany", lon: 20.94, lat: 53.48, kind: "cel", map: "main", re: "Szyman",
     people: [{ id: "wincenty", t: "osiadł tu na stałe po latach 50.", c: "prawd" }, { id: "eleonora", t: "osiadła tu na stałe po latach 50.", c: "prawd" }],
     note: "Wieś koło Szczytna; tu na stałe osiedlili się Wincenty i Eleonora (wg strony FB I. Antosiaka)." },
-  { id: "wielbark", name: "Wielbark", lon: 20.93, lat: 53.40, kind: "cel", map: "main", approx: true, re: "Wielbark",
+  { id: "wielbark", name: "Wielbark", lon: 20.946, lat: 53.398, kind: "cel", map: "main", re: "Wielbark",
     people: [{ id: "wincenty", t: "pochowany na cmentarzu (zm. 21.01.1987)", c: "ok" }, { id: "eleonora", t: "pochowana na cmentarzu (zm. 4.01.1988)", c: "ok" }, { id: "zofia-m", t: "pochowana na cmentarzu (zm. 14.09.1976)", c: "ok" }],
     note: "Wieś w powiecie szczycieńskim. Na cmentarzu stoją nagrobki Wincentego i Eleonory Antosiaków (wspólny grób) oraz Zofii Mieszałowej (zdjęcia rodzinne, 2026)." },
   { id: "szczytno", name: "Szczytno", lon: 20.99, lat: 53.565, kind: "miasto", map: "main", re: "Szczytn",
