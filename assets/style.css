@@ -52,6 +52,25 @@ button { font: inherit; color: inherit; }
 .nav a:hover { color: var(--ink); }
 .nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
 
+.top-btns { display: flex; align-items: center; gap: 14px; }
+.menu-btn { display: none; }
+@media (max-width: 760px) {
+  #chrome { position: relative; }
+  .menu-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; margin: -12px -6px; padding: 0 8px; }
+  .toggle { min-height: 44px; margin-block: -12px; }
+  .top { min-height: 20px; }
+  .nav { display: none; position: absolute; top: 100%; left: calc(-1 * var(--gutter)); right: -16px; margin: 8px 0 0; padding: 4px var(--gutter) 8px; overflow: visible; background: var(--bg); border: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0, 0, 0, .25); z-index: 30; }
+  .nav.open { display: block; }
+  .nav ul { flex-direction: column; gap: 0; white-space: normal; }
+  .nav a, .nav li:first-child a { display: flex; align-items: center; min-height: 48px; padding: 8px 12px; margin: 0; font-size: 15px; border-bottom: 1px solid var(--line); border-left: 2px solid transparent; }
+  .nav li:last-child a { border-bottom: 0; }
+  .nav a[aria-current="page"] { border-left-color: var(--accent); background: var(--bg-2); }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .nav.open { animation: nav-in .16s ease-out; }
+  @keyframes nav-in { from { opacity: 0; transform: translateY(-6px); } }
+}
+
 /* Typografia */
 .hero { padding-block: 44px 8px; }
 h1 { font-size: clamp(32px, 7vw, 60px); line-height: 1.05; font-weight: 500; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }

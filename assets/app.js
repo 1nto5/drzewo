@@ -231,11 +231,22 @@
     const el = document.getElementById("chrome");
     if (el) {
       el.innerHTML = `<header class="top"><a href="index.html">adrianantosiak.pl/drzewo</a>
-        <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></header>
-        <nav class="nav" aria-label="Sekcje"><ul>${PAGES.map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>`;
+        <span class="top-btns"><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
+        <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></span></header>
+        <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${PAGES.map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>`;
       const cur = el.querySelector('[aria-current="page"]');
       const nav = el.querySelector(".nav");
       if (cur && nav && cur.offsetLeft + cur.offsetWidth > nav.clientWidth) nav.scrollLeft = cur.offsetLeft - 16;
+      const mb = document.getElementById("menu-btn");
+      const setMenu = (open, focus) => {
+        nav.classList.toggle("open", open); mb.setAttribute("aria-expanded", String(open));
+        if (open) { const a = nav.querySelector("a"); if (a) a.focus(); } else if (focus) mb.focus();
+      };
+      mb.addEventListener("click", () => setMenu(mb.getAttribute("aria-expanded") !== "true"));
+      nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && nav.classList.contains("open")) setMenu(false, true); });
+      document.addEventListener("click", (e) => { if (nav.classList.contains("open") && !nav.contains(e.target) && !mb.contains(e.target)) setMenu(false); });
+      window.matchMedia("(min-width: 761px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
       document.getElementById("theme").addEventListener("click", () => {
         const t = document.documentElement.dataset.theme === "light" ? "dark" : "light";
         document.documentElement.dataset.theme = t;
