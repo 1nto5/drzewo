@@ -343,7 +343,7 @@ DRZEWO.siec.rodziny = {
   "Kuta": { typ: "krew", note: "Sąsiedzi, potem rodzina: Barbara z Antosiaków × Mateusz Kuta (1783), [Wojciech](wojciech-p) × Jadwiga Kutówna (1787), [Aleksander](aleksander-21) × Rozalia z Kutów (1843); [Marianna z Kutów](marianna-k) to matka [Rozalii](rozalia-s), żony Feliksa." },
   "Bańka": { typ: "krew", note: "[Rozalia](rozalia-k), córka Kacpra × [Jan Bańka](jan-banka) (1821); [Ewa](ewa-w), córka Walentego × [Jakub Bańka](jakub-banka) (1845)." },
   "Wróbel": { typ: "sasiad", note: "Sąsiedzi. Mikołaj Wróbel z żoną Katarzyną: 6 razy w latach 1864–65, m.in. świadek ślubu [Feliksa](feliks)." },
-  "Chudzik": { typ: "krew", note: "Rodzina [Marianny](marianna-ch), żony Walentego. Jej prawdopodobny brat [Wojciech Chudzik](wojciech-ch) był przy 5 aktach dzieci Walentego." },
+  "Chudzik": { typ: "krew", note: "Rodzina [Marianny](marianna-ch), żony Walentego. Jej krewny (hipoteza) [Wojciech Chudzik](wojciech-ch) był przy 5 aktach dzieci Walentego." },
   "Bączek": { typ: "krew", note: "Sąsiedzi, potem rodzina żon ([Marianna Bączek](marianna-b), 1862)." },
   "Majewski": { typ: "sasiad", note: "Sąsiedzi (Szymon Majewski, Helena Majewska)." },
   "Senda?": { typ: "krew", note: "Rodzina [Franciszki](franciszka-senda), 2. żony Stanisława (Mateusz Senda z Budek). Sam akt waha się: Senda, Szenda, Drenda." },
@@ -381,5 +381,5 @@ DRZEWO.siec.osobyNote = {
   "Walenty Antosiak": "Przodek Adriana.",
   "Stanisław Antosiak": "Brat Walentego, głównie przy własnych dzieciach.",
   "Jakub Bańka": "W Połoni było kilku Jakubów Bańków — nie wiemy, czy to mąż Ewy.",
-  "Wojciech Chudzik": "Prawdopodobnie brat Marianny, żony Walentego (akty sprzeczne).",
+  "Wojciech Chudzik": "Krewny (hipoteza) Marianny, żony Walentego; nie jej brat — syn Michała, nie Mateusza.",
 };

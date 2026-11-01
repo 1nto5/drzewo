@@ -102,7 +102,7 @@ DRZEWO.todo = [
   "Geneteka ręcznie: Mieszała w parafiach Myszyniec, Chorzele, Jednorożec, Przasnysz; para Antosiak × Mieszała w latach 1940–1970.",
   "Etnofon IS PAN: odsłuchać sesję T2667 z Połoni (1963), zwłaszcza zapowiedzi T2667.01 i T2667.17 — czy pada imię i wiek śpiewaczki.",
   "S 9/1841: nazwisko rodowe Heleny, matki Stanisława, odczytane jako „z Fadorów” [?] (wariant Todor) — sprawdzić jeszcze raz na skanie.",
-  "Wojciech Chudzik: D 117/1847 podaje rodziców Michała i Maryannę, a D 58/1829 wskazuje na Mateusza — wyjaśnić.",
+  "Archiwum Diecezjalne w Płocku: chrzest Heleny z Todorów (ok. 1760–1770; oryginały 1743–1772 nie są na FamilySearch) oraz księgi Chorzel z lat 1702–1718 (ślub Jakuba, ojca Pawła).",
   "Rozalia Sędrowska: S 35/1865 Anny Sendrowskiej podaje „niegdy Ludwika i Maryanny z Kutów” — czy to jej siostra i kim był Ludwik.",
   "Cmentarz w Szczytnie (ul. Śląska, kw. BXI/XIV/47): data pochówku Marcjanny Antosiak, potem akt zgonu w USC — poda nazwisko panieńskie.",
   "Uwłaszczenie Połoni: tabela nadawcza w AP Płock / AP Warszawa (Komisarz do Spraw Włościańskich pow. przasnyskiego) — działki rodziny po 1864 r.",
