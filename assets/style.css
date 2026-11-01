@@ -371,3 +371,10 @@ table.today td:nth-child(2) { font-variant-numeric: tabular-nums; }
 table.places td:first-child { white-space: nowrap; color: var(--ink); width: 1%; }
 table.places td { color: var(--ink-2); }
 .act-tr .mark { margin-right: 6px; }
+
+/* pochówek */
+.life .burials { display: grid; gap: 2px; min-width: 0; }
+.burial { display: block; overflow-wrap: anywhere; }
+.burial .mark { margin-right: 6px; }
+.burial-line { color: var(--ink-2); margin: 10px 0 0; }
+.burial-line b { color: var(--ink-3); font-weight: 400; margin-right: 4px; }

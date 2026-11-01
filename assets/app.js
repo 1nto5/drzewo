@@ -130,10 +130,21 @@
     const s = e.date ? ((e.approx && !/^ok\./.test(e.date) ? "ok. " : "") + e.date) : e.text ? e.text : yr(e);
     return s + (e.place ? (s ? ", " : "") + e.place : "");
   };
-  const CERT = { ok: "pewne", prawd: "prawdopodobne", hyp: "hipoteza" };
+  const CERT = { ok: "pewne", prawd: "prawdopodobne", hyp: "hipoteza", brak: "nieznane — szukamy" };
   const mark = c => `<i class="mark ${c === "me" ? "me" : c}" aria-hidden="true"></i>`;
   const certBadge = c => `<span class="badge">${mark(c)}${CERT[c] || ""}</span>`;
   const fact = f => typeof f === "string" ? esc(f) : `${esc(f.t)} <span class="badge">${mark(f.c)}${CERT[f.c]}</span>`;
+  /* pochówek: b = obiekt burial (lub tablica); short = wersja do panelu (bez notatki) */
+  const burialLabel = u => /findagrave/.test(u) ? "Find a Grave" : /grobonet/.test(u) ? "Grobonet" : /familysearch/.test(u) ? "FamilySearch" : "źródło";
+  const burial1 = (b, short) => {
+    if (!b) return "";
+    const where = [b.cemetery, b.place, b.plot ? (/^\d|^[A-Z]{1,3}\d/.test(b.plot) ? "kwatera " : "") + b.plot : ""].filter(Boolean).map(esc).join(", ");
+    const links = [b.url ? { label: burialLabel(b.url), url: b.url } : null, ...(b.links || [])].filter(Boolean)
+      .map(l => ` <a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("");
+    if (b.c === "brak") return `${mark("hyp")}<span>nieznane — szukamy</span>${short || !b.note ? "" : `<span class="muted small"> · ${esc(b.note)}</span>`}`;
+    return `${mark(b.c)}${b.who ? `<span>${esc(b.who)}: </span>` : ""}<span>${where}</span>${links}${short ? "" : ` <span class="badge">${CERT[b.c] || ""}</span>`}${short || !b.note ? "" : `<span class="muted small"> · ${esc(b.note)}</span>`}`;
+  };
+  const burial = (b, short) => (Array.isArray(b) ? b : b ? [b] : []).map(x => `<span class="burial">${burial1(x, short)}</span>`).join("");
   const plink = (id, txt) => { const p = byId.get(id); return p ? `<a href="osoba.html?id=${encodeURIComponent(id)}">${esc(txt || fullName(p))}</a>` : esc(txt || id); };
 
   /* ── akty ──────────────────────────────────────── */
@@ -200,5 +211,5 @@
   chrome();
 
   window.APP = { rel, relOf, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
-    direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
+    direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, burial, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
 })();

@@ -355,6 +355,7 @@
       <div style="margin-top:6px">${A.certBadge(p.certainty)}</div>
       ${lines.length ? `<div class="life">${lines.map(([a, b]) => `<div><b>${a}</b>${A.esc(b)}</div>`).join("")}</div>` : ""}
       ${pc}
+      ${p.burial ? `<p class="small burial-line"><b>Pochówek</b> ${A.burial(p.burial, true)}</p>` : ""}
       ${facts.length ? `<div class="sec"><h3>Fakty</h3><ul class="facts">${facts.map(f => `<li>${f}</li>`).join("")}</ul></div>` : ""}
       ${g && g.facts ? `<div class="sec"><h3>Pokolenie ${g.n}</h3><ul class="facts">${g.facts.map(f => `<li>${A.esc(f)}</li>`).join("")}</ul></div>` : ""}
       ${alts.length ? "" : relList("Rodzice", A.parents(id))}

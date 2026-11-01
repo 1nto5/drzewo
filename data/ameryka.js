@@ -7,6 +7,7 @@
      places   [klucze z DRZEWO.americaPlaces];  fate  krótko o losach
      c        "ok" = Połoń stoi w dokumencie | "prawd" = wg strony FB I. Antosiaka | "hyp" = możliwy, bez twardego dowodu
      rel      { t: "kim był dla rodziny", c: "ok" | "prawd" | "hyp" }
+     burial   { cemetery, place, plot, url, c, note } (lub tablica takich obiektów z polem who) — miejsce pochówku; dla osób z drzewa (person) bierze się z DRZEWO.people
      sources  [{ label, url }] — listy pasażerów, karty poborowe, groby (Find a Grave)
    PRYWATNOŚĆ: tylko osoby zmarłe lub urodzone przed ok. 1920; bez potomków, którzy mogą żyć,
    bez nekrologów z ostatnich lat, bez adresów i telefonów. */
@@ -19,7 +20,7 @@ DRZEWO.america = [
     fate: "18 lat, kawaler, robotnik rolny. Jechał do szwagra Franka Jankowiaka w Manchesterze. W 1917 r. tkacz w Russell Company w Middletown, podpisywał się krzyżykiem. Dalsze losy nieznane.",
     rel: { t: "Jako ojca wpisał „Franciszek Antoszak, Polon” — to pasuje do Franciszka (1868–1926). Ale syn Franciszka, Franciszek ur. 16.02.1895, w 1922 r. ożenił się w Połoni i zmarł tam w 1962 r. Emigrant to więc albo on (i wrócił), albo inny Franciszek — w 1895 r. w parafii ochrzczono dwóch Franciszków Antosiaków.", c: "hyp" },
     sources: [{ label: "lista pasażerów 1913", url: AM_FS + "1:1:JNTX-YJZ" }, { label: "obraz listy, s. 1", url: AM_FS + "3:1:3Q9M-C9T6-H97L-M" }, { label: "obraz listy, s. 2", url: AM_FS + "3:1:3Q9M-C9T6-H9CK-R" }, { label: "karta poborowa 1917", url: AM_FS + "1:1:WYRP-RM2M" }] },
-  { name: "Mateusz Antosiak", adrian: "kuzyn 3. stopnia prapradziadka Franciszka", alias: "Mateus Antoschak (1905), Mathew John Antosiak", c: "ok",
+  { name: "Mateusz Antosiak", burial: {cemetery: "Calvary Cemetery", place: "St. Louis, Missouri", plot: "sekcja 26, grób 1318", url: "https://www.findagrave.com/memorial/52281194", c: "ok"}, adrian: "kuzyn 3. stopnia prapradziadka Franciszka", alias: "Mateus Antoschak (1905), Mathew John Antosiak", c: "ok",
     born: "18.01.1885 (na grobie 1886), „Weis Polon”", died: "10.10.1955, St. Louis", trip: "Brema → Baltimore, 25.05.1905, S.S. „Cassel”", places: ["baltimore", "stlouis"],
     fate: "Od 1906 r. w St. Louis, robotnik; w 1942 r. w cementowni Portland Cement Co. Obywatelstwo USA w 1932 r. Żona Martha z domu Brodnicka (1891–1935). Pochowany na cmentarzu Calvary. Sprowadził do siebie siostrę Mariannę.",
     rel: { t: "Syn Mateusza (ur. 1847) i Katarzyny z Grabowskich; linia Wojciecha (ur. 1756), brata Kacpra — wspólni przodkowie z Adrianem to Paweł i Jadwiga. Rodziców potwierdza pośrednio wniosek siostry do Social Security; ogniwo Mateusz 1847 → Aleksander 1821 → Wojciech 1756 znamy tylko ze strony FB I. Antosiaka. Rodzice podani w drzewie na FamilySearch (Mateusz ok. 1866 × Małgorzata) to najpewniej pomyłka.", c: "prawd" },
@@ -37,13 +38,13 @@ DRZEWO.america = [
     rel: { t: "Może Aleksander, syn Walentego i stryj Franciszka (ur. 1850); Aleksander z innej gałęzi (ur. ok. 1821) miałby w 1903 r. 82 lata.", c: "hyp" },
     sources: [{ label: "lista pasażerów córki, 1903", url: AM_FS + "1:1:QGGW-7M5B" }] },
 
-  { name: "Aleksander Mieszała", alias: "Alexander Mesralo (1910)", adrian: "może kuzyn pradziadka Władysława (jeśli jego ojcem był Piotr) — hipoteza", c: "hyp", born: "ok. 1889–92, Grabówek (parafia Nowa Wieś k. Ostrołęki)", trip: "Rotterdam → Ellis Island, 2.05.1910, statek „Nieuw Amsterdam”", places: ["chicago"],
+  { name: "Aleksander Mieszała", burial: {cemetery: "Mosinee Cemetery", place: "Mosinee, Wisconsin", url: "https://www.findagrave.com/memorial/127416908", c: "ok", note: "Alex Mieszała (1892–1968), pochowany z drugą żoną Agnes z d. Masko."}, alias: "Alexander Mesralo (1910)", adrian: "może kuzyn pradziadka Władysława (jeśli jego ojcem był Piotr) — hipoteza", c: "hyp", born: "ok. 1889–92, Grabówek (parafia Nowa Wieś k. Ostrołęki)", trip: "Rotterdam → Ellis Island, 2.05.1910, statek „Nieuw Amsterdam”", places: ["chicago"],
     fate: "20 lat, kawaler, z „Grabowek, Russia”, syn Walentego; w USA czekał wuj Jakub Jędrzejczyk. 28 stycznia 1913 r. ożenił się w Chicago z Ludwiką Merchel (rodzice: Walenty i Katarzyna „Głodkówna”). Według cudzego drzewa zmarł w 1968 r. w Wisconsin — bez źródeł.",
     rel: { t: "Strona babci: syn Walentego Mieszały i Katarzyny z Gładków z Grabówka (prawdopodobne). Krewny babci tylko wtedy, gdy jej ojciec Władysław pochodził z tej rodziny.", c: "hyp" },
     sources: [{ label: "lista pasażerów 1910", url: "https://www.familysearch.org/ark:/61903/1:1:JJN9-8PB" }, { label: "ślub w Chicago 1913", url: "https://www.familysearch.org/ark:/61903/1:1:QVMN-THQB" }] },
 
   /* możliwi: bez twardego dowodu na Połoń */
-  { name: "Walter Antosiak", alias: "Walery / Władysław?", c: "hyp", born: "23.05.1888", died: "4.09.1954, Chicago", trip: "przyjazd 1905 (wg spisu)", places: ["chicago"],
+  { name: "Walter Antosiak", burial: {cemetery: "St. Adalbert Cemetery", place: "Niles, Illinois", url: AM_FS + "1:1:Q2M4-4NYR", c: "hyp", note: "wg indeksu aktu zgonu (FamilySearch); grobu nie oglądano."}, alias: "Walery / Władysław?", c: "hyp", born: "23.05.1888", died: "4.09.1954, Chicago", trip: "przyjazd 1905 (wg spisu)", places: ["chicago"],
     fate: "Maszynista w Chicago, pochowany na cmentarzu St. Adalbert w Niles. Ojciec John (Jan). Żona Florence z domu Komoszewska z Chorzel (1894–1968).",
     rel: { t: "Mocna poszlaka, ale tylko z indeksu: w jednym rekordzie jako miejsce urodzenia podano „Polon Poland”. Obrazu nie otwarto.", c: "hyp" },
     sources: [{ label: "akt zgonu (indeks)", url: AM_FS + "1:1:Q2M4-4NYR" }, { label: "karta poborowa I wojna", url: AM_FS + "1:1:K6DJ-3VK" }] },
@@ -67,7 +68,7 @@ DRZEWO.america = [
     fate: "Żona Leonora. Najpierw w Newark (dzieci urodzone tam w 1907 i 1911), potem w St. Louis.",
     rel: { t: "Karta poborowa z II wojny podaje urodzenie w Budkach w 1877 r. Według wpisu FB I. Antosiaka z 2019 r. to Franciszek, syn Andrzeja (gałąź „Marciny” — nazwa wg FB, jej pochodzenie to hipoteza), brata Feliksa — wspólni przodkowie z Adrianem: Walenty i Marianna. Rozbieżność: w innym miejscu notatek Franciszek 1877 trafił do gałęzi Wojciecha; przyjmujemy wersję „syn Andrzeja”.", c: "prawd" },
     sources: [{ label: "grób (Find a Grave)", url: "https://www.findagrave.com/memorial/52280593/frank-antosiak" }] },
-  { name: "Józef Symeon Antosiak", alias: "Joseph", adrian: "kuzyn 2. stopnia prapradziadka Franciszka (wg strony FB)", c: "prawd", born: "1885", died: "1967", trip: "1905 → St. Louis, potem Chicago", places: ["stlouis", "chicago"],
+  { name: "Józef Symeon Antosiak", burial: [{who: "Marianna z Pawłowskich", cemetery: "St. Adalbert Cemetery", place: "Niles, Illinois", url: "https://www.findagrave.com/memorial/188385182", c: "prawd"}, {who: "Stanley J. (1918–1980)", cemetery: "Queen of Heaven Cemetery", place: "Hillside, Illinois", plot: "Sec. 12 Veterans, Block 8R, Grave 9", url: "https://www.findagrave.com/memorial/206455497", c: "prawd"}], alias: "Joseph", adrian: "kuzyn 2. stopnia prapradziadka Franciszka (wg strony FB)", c: "prawd", born: "1885", died: "1967", trip: "1905 → St. Louis, potem Chicago", places: ["stlouis", "chicago"],
     fate: "Żona Marianna z Pawłowskich (2.02.1890 Krzynowłoga – 28.08.1941 Chicago). Syn Stanley Joseph (1918/19–1980), porucznik 6. Dywizji Pancernej USA: 6 czerwca 1944 r. lądował na plaży Utah w Normandii, walczył w Ardenach, odznaczony Srebrną Gwiazdą.",
     rel: { t: "Gałąź „Stańcaki” — wg strony FB I. Antosiaka; od Stanisława, syna Kacpra (1806), albo jego syna Stanisława (1853) — hipoteza. Daleki kuzyn linii Adriana: wspólny przodek to Kacper.", c: "prawd" },
     sources: [{ label: "grób Marianny (Find a Grave)", url: "https://www.findagrave.com/memorial/188385182/marianna-antosiak" }, { label: "grób Stanleya J. (Find a Grave)", url: "https://www.findagrave.com/memorial/206455497/stanley-j-antosiak" }] },

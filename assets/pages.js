@@ -131,7 +131,7 @@
         <div class="person-name"><h1>${esc(p.given + (p.surname ? " " + p.surname : ""))}</h1>${p.maiden ? `<span class="maiden">${esc(p.maiden)}</span>` : ""}</div>
         ${A.rel(id) ? `<p class="relline">dla Adriana: ${esc(A.rel(id))}</p>` : ""}
         <div style="margin-top:10px">${A.certBadge(p.certainty)}${p.parentsCert ? ` &nbsp; <span class="badge">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}</span>` : ""}</div>
-        ${life.length ? `<div class="life">${life.map(([a, b]) => `<div><b>${a}</b> ${esc(b)}</div>`).join("")}</div>` : ""}
+        ${life.length || p.burial ? `<div class="life">${life.map(([a, b]) => `<div><b>${a}</b> ${esc(b)}</div>`).join("")}${p.burial ? `<div><b>pochówek</b><span class="burials">${A.burial(p.burial)}</span></div>` : ""}</div>` : ""}
         <p style="margin-top:16px"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>
       </section>
       <h2>Rodzina</h2>
@@ -239,7 +239,7 @@
         <div class="yr">${esc(((e.trip || "").match(/\b1[89]\d\d\b/) || [""])[0])}</div>
         <div>
           <div class="act-head"><span class="act-title">${e.person ? A.plink(e.person, e.name) : esc(e.name)}</span>${A.certBadge(e.c)}${e.alias ? `<span class="act-meta">${esc(e.alias)}</span>` : ""}</div>
-          <div class="life">${e.born ? `<div><b>ur.</b> ${esc(e.born)}</div>` : ""}${e.trip ? `<div><b>podróż</b> ${esc(e.trip)}</div>` : ""}${e.died ? `<div><b>zm.</b> ${esc(e.died)}</div>` : ""}</div>
+          <div class="life">${e.born ? `<div><b>ur.</b> ${esc(e.born)}</div>` : ""}${e.trip ? `<div><b>podróż</b> ${esc(e.trip)}</div>` : ""}${e.died ? `<div><b>zm.</b> ${esc(e.died)}</div>` : ""}${(e.burial || (e.person && (A.byId.get(e.person) || {}).burial)) ? `<div><b>pochówek</b><span class="burials">${A.burial(e.burial || A.byId.get(e.person).burial)}</span></div>` : ""}</div>
           ${e.fate ? `<p class="act-tr">${esc(e.fate)}</p>` : ""}
           ${(e.person && A.rel(e.person)) || e.adrian ? `<p class="relline small">dla Adriana: ${esc((e.person && A.rel(e.person)) || e.adrian)}</p>` : ""}
           ${e.rel ? `<p class="act-tr"><b>rodzina</b>${A.mark(e.rel.c)}${esc(e.rel.t)}</p>` : ""}
