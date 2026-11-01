@@ -351,7 +351,7 @@
       <div class="gn">${g ? "pokolenie " + g.n + " · " : ""}${LINE[p.line]}</div>
       <h2>${A.esc(p.given + (p.surname ? " " + p.surname : ""))}</h2>
       ${p.maiden ? `<div class="maiden">${A.esc(p.maiden)}</div>` : ""}
-      ${A.rel(id) ? `<p class="relline">dla Adriana: ${A.esc(A.rel(id))}</p>` : ""}
+      ${A.rel(id) ? `<p class="relline">${A.FOR}: ${A.esc(A.rel(id))}</p>` : ""}
       <div style="margin-top:6px">${A.certBadge(p.certainty)}</div>
       ${lines.length ? `<div class="life">${lines.map(([a, b]) => `<div><b>${a}</b>${A.esc(b)}</div>`).join("")}</div>` : ""}
       ${pc}
