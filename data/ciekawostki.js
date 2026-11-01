@@ -133,7 +133,7 @@ DRZEWO.trivia = [
     text: "Na Mapie Kwatermistrzostwa z ok. 1843 r. wieś podpisano „Połomia”. Na mapie WIG z 1931 r. — „Połoń 58”: liczba oznacza 58 domów stojących wzdłuż jednej drogi, typowa ulicówka.",
     sources: ["kwatermistrz", "wig1931"] },
   { title: "Szczepan Mierzejewski poległ w 1939 r.", kind: "kontekst", year: 1939,
-    text: "Szczepan Mierzejewski z Połoni, ur. 26.12.1912, syn Adama i Julianny z Antosiaków, zginął w kampanii wrześniowej 1939 r.; pochowano go w gminie Wojcieszków na Lubelszczyźnie. Jak Julianna była spokrewniona z naszą linią — nie wiadomo.",
+    text: "Szczepan Mierzejewski z Połoni, ur. 26.12.1912, syn Adama i Julianny z Antosiaków, zginął w kampanii wrześniowej 1939 r.; pochowano go w gminie Wojcieszków na Lubelszczyźnie. Był prawnukiem Jana i Ewy Mierzejewskich — tak jak Eleonora z Dębków — więc jej kuzynem drugiego stopnia.", people: ["szczepan-mierz", "jan-mierzejewski"],
     sources: ["straty"] },
 
   { title: "Kościół, którego już nie ma", kind: "fakt o rodzinie", year: 1909, people: ["aleksander-sz", "katarzyna-sz", "zofia-m"],

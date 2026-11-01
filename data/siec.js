@@ -347,7 +347,7 @@ DRZEWO.siec.rodziny = {
   "Bączek": { typ: "krew", note: "Sąsiedzi, potem rodzina żon ([Marianna Bączek](marianna-b), 1862)." },
   "Majewski": { typ: "sasiad", note: "Sąsiedzi (Szymon Majewski, Helena Majewska)." },
   "Senda?": { typ: "krew", note: "Rodzina [Franciszki](franciszka-senda), 2. żony Stanisława (Mateusz Senda z Budek). Sam akt waha się: Senda, Szenda, Drenda." },
-  "Mierzejewski": { typ: "sasiad", note: "Sąsiedzi." },
+  "Mierzejewski": { typ: "krew", note: "Rodzina: [Rozalia z Mierzejewskich](rozalia-mierz), córka [Jana](jan-mierzejewski), to prababka Eleonory. W 1901 r. [Adam](adam-mierz-1873), wnuk Jana, ożenił się z Julianną Antosiak; w 1936 r. [Bronisław](bronislaw-mierz) z [Antoniną Dębek](antonina-d), siostrą Eleonory." },
   "Łukasiak": { typ: "sasiad", note: "Sąsiedzi." },
 };
 
