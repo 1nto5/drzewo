@@ -80,6 +80,7 @@ input[type=radio], input[type=checkbox] { accent-color: var(--accent); width: 16
 .viewer-panel { margin: var(--s-3) 0 var(--s-1); padding: var(--s-3) var(--s-4) var(--s-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); font-size: var(--fs-md); color: var(--ink); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-3); max-width: 560px; }
 .viewer-panel[hidden] { display: none; }
 .vrow { display: flex; gap: var(--s-2); align-items: center; min-height: 24px; cursor: pointer; }
+@media (max-width: 760px) { .vrow { min-height: var(--tap); } }
 .viewer-panel .vown { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-3); padding-left: var(--s-5); }
 .viewer-panel p { margin: 0; }
 .site-search { margin: var(--s-3) 0 0; padding: var(--s-3) 0 var(--s-4); border-bottom: 1px solid var(--line); }
@@ -210,7 +211,7 @@ input[type=file] { width: 100%; font: var(--fs-sm) var(--mono); color: var(--ink
 input[type=file]::file-selector-button { min-height: var(--ctl-h); margin-right: var(--s-3); padding: 0 var(--s-3); background: none; border: 1px solid var(--line-ui); border-radius: var(--radius); font: inherit; color: var(--ink); cursor: pointer; }
 input[type=file]::file-selector-button:hover { border-color: var(--accent); color: var(--accent); }
 /* etykieta nad polem */
-.field, .form > label:not(.vrow), .viewer-panel .vown > label { display: flex; flex-direction: column; gap: var(--s-1); font-size: var(--fs-xs); color: var(--ink-3); min-width: 0; }
+.field, .viewer-panel .vown > label { display: flex; flex-direction: column; gap: var(--s-1); font-size: var(--fs-xs); color: var(--ink-3); min-width: 0; }
 
 /* Tabele */
 .scroll { overflow-x: auto; }
