@@ -1,0 +1,98 @@
+/* Mapa rodu (mapa.html). Tokeny kolorów z style.css; tekst w SVG w jednostkach viewBox. */
+.mp { margin-top: 22px; }
+.mp-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--ink-3); font-size: 12.5px; margin-bottom: 14px; }
+.mp-legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.mp-legend svg { width: 12px; height: 12px; overflow: visible; }
+.mp-legend svg[viewBox="0 0 24 12"] { width: 24px; }
+
+.mp-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.mp-fig { margin: 0; min-width: 0; }
+.mp-fig figcaption, .mp-cap { color: var(--ink-3); font-size: 12px; margin: 4px 0; }
+.mp-zooms { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-width: 0; }
+.mp-c .src { margin-top: 4px; }
+
+/* SVG */
+.mp-svg { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--bg-2); touch-action: manipulation; }
+.mp-svg .bg { fill: var(--bg-2); }
+.mp-svg .g { stroke: var(--line); stroke-width: .5; stroke-dasharray: 2 4; }
+.mp-svg .gt { font: 8px var(--mono); fill: var(--ink-3); opacity: .8; }
+.mp-svg text { font: 11.5px var(--mono); fill: var(--ink); paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.mp-svg .gt, .mp-svg .sc text { stroke-width: 2px; }
+.mp-svg text.tm { fill: var(--ink-2); font-size: 10.5px; }
+.mp-svg text.rg { fill: var(--accent); font-size: 11px; font-style: italic; }
+.mp-svg .rt { fill: var(--ink-3); font-size: 9.5px; font-style: italic; }
+.mp-svg .bt { fill: var(--ink-3); font-size: 8.5px; }
+.mp-svg .zt { fill: var(--ink-3); font-size: 9px; }
+.mp-svg .mt { fill: var(--ink-2); font-size: 9.5px; }
+.mp-svg .st { fill: var(--accent); font-size: 12px; font-weight: 500; letter-spacing: .06em; opacity: .85; }
+.mp-zoom text { font-size: 12px; }
+.mp-usa text { font-size: 11px; }
+.mp-usa .rt { font-size: 10px; }
+
+.mp-svg .river { fill: none; stroke: #7287fd; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55; }
+html[data-theme="dark"] .mp-svg .river { stroke: #89b4fa; }
+.mp-svg .border, .mp-legend .border { fill: none; stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 6 2 1 2; opacity: .8; }
+.mp-svg .coast { fill: none; stroke: var(--line-2); stroke-width: 1.2; stroke-linejoin: round; }
+.mp-svg .coast.thin { stroke-width: .8; }
+.mp-svg .zb { fill: none; stroke: var(--ink-3); stroke-width: .8; stroke-dasharray: 3 2; }
+.mp-svg .route { fill: none; stroke: var(--ink-3); stroke-width: .9; opacity: .7; }
+.mp-svg .sc line { stroke: var(--ink-2); stroke-width: 1.5; }
+.mp-svg .sc text { font-size: 9px; fill: var(--ink-3); }
+
+/* migracje */
+.mp-svg .mig path, .mp-legend .lg { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; }
+.mp-svg .mig.prawd path, .mp-legend .lg.prawd { stroke-dasharray: 6 3; }
+.mp-svg .mig.hyp path, .mp-legend .lg.hyp { stroke-dasharray: 1.5 4; stroke-width: 1.6; }
+.mp-svg .ahd { fill: var(--accent); }
+.mp-svg .ea { stroke: var(--ink-3); stroke-width: 1.2; }
+
+/* znaczniki */
+.mk { stroke-width: 1.4; }
+.mk.d { fill: var(--accent); stroke: var(--bg-2); }
+.mk.p { fill: var(--bg-2); stroke: var(--accent); stroke-width: 1.8; }
+.mk.c { fill: var(--ok); stroke: var(--bg-2); }
+.mk.w { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.mk.m { fill: var(--ink-3); stroke: none; }
+.mk.port { fill: var(--bg-2); stroke: var(--ink); stroke-width: 1.4; }
+.mp-svg .pt { cursor: pointer; outline: none; }
+.mp-svg .pt .hit { fill: transparent; stroke: none; }
+.mp-svg .pt:hover text, .mp-svg .pt:focus-visible text { fill: var(--accent); text-decoration: underline; }
+.mp-svg .pt:focus-visible .hit { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 2 2; }
+.mp-svg .pt.on .hit { fill: var(--accent); opacity: .18; }
+.mp-svg .pt.on text { fill: var(--accent); font-weight: 500; }
+
+/* panel */
+.mp-panel { border: 1px solid var(--line); background: var(--bg-2); padding: 14px 16px; min-width: 0; scroll-margin-top: 12px; }
+.mp-panel:empty { display: none; }
+.mp-ph { margin-bottom: 8px; }
+.mp-kind { margin: 0; color: var(--ink-3); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
+.mp-panel h2.mp-name { margin: 2px 0 6px; font-size: 20px; letter-spacing: 0; text-transform: none; color: var(--ink); display: block; outline: none; }
+.mp-panel h2.mp-name::after { content: none; }
+.mp-note { margin: 0 0 6px; color: var(--ink-2); font-size: 13.5px; }
+.mp-ev { list-style: none; margin: 6px 0 0; padding: 0; font-size: 13.5px; }
+.mp-ev li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; padding: 3px 0; border-top: 1px solid var(--line); color: var(--ink-2); }
+.mp-ev li:first-child { border-top: 0; }
+.mp-ev .mp-y { color: var(--ink-3); font-size: 12px; font-variant-numeric: tabular-nums; padding-top: 1px; overflow-wrap: anywhere; }
+.mp-ev .mark { margin-right: 6px; }
+.mp-ev a { color: var(--ink); }
+.mp-rel { color: var(--ink-3); font-size: 12px; }
+.mp-sec { margin-top: 10px; }
+.mp-sec summary { cursor: pointer; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); padding: 4px 0; }
+.mp-sec summary:hover { color: var(--ink); }
+.mp-sec .src { margin: 4px 0 0; }
+.mp-panel .empty { padding: 10px 0 2px; border: 0; font-size: 13.5px; }
+.mp-chips { margin-top: 4px; }
+.mp-chips .chip .muted { font-size: 11px; }
+.mp + h2, .mp .facts { font-size: 14px; }
+
+/* układ */
+@media (min-width: 900px) {
+  .mp-grid { grid-template-columns: minmax(0, 560px) minmax(0, 1fr); grid-template-areas: "a p" "b p" "c p"; gap: 16px 24px; align-items: start; }
+  .mp-a { grid-area: a; } .mp-b { grid-area: b; } .mp-c { grid-area: c; }
+  .mp-panel { grid-area: p; position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow: auto; }
+  .mp-svg text { font-size: 8.5px; stroke-width: 2.4px; }
+  .mp-svg text.tm { font-size: 8px; } .mp-svg text.rg { font-size: 8.5px; }
+  .mp-svg .rt, .mp-svg .mt { font-size: 7.5px; } .mp-svg .bt { font-size: 7px; } .mp-svg .gt { font-size: 6.5px; }
+  .mp-zoom text { font-size: 9.5px; } .mp-usa text { font-size: 8.5px; } .mp-svg .st { font-size: 10px; }
+}
+@media (min-width: 900px) { .mp-ev li { grid-template-columns: 72px minmax(0, 1fr); } }
