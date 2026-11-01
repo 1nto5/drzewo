@@ -91,7 +91,7 @@ DRZEWO.pitfalls = [
 DRZEWO.todo = [
   "Odpis zupełny aktu małżeństwa Mariana i Henryki z USC — potwierdzi rodziców babci (Władysław Mieszała, Zofia ze Szczepanków) i poda miejsce jej urodzenia.",
   "Zapytać rodzinę, skąd pochodzili Władysław Mieszała i Zofia ze Szczepanków i gdzie dziadkowie się poznali. Co wiadomo o Aleksandrze, który „wrócił z Ameryki”?",
-  "FamilySearch: chrzest Stanisława, syna Kacpra (obrazy 526–545 filmu 8024884, V 1805–1806) i Jana Kantego (obraz 498, VIII 1803); rozstrzygnąć nazwisko Heleny (Dodor/Todor czy Wysocka).",
+  "FamilySearch: chrzest Jana Kantego, syna Kacpra (obraz 498, VIII 1803). Wyjaśnić „Wysocką” w aktach z lat 1805, 1806 i 1825 (ojczym? przydomek?) — czy Wojciech Wysocki był żonaty przed 1770 r.",
   "AP Pułtusk, kwerenda: Chorzele 1866–1923 (bez skanów online) — ślub Franciszka z Marcjanną, zgon Feliksa.",
   "Geneteka ręcznie: Mieszała w parafiach Myszyniec, Chorzele, Jednorożec, Przasnysz; para Antosiak × Mieszała w latach 1940–1970.",
   "Etnofon IS PAN: odsłuchać sesję T2667 z Połoni (1963), zwłaszcza zapowiedzi T2667.01 i T2667.17 — czy pada imię i wiek śpiewaczki.",
@@ -103,7 +103,7 @@ DRZEWO.todo = [
   "Władysław Antosiak (1900–1982), wójt: chrzest 121/1900 w parafii Chorzele — potwierdzić aktem, że to syn Franciszka i Marcjanny (tak podaje strona FB).",
   "Uwłaszczenie Połoni: tabela nadawcza w AP Płock / AP Warszawa (Komisarz do Spraw Włościańskich pow. przasnyskiego) — działki rodziny po 1864 r.",
   "Parafia Chorzele: policzyć zgony miesięcznie w latach 1832 i 1848 — czy był szczyt epidemii.",
-  "FamilySearch: sprawdzić dane ze strony FB I. Antosiaka — chrzest Pawła 1720 (akt 4) i jego rodzice Jakub i Marianna (weryfikacja w toku).",
+  "Jakub Jentosiak: ślub z Marianną i jego pochodzenie — w skorowidzu chrztów Chorzel 1694–1718 Jentosiaków nie ma; szukać w sąsiednich parafiach.",
   "Numer aktu chrztu Franciszka: Geneteka podaje 104/1868, strona FB 117/1868 — sprawdzić.",
   "Myszyniec: Rozalia Mieszała z Dąbrów (matka Stanisława, zm. 1902) — szukać jej ślubu i innych dzieci ok. 1895–1910.",
   "AP Pułtusk: plany scalenia gruntów Połoni z 1936 r. (79/95/0/2/763–765) — pokażą działki rodziny przed wojną.",
