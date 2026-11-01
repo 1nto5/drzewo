@@ -13,6 +13,7 @@ DRZEWO.timeline = [
   { y: 1605, kind: "kontekst", text: "Połoń i Małowidz tworzą osobną „dzierżawę Małowidz” (królewszczyzna).", sources: ["raport-c"] },
   { y: 1633, kind: "kontekst", text: "Wieś w dzierżawie Krasińskich, w starostwie przasnyskim.", sources: ["wiki-polon"] },
   { y: 1781, kind: "kontekst", text: "Połoń: 21 domów.", people: ["kacper"], sources: ["wiki-polon"] },
+  { y: 1786, date: "22 XI 1786", kind: "kontekst", text: "Kacper, syn Pawła i Jadwigi, bierze w Chorzelach ślub z Heleną — trzy lata przed lustracją wsi.", people: ["kacper"], sources: ["fs-chorzele"] },
   { y: 1789, kind: "kontekst", text: "Lustracja: 23 gospodarzy, pańszczyzna w folwarkach — m.in. 62 dni żniw i 55 dni orki rocznie — oraz czynsz.", people: ["kacper"], sources: ["wiki-polon"] },
   { y: 1795, y2: 1807, kind: "kontekst", text: "Po III rozbiorze Połoń w Prusach Nowowschodnich; ok. 1800 r. Prusacy tworzą Ekonomię Przasnysz.", people: ["kacper", "walenty"], sources: ["wiki-polon", "wiki-pn"] },
   { y: 1806, y2: 1807, kind: "kontekst", text: "Zima 1806/07: korpusy Napoleona nad Orzycem, konie karmione słomą z dachów.", people: ["kacper", "walenty"], sources: ["turos"] },
