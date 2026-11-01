@@ -73,7 +73,7 @@ DRZEWO.people = [
   { id: "karol", given: "Karol", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok",
     parents: ["wojciech-p", "marianna-grzyb"], facts: ["W 1827 r. zgłosił zgon ojca."] },
   { id: "aleksander-21", given: "Aleksander", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok",
-    born: { y: 1821, approx: true }, parents: ["wojciech-p", "marianna-grzyb"], parentsCert: "hyp",
+    born: { y: 1821, approx: true }, parents: ["wojciech-p", "marianna-grzyb"],
     spouses: [{ id: "rozalia-kuta", married: { y: 1843, date: "1/13.11.1843", place: "Chorzele", act: "s1843-49" } }],
     facts: ["W 1843 r., mając 22 lata, był ojcem chrzestnym Rozalii Sędrowskiej — przyszłej żony Feliksa.", "13.11.1843 ożenił się z Rozalią z Kutów (S 49/1843) — siostrą Marianny, matki Rozalii z Sendrowskich; stąd został jej chrzestnym. W akcie: syn zmarłych Wojciecha i Marianny z Grzybów; świadkowie Wojciech (32 l.) i Karol (45 l.), obaj nazwani jego braćmi stryjecznymi.", { t: "Syn Wojciecha z innej gałęzi Antosiaków — najpewniej Wojciecha, syna Pawła (zm. 1827), brata Karola. Akty raz nazywają Aleksandra i Karola braćmi, raz braćmi stryjecznymi.", c: "hyp" }, "To nie brat Feliksa — Feliks miał młodszego brata o tym samym imieniu (ur. 1850)."] },
   { id: "adam-p", given: "Adam", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok",
@@ -210,7 +210,7 @@ DRZEWO.people = [
     born: { y: 1749, approx: true }, died: { y: 1829, date: "13.04.1829", place: "Połoń" },
     facts: ["Wdowiec, zmarł w wieku 80 lat.", "Jego zgon zgłosili syn Wojciech i „Walenty Antosiak zięć zmarłego” — stąd wiemy, kim był ojciec Marianny."] },
   { id: "wojciech-ch", given: "Wojciech", surname: "Chudzik", sex: "m", line: "boczna", certainty: "ok",
-    born: { y: 1779, approx: true }, died: { y: 1847, text: "11/23.10.1847" }, parents: ["mateusz-ch"], parentsCert: "prawd",
+    born: { y: 1779, approx: true }, died: { y: 1847, text: "11/23.10.1847" }, parents: ["mateusz-ch"], parentsCert: "hyp",
     facts: [{ t: "Świadek przy chrztach dzieci Marianny — Józefa (1827), Feliksa (1839), Andrzeja (1842) — może jej brat (hipoteza): w 1829 r. zgłosił zgon Mateusza Chudzika, ojca Marianny, razem z zięciem Walentym, ale jego własny akt zgonu (D 117/1847, 1 odczyt) podaje rodziców Michała i Maryannę. W Połoni żyła też druga rodzina Chudzików — Jadwiga z Kutów, wdowa po Michale Chudziku, zm. 1826 (Z 34/1826).", c: "hyp" }, "Wiek w aktach niespójny: 52 lata (1826), 60 (1839), ok. 54 (1842)."],
     refs: [{ label: "D 117/1847", scan: "593ff8c94cde6557ffc2145500810af3e8511f1b46e827f8764494ba853652fe" }, { label: "Z 34/1826 (Jadwiga Chudzikowa)", scan: "bb43295238eb1661d1090944f02753fab9f0c470c7ec1ab5a9a87f005b2282e4" }] },
 
