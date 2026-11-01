@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1e1e2e">
+<title>Oś czasu — Drzewo Antosiaków</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jetbrains-mono-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  (function () {
+    var t;
+    try { t = localStorage.getItem("aa_theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    document.documentElement.dataset.theme = t;
+    document.querySelector('meta[name="theme-color"]').content = t === "light" ? "#eff1f5" : "#1e1e2e";
+  })();
+</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="os-czasu">
+<div class="wrap">
+<div id="chrome"></div>
+<main id="main">
+<section class="page-h">
+  <h1>Oś czasu<span class="dot">.</span></h1>
+  <p class="lead">Życie przodków na tle historii Połoni. Każda pionowa linia to jeden przodek: od narodzin do śmierci, a tam, gdzie daty nie znamy, od pierwszego do ostatniego śladu w aktach.</p>
+</section>
+<div class="tl-controls"><div class="chips" id="tl-chips" role="group" aria-label="Co pokazać"></div></div>
+<div class="tl-key" id="tl-key"></div>
+<div class="tl" id="tl"></div>
+</main>
+<footer class="foot" id="foot"></footer>
+</div>
+<script src="data/osoby.js"></script>
+<script src="data/akty.js"></script>
+<script src="data/ciekawostki.js"></script>
+<script src="data/historia.js"></script>
+<script src="data/zrodla.js"></script>
+<script src="data/ameryka.js"></script>
+<script src="data/babcia.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/timeline.js"></script>
+</body>
+</html>
