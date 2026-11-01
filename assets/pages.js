@@ -112,8 +112,8 @@
     };
     const ANON = d => d === 1 ? "mama lub tata" : d === 2 ? "dziadek lub babcia" : d === 3 ? "pradziadek lub prababcia" : `${d - 2}× pradziadek lub prababcia`;
     const anon = o => Array.from({ length: A.V.k - 1 }, (_, i) => A.V.k - 1 - i).map((d, i) =>
-      `<div class="kr"><span class="kn anon up c-ok${o.bar && !i ? " bar-" + o.bar : ""}"><b>${ANON(d)}</b>${A.V.def ? `<span class="kn-rel">rodzic Adriana</span>` : ""}</span></div>`).join("");
-    const me = `<span class="kn me up c-ok"><b>${A.V.def ? "Adrian (Ty)" : esc(A.V.name ? A.V.name + " (Ty)" : "Ty")}</b><span class="kn-rel">${esc(A.viewerDesc())}</span></span>`;
+      `<div class="kr"><span class="kn anon up c-ok${o.bar && !i ? " bar-" + o.bar : ""}"><b>${ANON(d)}</b></span></div>`).join("");
+    const me = `<span class="kn me up c-ok"><b>${esc(A.V.name ? A.V.name + " (Ty)" : "Ty")}</b><span class="kn-rel">${esc(A.viewerDesc())}</span></span>`;
     const hl = `<i class="hl" aria-hidden="true"></i>`;
     const used = new Set();
     // rząd: węzeł krwi (S) i opcjonalnie małżonek T poziomo
@@ -163,7 +163,7 @@
     }
     const key = [["ok", "link-axis", "pewne"], ["prawd", "link-prawd", "prawdopodobne"], ["hyp", "link-hyp", "hipoteza"]].filter(([c]) => certs.includes(c) && c !== "ok");
     const alt = K.alt ? `<p class="muted small kin-alt">druga ścieżka: przez ${A.plink(K.alt, A.fullName(A.byId.get(K.alt)))} (${esc(A.rel(K.alt) || "")})</p>` : "";
-    const diagram = `<div class="kin" role="group" aria-label="Diagram pokrewieństwa ${A.V.def ? "z Adrianem" : "z Tobą"}"><div class="kin-scroll">${body}</div></div>
+    const diagram = `<div class="kin" role="group" aria-label="Diagram pokrewieństwa z Tobą"><div class="kin-scroll">${body}</div></div>
       ${key.length ? `<div class="legend">${key.map(([, m, t]) => `<span><i class="mark ${m}"></i>powiązanie ${t}</span>`).join("")}</div>` : ""}`;
     if (opt.bare) return diagram;
     return `<h2>${title}</h2>
@@ -202,6 +202,7 @@
         <div class="gn">${g ? "pokolenie " + g.n + " · " : ""}${LINE[p.line]}</div>
         <div class="person-name"><h1>${esc(p.given + (p.surname ? " " + p.surname : ""))}</h1>${p.maiden ? `<span class="maiden">${esc(p.maiden)}</span>` : ""}</div>
         ${A.rel(id) ? `<p class="relline">${A.FOR}: ${esc(A.rel(id))}</p>` : ""}
+        <p class="small" style="margin-top:6px"><button class="toggle" type="button" data-contribute='${esc(JSON.stringify({ type: "osoba", id }))}'>[ wiesz coś o tej osobie? dodaj informację lub zdjęcie ]</button></p>
         <div style="margin-top:10px">${A.certBadge(p.certainty)}${p.parentsCert ? ` &nbsp; <span class="badge">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}</span>` : ""}</div>
         ${life.length || p.burial ? `<div class="life">${life.map(([a, b]) => `<div><b>${a}</b> ${esc(b)}</div>`).join("")}${p.burial ? `<div><b>pochówek</b><span class="burials">${A.burial(p.burial)}</span></div>` : ""}</div>` : ""}
         <p style="margin-top:16px"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>

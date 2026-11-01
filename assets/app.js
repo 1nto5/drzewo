@@ -56,14 +56,14 @@
      2 dziadek, 3 pradziadek, 4 prapradziadek, 5+ „(dist−2)× pradziadek”. Rodzica Adriana nie pokazujemy. */
   /* Odwiedzający (V): domyślnie Adrian = 2 pokolenia pod Marianem i Henryką. Inny członek rodziny wybiera
      najbliższego przodka z drzewa (anchors) i ile pokoleń jest pod nim (k); zapis tylko w tej przeglądarce. */
-  const VDEF = { anchors: ["marian", "henryka"], k: 2, name: "Adrian", def: true };
+  const VDEF = { anchors: ["marian", "henryka"], k: 2, name: "", def: true };
   let V = VDEF;
   try {
     const s = JSON.parse(localStorage.getItem("aa_viewer") || "null");
     if (s && Array.isArray(s.anchors) && s.anchors.length && s.anchors.every(a => byId.has(a)) && s.k >= 1 && s.k <= 12)
       V = { anchors: s.anchors, k: s.k | 0, name: String(s.name || "").slice(0, 40), def: false };
   } catch (e) {}
-  const FOR = V.def ? "dla Adriana" : "dla Ciebie", TO = V.def ? "do Adriana" : "do Ciebie";
+  const FOR = V.def ? "dla wnuka Mariana i Henryki" : "dla Ciebie", TO = V.def ? "do wnuka Mariana i Henryki" : "do Ciebie";
   const dist = new Map(), pathOf = new Map(); // pathOf: id przodka -> para z altParents (ścieżka A/B)
   (function () {
     const q = V.anchors.map(a => [a, V.k, null]);
@@ -157,7 +157,7 @@
 
   const rel = id => { const r = relOf(id); return r ? r.nom : ""; };
   const DESC = k => k === 1 ? "dziecko" : k === 2 ? "wnuk lub wnuczka" : k === 3 ? "prawnuk lub prawnuczka" : k === 4 ? "praprawnuk lub praprawnuczka" : `${k - 2}× prawnuk lub prawnuczka`;
-  const viewerDesc = () => V.def ? "wnuk Mariana i Henryki" : `${DESC(V.k)} ${V.anchors.map(nameGen).join(" i ")}`;
+  const viewerDesc = () => V.def ? "wnuk lub wnuczka Mariana i Henryki" : `${DESC(V.k)} ${V.anchors.map(nameGen).join(" i ")}`;
   const genPl = (n, c = "pl") => ANC(n + 1, "m", c);
 
   /* ── opis osoby ────────────────────────────────── */
@@ -247,10 +247,10 @@
         <span class="top-btns"><button class="toggle" id="search-btn" type="button" aria-expanded="false" aria-controls="site-search">[ szukaj ]</button><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
         <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></span></header>
         <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${PAGES.map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>
-        <div class="viewer"><span>Pokrewieństwo pokazane dla: <b>${esc(V.def ? "Adriana" : (V.name || "Ciebie"))}</b> <span class="muted">(${esc(viewerDesc())})</span></span> <button class="toggle" id="viewer-btn" type="button" aria-expanded="false" aria-controls="viewer-panel">[ kim jesteś? ]</button>
+        <div class="viewer"><span>Pokrewieństwo liczone dla: <b>${V.def ? "wnuka lub wnuczki Mariana i Henryki" : esc(V.name ? V.name + " — " + viewerDesc() : viewerDesc())}</b></span> <button class="toggle" id="viewer-btn" type="button" aria-expanded="false" aria-controls="viewer-panel">[ zmień ]</button>
           <form class="viewer-panel" id="viewer-panel" hidden>
-            <label class="vrow"><input type="radio" name="vm" value="def"${V.def ? " checked" : ""}> Jestem Adrianem albo tylko oglądam</label>
-            <label class="vrow"><input type="radio" name="vm" value="own"${V.def ? "" : " checked"}> Jestem kimś z rodziny</label>
+            <label class="vrow"><input type="radio" name="vm" value="def"${V.def ? " checked" : ""}> Wnuk lub wnuczka Mariana i Henryki</label>
+            <label class="vrow"><input type="radio" name="vm" value="own"${V.def ? "" : " checked"}> Ktoś inny z rodziny</label>
             <div class="vown">
               <label>Twój najbliższy przodek, który jest w drzewie<input id="v-anc" list="v-list" type="search" autocomplete="off" placeholder="zacznij pisać imię lub nazwisko…"></label>
               <datalist id="v-list"></datalist>
@@ -261,7 +261,7 @@
             <p class="small muted">Wybór zostaje tylko w tej przeglądarce — nic nie jest wysyłane.</p>
             <p><button class="btn" type="submit">Zapisz</button> <button class="btn" type="button" id="v-cancel">Anuluj</button> <span id="v-err" class="small"></span></p>
           </form></div>
-        <div class="site-search" id="site-search" hidden><input id="ss-q" type="search" placeholder="Imię, nazwisko, miejsce, słowo z aktu…" autocomplete="off" aria-label="Szukaj na stronie"><div id="ss-out" aria-live="polite"></div></div>`;
+        <div class="site-search" id="site-search" hidden><input id="ss-q" type="search" placeholder="Imię, nazwisko lub miejsce" autocomplete="off" aria-label="Szukaj na stronie"><div id="ss-out" aria-live="polite"></div></div>`;
       siteSearch(); viewerPicker();
       const cur = el.querySelector('[aria-current="page"]');
       const nav = el.querySelector(".nav");
@@ -285,7 +285,8 @@
     }
     const as = document.getElementById("asof"); if (as) as.textContent = "Stan: " + D.asof;
     const f = document.getElementById("foot");
-    if (f) f.innerHTML = `<span>Stan: ${esc(D.asof)}</span><a href="../">adrianantosiak.pl</a>`;
+    if (f) f.innerHTML = `<span>Stan: ${esc(D.asof)}</span><button class="toggle" type="button" data-contribute>[ wiesz coś więcej? dodaj informację lub zdjęcie ]</button><a href="../">adrianantosiak.pl</a>`;
+    document.addEventListener("click", e => { const b = e.target.closest("[data-contribute]"); if (b) { e.preventDefault(); contribute(b.dataset.contribute ? JSON.parse(b.dataset.contribute) : null); } });
   }
   /* ── wybór odwiedzającego (od kogo liczyć pokrewieństwo) ── */
   function viewerPicker() {
@@ -321,6 +322,67 @@
       } catch (x) { err.textContent = "Przeglądarka nie pozwala zapisać wyboru."; return; }
       location.reload();
     });
+  }
+  /* ── zgłoszenia: informacja lub zdjęcie (Cloudflare Worker drzewo-api) ── */
+  const API = "https://drzewo-api.aantosiak.workers.dev/api/zgloszenie";
+  function currentTarget() {
+    const qs = new URLSearchParams(location.search);
+    if (here === "osoba.html" && qs.get("id") && byId.has(qs.get("id"))) return { type: "osoba", id: qs.get("id") };
+    if (here === "akty.html" && location.hash && actById.has(location.hash.slice(1))) return { type: "akt", id: location.hash.slice(1) };
+    return { type: "strona", id: "" };
+  }
+  const targetLabel = t => t.type === "osoba" ? fullName(byId.get(t.id)) : t.type === "akt" ? (actById.get(t.id) || {}).t : document.title.replace(/ — Drzewo Antosiaków$/, "");
+  async function shrink(file) {
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 1.5e6) return file;
+    try {
+      const bmp = await createImageBitmap(file); const m = 2400, sc = Math.min(1, m / Math.max(bmp.width, bmp.height));
+      const c = document.createElement("canvas"); c.width = Math.round(bmp.width * sc); c.height = Math.round(bmp.height * sc);
+      c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+      const b = await new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
+      return b && b.size < file.size ? new File([b], file.name.replace(/\.\w+$/, "") + ".jpg", { type: "image/jpeg" }) : file;
+    } catch (e) { return file; }
+  }
+  function contribute(t) {
+    t = t || currentTarget();
+    let dlg = document.getElementById("contrib");
+    if (dlg) dlg.remove();
+    dlg = document.createElement("dialog"); dlg.id = "contrib"; dlg.className = "contrib";
+    dlg.innerHTML = `<form method="dialog" class="contrib-f">
+      <h2>Dodaj informację lub zdjęcie</h2>
+      <p class="small muted">Dotyczy: <b>${esc(targetLabel(t) || "całej strony")}</b>. Zgłoszenie najpierw czytamy i sprawdzamy w aktach — na stronę nic nie trafia automatycznie.</p>
+      <label>Co wiesz?<textarea name="tresc" rows="5" maxlength="5000" placeholder="np. daty, miejsca, kto z kim, wspomnienia, gdzie jest grób"></textarea></label>
+      <label>Skąd to wiesz?<select name="skad"><option value="wspomnienie">wspomnienie rodzinne</option><option value="dokument">dokument</option><option value="nagrobek">nagrobek</option><option value="zdjecie">zdjęcie</option><option value="inne">inne</option></select></label>
+      <label>Zdjęcia (do 5, np. dokumenty, nagrobki, fotografie)<input name="zdjecia" type="file" accept="image/*" multiple></label>
+      <label>Twoje imię (opcjonalnie)<input name="imie" maxlength="80" autocomplete="given-name"></label>
+      <label>Kontakt, jeśli chcesz odpowiedzi (opcjonalnie)<input name="kontakt" maxlength="120" placeholder="e-mail lub telefon"></label>
+      <label class="vrow small"><input type="checkbox" name="podziekowanie" value="1"> Można mi podziękować z imienia na stronie</label>
+      <input name="www" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <p class="small muted">Dane widzi tylko autor strony; służą wyłącznie do uzupełnienia drzewa. Nie publikujemy danych osób żyjących ani kontaktu.</p>
+      <p class="contrib-btns"><button class="btn" type="submit" value="send">Wyślij</button> <button class="btn" type="button" value="cancel" data-close>Anuluj</button> <span class="small" data-msg aria-live="polite"></span></p>
+    </form>`;
+    document.body.append(dlg);
+    const f = dlg.querySelector("form"), msg = dlg.querySelector("[data-msg]");
+    dlg.querySelector("[data-close]").addEventListener("click", () => dlg.close());
+    f.addEventListener("submit", async e => {
+      e.preventDefault();
+      const files = [...f.zdjecia.files];
+      if (!f.tresc.value.trim() && !files.length) { msg.textContent = "Napisz coś albo dodaj zdjęcie."; return; }
+      if (files.length > 5) { msg.textContent = "Maksymalnie 5 zdjęć."; return; }
+      const btn = f.querySelector('[type="submit"]'); btn.disabled = true; msg.textContent = "Wysyłanie…";
+      const fd = new FormData();
+      for (const k of ["tresc", "skad", "imie", "kontakt", "www"]) fd.append(k, f[k].value);
+      fd.append("podziekowanie", f.podziekowanie.checked ? "1" : "0");
+      fd.append("target_type", t.type); fd.append("target_id", t.id || ""); fd.append("page", location.pathname.split("/").pop() + location.search + location.hash);
+      fd.append("kto", JSON.stringify(V.def ? { opis: viewerDesc() } : { opis: viewerDesc(), anchors: V.anchors, k: V.k, imie: V.name }));
+      for (const x of files) { const y = await shrink(x); if (y.size > 6 * 1024 * 1024) { msg.textContent = "Zdjęcie „" + x.name + "” jest za duże (max 6 MB)."; btn.disabled = false; return; } fd.append("zdjecia", y, y.name); }
+      try {
+        const r = await fetch(API, { method: "POST", body: fd }); const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j.error || "Błąd " + r.status);
+        f.innerHTML = `<h2>Dziękujemy!</h2><p>Zgłoszenie dotarło. Sprawdzimy je w aktach i uzupełnimy drzewo.</p><p><button class="btn" type="button" data-close>Zamknij</button></p>`;
+        f.querySelector("[data-close]").addEventListener("click", () => dlg.close());
+      } catch (x) { msg.textContent = "Nie udało się wysłać: " + x.message; btn.disabled = false; }
+    });
+    dlg.showModal();
   }
   /* ── wyszukiwarka w nagłówku: osoby, akty, historie, ciekawostki ── */
   function siteSearch() {
@@ -371,6 +433,6 @@
   }
   chrome();
 
-  window.APP = { V, FOR, TO, DESC, viewerDesc, rel, relOf, kinPath, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
+  window.APP = { contribute, V, FOR, TO, DESC, viewerDesc, rel, relOf, kinPath, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
     direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, burial, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
 })();
