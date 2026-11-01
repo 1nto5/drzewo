@@ -180,7 +180,7 @@
   const nodeEls = new Map();
   function makeNode(p) {
     const g = el("g", { class: `node l-${p.line} c-${p.certainty}`, "data-id": p.id, tabindex: "0", role: "button",
-      "aria-label": `${A.fullName(p)}${A.lifeShort(p) ? ", " + A.lifeShort(p) : ""}, ${A.CERT[p.certainty]}` });
+      "aria-label": `${A.fullName(p)}${A.rel(p.id) ? ", " + A.rel(p.id) : ""}${A.lifeShort(p) ? ", " + A.lifeShort(p) : ""}, ${A.CERT[p.certainty]}` });
     g.append(el("rect", { class: "box", width: W, height: H }));
     const c = p.gen === 1 && p.certainty === "ok" ? "me" : p.certainty;
     if (c === "prawd") { g.append(el("rect", { class: "m-prawd-a", x: 10, y: 9, width: 4.5, height: 9 }), el("rect", { class: "m-prawd-b", x: 10.5, y: 9.5, width: 8, height: 8 })); }
@@ -188,7 +188,7 @@
     const t1 = el("text", { class: "n1", x: 26, y: 18 }); t1.textContent = trunc(p.given, 13);
     const t2 = el("text", { class: "n2", x: 10, y: 34 }); t2.textContent = trunc(p.maiden || p.surname || "", 17);
     const t3 = el("text", { class: "n3", x: 10, y: 48 }); t3.textContent = p.private ? (p.gen === 1 ? "dziadkowie" : "") : A.lifeShort(p);
-    const tt = el("title"); tt.textContent = A.fullName(p);
+    const tt = el("title"); tt.textContent = A.fullName(p) + (A.rel(p.id) ? " — " + A.rel(p.id) : "");
     g.append(t1, t2, t3, tt);
     g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(p.id, true); } });
     return g;
@@ -312,7 +312,7 @@
   const LINE = { prosta: "linia prosta", boczna: "krewny", powinowaci: "powinowaty" };
   function relList(title, ids, extra) {
     if (!ids.length) return "";
-    return `<div class="sec"><h3>${title}</h3><ul class="rel-list">${ids.map(id => { const p = A.byId.get(id); return `<li>${A.mark(p.certainty === "ok" && p.gen === 1 ? "me" : p.certainty)}<button type="button" data-go="${id}">${A.esc(A.fullName(p))}</button>${A.lifeShort(p) ? ` <span class="muted small">${A.esc(A.lifeShort(p))}</span>` : ""}${extra ? extra(id) : ""}</li>`; }).join("")}</ul></div>`;
+    return `<div class="sec"><h3>${title}</h3><ul class="rel-list">${ids.map(id => { const p = A.byId.get(id); return `<li>${A.mark(p.certainty === "ok" && p.gen === 1 ? "me" : p.certainty)}<button type="button" data-go="${id}">${A.esc(A.fullName(p))}</button>${A.rel(id) ? ` <span class="rel">${A.esc(A.rel(id))}</span>` : ""}${extra ? extra(id) : ""}</li>`; }).join("")}</ul></div>`;
   }
   function panelHTML(id) {
     const p = A.byId.get(id), g = A.genFor(id);
@@ -329,6 +329,7 @@
       <div class="gn">${g ? "pokolenie " + g.n + " · " : ""}${LINE[p.line]}</div>
       <h2>${A.esc(p.given + (p.surname ? " " + p.surname : ""))}</h2>
       ${p.maiden ? `<div class="maiden">${A.esc(p.maiden)}</div>` : ""}
+      ${A.rel(id) ? `<p class="relline">dla Adriana: ${A.esc(A.rel(id))}</p>` : ""}
       <div style="margin-top:6px">${A.certBadge(p.certainty)}</div>
       ${lines.length ? `<div class="life">${lines.map(([a, b]) => `<div><b>${a}</b>${A.esc(b)}</div>`).join("")}</div>` : ""}
       ${pc}

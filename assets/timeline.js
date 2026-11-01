@@ -14,7 +14,7 @@
   const state = { prosta: true, krewni: false, historia: true };
   const CHIPS = [["prosta", "linia prosta"], ["krewni", "krewni"], ["historia", "historia"]];
 
-  key.innerHTML = cols.map(g => `<span><i>${g.n}</i>${esc(A.byId.get(g.man).given)} × ${esc(A.byId.get(g.woman).given)}</span>`).join("") +
+  key.innerHTML = cols.map(g => `<span><i>${g.n}</i>${esc(A.genPl(g.n))}: ${esc(A.byId.get(g.man).given)} × ${esc(A.byId.get(g.woman).given)}</span>`).join("") +
     `<span><svg width="14" height="12" aria-hidden="true"><circle cx="7" cy="6" r="3.5" fill="currentColor"/></svg>ur.</span><span><svg width="14" height="12" aria-hidden="true"><circle cx="7" cy="6" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>ślub</span><span><svg width="14" height="12" aria-hidden="true"><rect x="3.5" y="2.5" width="7" height="7" fill="currentColor"/></svg>zm.</span>`;
 
   const yTxt = e => (e.approx ? "~" : "") + e.y;
@@ -27,7 +27,7 @@
       if (p.private) continue;
       const isDirect = A.direct.has(p.id);
       if (isDirect ? !state.prosta : !state.krewni) continue;
-      const nm = A.plink(p.id, A.fullName(p));
+      const nm = A.plink(p.id, A.fullName(p)) + (A.rel(p.id) ? ` <span class="rel">(${esc(A.rel(p.id))})</span>` : "");
       if (p.born && p.born.y) out.push({ y: p.born.y, k: dKey(p.born), yt: yTxt(p.born), cls: isDirect ? "fam" : "kin", type: "b", who: [p.id], t: `<span class="tag">ur.</span>${nm}${p.born.place ? ", " + esc(p.born.place) : ""}` });
       if (p.died && p.died.y) {
         const age = p.born && p.born.y ? p.died.y - p.born.y : null;

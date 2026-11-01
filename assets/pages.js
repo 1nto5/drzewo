@@ -9,7 +9,7 @@
   const markFor = p => A.mark(p.gen === 1 && p.certainty === "ok" ? "me" : p.certainty);
 
   const card = t => `<li class="card">
-      <div class="card-kind"><span class="k">${esc(t.kind)}</span>${t.c ? A.certBadge(t.c) : ""}${t.year ? `<span>${t.year}</span>` : ""}${(t.people || []).length ? `<span>${t.people.map(id => A.plink(id, A.byId.get(id).given)).join(", ")}</span>` : ""}</div>
+      <div class="card-kind"><span class="k">${esc(t.kind)}</span>${t.c ? A.certBadge(t.c) : ""}${t.year ? `<span>${t.year}</span>` : ""}${(t.people || []).length ? `<span>${t.people.map(id => A.plink(id, A.byId.get(id).given) + (A.rel(id) ? ` <span class="rel">(${esc(A.rel(id))})</span>` : "")).join(", ")}</span>` : ""}</div>
       <h3>${esc(t.title)}</h3>
       <p>${esc(t.text)}</p>
       <div class="src">${A.actRefs(t.acts)}${A.srcLinks(t.sources)}</div>
@@ -20,7 +20,7 @@
     return `<li class="gen ${g.c}">
       <div class="yr">${esc(g.yr)}</div>
       <div class="body">
-        <div class="gn">pokolenie ${g.n}${g.n === 1 ? " · dziadkowie" : ""}</div>
+        <div class="gn">pokolenie ${g.n} · ${esc(A.genPl(g.n))} Adriana</div>
         <div class="couple"><a class="who" href="osoba.html?id=${m.id}">${esc(m.given + " " + (m.surname || ""))}</a><span class="x">×</span><span><a class="who" href="osoba.html?id=${w.id}">${esc(w.given)}</a>${w.maiden ? ` <span class="maiden">${esc(w.maiden)}</span>` : ""}</span></div>
         <p class="gen-sum">${esc(g.sum)}</p>
         <details><summary>szczegóły</summary><div class="more">${g.facts.map(f => `<p>${esc(f)}</p>`).join("")}${(g.more || []).map(f => `<p>${esc(f)}</p>`).join("")}${g.src ? `<p class="src">akty: ${esc(g.src)}</p>` : ""}</div></details>
@@ -56,7 +56,7 @@
   const LINE = { prosta: "linia prosta", boczna: "krewny", powinowaci: "powinowaty" };
   function relBlock(title, ids) {
     if (!ids.length) return "";
-    return `<div><h3>${title}</h3><ul>${ids.map(id => { const p = A.byId.get(id); return `<li>${markFor(p)}${A.plink(id)}${A.lifeShort(p) ? `<span class="yrs">${esc(A.lifeShort(p))}</span>` : ""}</li>`; }).join("")}</ul></div>`;
+    return `<div><h3>${title}</h3><ul>${ids.map(id => { const p = A.byId.get(id); return `<li>${markFor(p)}<span>${A.plink(id)}${A.rel(id) ? `<br><span class="rel">${esc(A.rel(id))}</span>` : ""}</span>${A.lifeShort(p) ? `<span class="yrs">${esc(A.lifeShort(p))}</span>` : ""}</li>`; }).join("")}</ul></div>`;
   }
   function peopleIndex(missing) {
     document.title = "Osoby — Drzewo Antosiaków";
@@ -100,6 +100,7 @@
     $("#main").innerHTML = `<section class="page-h person-h">
         <div class="gn">${g ? "pokolenie " + g.n + " · " : ""}${LINE[p.line]}</div>
         <div class="person-name"><h1>${esc(p.given + (p.surname ? " " + p.surname : ""))}</h1>${p.maiden ? `<span class="maiden">${esc(p.maiden)}</span>` : ""}</div>
+        ${A.rel(id) ? `<p class="relline">dla Adriana: ${esc(A.rel(id))}</p>` : ""}
         <div style="margin-top:10px">${A.certBadge(p.certainty)}${p.parentsCert ? ` &nbsp; <span class="badge">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}</span>` : ""}</div>
         ${life.length ? `<div class="life">${life.map(([a, b]) => `<div><b>${a}</b> ${esc(b)}</div>`).join("")}</div>` : ""}
         <p style="margin-top:16px"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>
@@ -192,9 +193,9 @@
     return `<h2>Rodzina w USA dziś</h2>
       <p class="intro">Ilu żyjących krewnych — potomków emigrantów z Połoni — wymieniają publiczne nekrologi ich krewnych z lat 2010–2025. Na stronie tylko liczby, bez imion i nazwisk. Stan „podany” — źródło przypisuje go tej osobie; „wnioskowany” — to stan zmarłego krewnego.</p>
       <dl class="stats" style="margin:8px 0 18px"><div><dt>żyjących krewnych</dt><dd>${T.total}</dd></div><div><dt>gałęzie</dt><dd>${T.branches}</dd></div><div><dt>niepewnych, niewliczonych</dt><dd>${T.uncertain}</dd></div></dl>
-      <div class="scroll"><table class="today"><thead><tr><th>Gałąź</th><th>Osób</th><th>Wspólni przodkowie z Adrianem</th><th>Stany</th><th>Źródła z lat</th></tr></thead><tbody>
-      ${T.rows.map(r => `<tr><td>${esc(r.branch)}</td><td>${r.count}</td><td>${esc(r.common)}</td><td>${esc(r.states)}</td><td>${esc(r.years)}</td></tr>`).join("")}
-      <tr><td><b>Razem</b></td><td><b>${T.total}</b></td><td></td><td>NC, MO, FL, IL, TN</td><td></td></tr>
+      <div class="scroll"><table class="today"><thead><tr><th>Gałąź</th><th>Osób</th><th>Kim są dla Adriana</th><th>Wspólni przodkowie z Adrianem</th><th>Stany</th><th>Źródła z lat</th></tr></thead><tbody>
+      ${T.rows.map(r => `<tr><td>${esc(r.branch)}</td><td>${r.count}</td><td>${esc(r.adrian || "")}</td><td>${esc(r.common)}</td><td>${esc(r.states)}</td><td>${esc(r.years)}</td></tr>`).join("")}
+      <tr><td><b>Razem</b></td><td><b>${T.total}</b></td><td></td><td></td><td>NC, MO, FL, IL, TN</td><td></td></tr>
       </tbody></table></div>
       ${listC(T.notes)}
       <p class="src">Stan na ${esc(T.asof)}. Kontakt z żyjącymi krewnymi nawiązuje się poza stroną.</p>`;
@@ -207,6 +208,7 @@
           <div class="act-head"><span class="act-title">${e.person ? A.plink(e.person, e.name) : esc(e.name)}</span>${A.certBadge(e.c)}${e.alias ? `<span class="act-meta">${esc(e.alias)}</span>` : ""}</div>
           <div class="life">${e.born ? `<div><b>ur.</b> ${esc(e.born)}</div>` : ""}${e.trip ? `<div><b>podróż</b> ${esc(e.trip)}</div>` : ""}${e.died ? `<div><b>zm.</b> ${esc(e.died)}</div>` : ""}</div>
           ${e.fate ? `<p class="act-tr">${esc(e.fate)}</p>` : ""}
+          ${(e.person && A.rel(e.person)) || e.adrian ? `<p class="relline small">dla Adriana: ${esc((e.person && A.rel(e.person)) || e.adrian)}</p>` : ""}
           ${e.rel ? `<p class="act-tr"><b>rodzina</b>${A.mark(e.rel.c)}${esc(e.rel.t)}</p>` : ""}
           <div class="act-links">${(e.sources || []).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join("")}</div>
         </div></li>`;
@@ -242,7 +244,7 @@
         <p class="status" style="margin-top:14px">${esc(G.status.replace(/\.$/, ""))}</p>
         ${A.legend()}</section>
       <h2>Rodzina babci</h2>
-      <ol class="gens">${[["dziadkowie babci", ["aleksander-sz", "katarzyna-sz"]], ["rodzice babci", ["wladyslaw-m", "zofia-m"]], ["babcia i dziadek", ["henryka", "marian"]]].map(([l, ids]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "babcia i dziadek" ? "me" : "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
+      <ol class="gens">${[["prapradziadkowie (dziadkowie babci)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
       <p class="src">źródło: relacja rodzinna, 2026 · bez dat i miejsc</p>
       <h2>Co wiemy</h2>${listC(G.known)}
       <h2>Nazwisko Mieszała</h2>${listC(G.surname)}

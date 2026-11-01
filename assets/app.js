@@ -45,6 +45,51 @@
   const direct = new Set();
   (function walk(ids) { for (const id of ids) { if (!id || direct.has(id)) continue; direct.add(id); walk(parents(id)); } })(["marian", "henryka"]);
 
+  /* ── pokrewieństwo z perspektywy Adriana ─────────
+     Adrian (wirtualny węzeł) = wnuk Mariana i Henryki. dist = liczba pokoleń od Adriana:
+     2 dziadek, 3 pradziadek, 4 prapradziadek, 5+ „(dist−2)× pradziadek”. Rodzica Adriana nie pokazujemy. */
+  const dist = new Map();
+  (function () { const q = [["marian", 2], ["henryka", 2]]; while (q.length) { const [id, d] = q.shift(); if (dist.has(id) && dist.get(id) <= d) continue; dist.set(id, d); for (const p of parents(id)) q.push([p, d + 1]); } })();
+  const ANC = (d, sex, c) => {
+    if (c === "pl") return d === 2 ? "dziadkowie" : d === 3 ? "pradziadkowie" : d === 4 ? "prapradziadkowie" : `${d - 2}× pradziadkowie`;
+    if (c === "plgen") return d === 2 ? "dziadków" : d === 3 ? "pradziadków" : d === 4 ? "prapradziadków" : `${d - 2}× pradziadków`;
+    const f = sex === "f";
+    const b = d === 2 ? (f ? ["babcia", "babci"] : ["dziadek", "dziadka"]) : d === 3 ? (f ? ["prababcia", "prababci"] : ["pradziadek", "pradziadka"])
+      : d === 4 ? (f ? ["praprababcia", "praprababci"] : ["prapradziadek", "prapradziadka"]) : (f ? [`${d - 2}× prababcia`, `${d - 2}× prababci`] : [`${d - 2}× pradziadek`, `${d - 2}× pradziadka`]);
+    return c === "gen" ? b[1] : b[0];
+  };
+  const genName = (n, sex) => {
+    if (sex === "f") return /ia$/.test(n) ? n.slice(0, -1) + "i" : /[kg]a$/.test(n) ? n.slice(0, -1) + "i" : /a$/.test(n) ? n.slice(0, -1) + "y" : n;
+    return /y$/.test(n) ? n.slice(0, -1) + "ego" : /ek$/.test(n) ? n.slice(0, -2) + "ka" : /er$/.test(n) ? n.slice(0, -2) + "ra" : /eł$/.test(n) ? n.slice(0, -2) + "ła" : n + "a";
+  };
+  const nameGen = id => { const p = byId.get(id); return p.genName || genName(p.given.split(" ")[0], p.sex); };
+  const relCache = new Map();
+  function relOf(id, depth = 0) {
+    if (!depth && relCache.has(id)) return relCache.get(id);
+    const p = byId.get(id); if (!p) return null;
+    const f = p.sex === "f";
+    let r = null;
+    if (dist.has(id)) { const d = dist.get(id); r = { nom: ANC(d, p.sex, "nom"), gen: ANC(d, p.sex, "gen"), kind: "anc", d }; }
+    else {
+      let best = null; const seen = new Set([id]); const q = [[id, 0]];
+      while (q.length) { const [x, b] = q.shift(); for (const par of parents(x)) { if (seen.has(par)) continue; seen.add(par); if (dist.has(par)) { const a = dist.get(par); if (!best || a < best.a || (a === best.a && b + 1 < best.b)) best = { x: par, a, b: b + 1 }; } else q.push([par, b + 1]); } }
+      if (best) {
+        const { x, a, b } = best;
+        const ancAt = t => { let cur = x; while (dist.get(cur) > t) { const nx = children(cur).find(c => dist.get(c) === dist.get(cur) - 1); if (!nx) return null; cur = nx; } return cur; };
+        const t = a - b;
+        if (b === 1 && a - 1 >= 2) { const c = ancAt(a - 1); if (c) { const tail = `${ANC(a - 1, byId.get(c).sex, "gen")} ${nameGen(c)}`; r = { nom: `${f ? "siostra" : "brat"} ${tail}`, gen: `${f ? "siostry" : "brata"} ${tail}`, kind: "sib" }; } }
+        if (!r && t >= 2) { const c = ancAt(t); if (c) { const deg = b - 1, st = deg > 1 ? ` ${deg}. stopnia` : ""; const tail = `${ANC(t, byId.get(c).sex, "gen")} ${nameGen(c)}`; r = { nom: `${f ? "kuzynka" : "kuzyn"}${st} ${tail}`, gen: `${f ? "kuzynki" : "kuzyna"}${st} ${tail}`, kind: "cousin" }; } }
+        if (!r) { const deg = Math.min(a, b) - 1, rem = Math.abs(a - b); const st = `${deg}. stopnia${rem ? `, ${rem}× ${f ? "usunięta" : "usunięty"}` : ""}`; r = { nom: `${f ? "kuzynka" : "kuzyn"} ${st}`, gen: `${f ? "kuzynki" : "kuzyna"} ${st}`, kind: "cousin" }; }
+      } else if (!depth) {
+        for (const s of spouses(id)) { const sr = relOf(s.id, 1); if (sr) { r = { nom: `${f ? "żona" : "mąż"} ${sr.gen}`, gen: `${f ? "żony" : "męża"} ${sr.gen}`, kind: "inlaw" }; break; } }
+      }
+    }
+    if (!depth) relCache.set(id, r);
+    return r;
+  }
+  const rel = id => { const r = relOf(id); return r ? r.nom : ""; };
+  const genPl = (n, c = "pl") => ANC(n + 1, "m", c);
+
   /* ── opis osoby ────────────────────────────────── */
   const fullName = p => {
     if (!p) return "";
@@ -88,10 +133,10 @@
     <li class="act" id="${esc(a.id)}">
       <div class="yr">${a.y}</div>
       <div>
-        <div class="act-head"><span class="act-kind">${esc(a.k)} · akt ${esc(a.no)}</span><span class="act-title">${esc(a.t)}</span><span class="act-meta">${a.parish ? "parafia " + esc(a.parish) : "pokolenie " + a.g}${reading(a) ? " · " + esc(reading(a)) : ""}</span></div>
+        <div class="act-head"><span class="act-kind">${esc(a.k)} · akt ${esc(a.no)}</span><span class="act-title">${esc(a.t)}</span><span class="act-meta">${a.parish ? "parafia " + esc(a.parish) : "pokolenie " + genPl(a.g, "plgen")}${reading(a) ? " · " + esc(reading(a)) : ""}</span></div>
         ${a.q ? `<p class="act-q" lang="pl">„${esc(a.q)}”</p>` : ""}
         <p class="act-tr"><b>${a.idx ? "indeks" : "po współczesnemu"}</b>${esc(a.tr)}</p>
-        ${opt.people !== false ? `<div class="act-people">${a.osoby.map(id => plink(id, shortName(byId.get(id)))).join("")}</div>` : ""}
+        ${opt.people !== false ? `<div class="act-people">${a.osoby.map(id => `<span>${plink(id, shortName(byId.get(id)))}${rel(id) ? ` <span class="rel">${esc(rel(id))}</span>` : ""}</span>`).join("")}</div>` : ""}
         <div class="act-links">${actLinks(a)}${opt.anchor ? `<a href="akty.html#${esc(a.id)}">w przeglądarce aktów</a>` : ""}</div>
       </div>
     </li>`;
@@ -135,6 +180,6 @@
   }
   chrome();
 
-  window.APP = { D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
+  window.APP = { rel, relOf, genPl, dist, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
     direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
 })();
