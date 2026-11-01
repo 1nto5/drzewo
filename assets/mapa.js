@@ -16,7 +16,7 @@
   const MAIN = proj({ w: 20.35, e: 21.95, s: 52.93, n: 54.14, mid: 53.5 }, 360);
   const ZOOM = {
     polon: { title: "A · okolice Połoni", p: proj({ w: 20.84, e: 21.12, s: 53.11, n: 53.31, mid: 53.2 }, 200) },
-    nw: { title: "B · okolice Nowej Wsi", p: proj({ w: 21.52, e: 21.81, s: 52.99, n: 53.165, mid: 53.1 }, 200) },
+    nw: { title: "B · okolice Nowej Wsi", p: proj({ w: 21.20, e: 21.50, s: 52.96, n: 53.16, mid: 53.06 }, 200) },
   };
   const USA = proj({ w: -95.5, e: -66.5, s: 24.5, n: 44.5, mid: 35 }, 360);
   const pts = (P, list) => list.map(([lo, la]) => `${P.x(lo).toFixed(1)},${P.y(la).toFixed(1)}`).join(" ");
@@ -131,7 +131,7 @@
   /* podpisy na mapie głównej: [dx, dy, anchor, tekst?] */
   const LAB = {
     polon: [8, 4, "start"], chorzele: [-8, 4, "end"], jednorozec: [7, 11, "start"], przasnysz: [7, 4, "start"],
-    ostroleka: [-7, 14, "end"], "nowa-wies": [4, 17, "middle", "Nowa Wieś"], myszyniec: [8, 8, "start"], dabrowy: [8, -2, "start"],
+    ostroleka: [8, 16, "start"], "nowa-wies": [0, 17, "middle", "Nowa Wieś"], myszyniec: [8, 8, "start"], dabrowy: [8, -2, "start"], stylagi: [-8, 4, "end"],
     szymany: [-8, 4, "end"], szczytno: [-8, 4, "end"], pilec: [8, 4, "start", "Pilec\n(k. Świętej Lipki)"], mragowo: [7, 4, "start"],
     prusy: [0, -8, "middle", "Prusy\n(saksy\n1906–08)"], mazury: [0, 0, "middle", "Mazury ?\n(hipoteza)"],
   };
@@ -171,7 +171,7 @@
   }
   const ZLAB = {
     polon: { polon: [8, 4, "start"], chorzele: [9, 4, "start"], jednorozec: [0, 15, "middle"], budki: [-8, 4, "end"], laz: [0, -9, "middle"], olszewka: [0, 15, "middle"], raszujka: [8, 4, "start"], zagaty: [0, -9, "middle"] },
-    nw: { ostroleka: [6, 16, "start"], "nowa-wies": [8, 4, "start", "Nowa Wieś"], chojniki: [-8, 4, "end"], mostowo: [-8, 4, "end"], grabowek: [-8, 4, "end"] },
+    nw: { "nowa-wies": [0, 17, "middle", "Nowa Wieś"], chojniki: [7, 4, "start"], mostowo: [7, 4, "start"], grabowek: [-7, 4, "end"], rzaniec: [-7, 4, "end"], wyszel: [0, -8, "middle"], sypniewo: [8, 4, "start"], grabowo: [8, 4, "start", "Grabowo"] },
   };
   function zoomMap(key) {
     const Z = ZOOM[key], P = Z.p, b = P.b;
@@ -179,7 +179,7 @@
     const km = 5, kmPx = km / (111.32 * Math.cos(b.mid * Math.PI / 180)) * (P.x(b.e) / (b.e - b.w));
     const scale = `<g class="sc"><line x1="8" x2="${8 + kmPx}" y1="${P.H - 8}" y2="${P.H - 8}"/><text x="${8 + kmPx + 4}" y="${P.H - 5}">${km} km</text></g>`;
     const riv = key === "polon" ? `<polyline points="${pts(P, ORZYC)}" class="river"/><text x="${P.x(20.925) - 4}" y="${P.y(53.29)}" text-anchor="end" class="rt">Orzyc</text>`
-      : `<polyline points="${pts(P, NAREW)}" class="river"/><text x="${P.W - 4}" y="${P.y(53.13) - 4}" text-anchor="end" class="rt">Narew</text>`;
+      : `<polyline points="${pts(P, NAREW)}" class="river"/><text x="${P.W - 4}" y="${P.y(52.975)}" text-anchor="end" class="rt">Narew</text>`;
     const dots = inside.map(p => { const [dx, dy, an, t] = ZLAB[key][p.id] || [7, 4, "start"]; return marker("z-" + p.id, P.x(p.lon), P.y(p.lat), p.kind, t || p.name, dx, dy, an, { aria: p.name, hit: 11 }); }).join("");
     return `<figure class="mp-fig"><figcaption>${esc(Z.title)}</figcaption><svg class="mp-svg mp-zoom" viewBox="0 0 ${P.W} ${P.H}" role="group" aria-label="${esc(Z.title)}">
       <rect width="${P.W}" height="${P.H}" class="bg"/>${riv}${dots}${scale}</svg></figure>`;
@@ -213,9 +213,9 @@
     </div>`;
   const allList = `<h2>Wszystkie miejsca</h2><div class="chips mp-chips" role="group" aria-label="Wszystkie miejsca">${PL.map(p => `<button type="button" class="chip" data-id="${esc(p.id)}" aria-pressed="false">${esc(p.name.replace(/\s*\(.*\)$/, ""))}${count(p) ? ` <span class="muted">${count(p)}</span>` : ""}</button>`).join("")}${US.map(u => `<button type="button" class="chip" data-id="${u.id}" aria-pressed="false">${esc(u.lab[0])}</button>`).join("")}</div>`;
   const about = `<h2>O mapie</h2><ul class="facts">
-      <li>Mapa jest schematyczna: rzut prostokątny ze współrzędnych geograficznych, bez podkładu. Współrzędne są przybliżone, z wiedzy ogólnej — miasta z dokładnością ok. 1 km, małe wsie (Budki, Łaz, Olszewka, Raszujka, Zagaty, Chojniki, Mostowo, Grabówek, Nowa Wieś, Dąbrowy, Pilec) tylko orientacyjnie, ±3–5 km.</li>
+      <li>Mapa jest schematyczna: rzut prostokątny ze współrzędnych geograficznych, bez podkładu. Współrzędne są przybliżone, z wiedzy ogólnej — miasta z dokładnością ok. 1 km, małe wsie (Budki, Łaz, Olszewka, Raszujka, Zagaty, Dąbrowy, Pilec) tylko orientacyjnie, ±3–5 km. Wsie strony babci (Nowa Wieś, Chojniki, Mostowo, Grabówek, Rżaniec, Wyszel, Sypniewo, Stylągi, Grabowo) wzięte z OpenStreetMap, ok. ±1 km.</li>
       <li>Narew, Orzyc i granica Prus Wschodnich (1772–1945, w tym miejscu do 1945 r.) narysowane w uproszczeniu, kilkoma punktami. Zarys wybrzeża USA też jest uproszczony.</li>
-      <li>Strzałka „Mazury ?” to hipoteza: rodzina babci kiedyś przeniosła się z okolic Nowej Wsi na Mazury, ale nie wiemy kiedy ani dokąd. Strzałka „Prusy (saksy)” pokazuje tylko kierunek — miejsce pracy w Prusach jest nieznane.</li>
+      <li>Strzałka „Mazury ?” (Kurpie → Mazury, może Szczytno i Szymany) to hipoteza: rodzina babci przeniosła się z okolic Nowej Wsi na Mazury, ale nie wiemy kiedy ani dokąd. Strzałka „Prusy (saksy)” pokazuje tylko kierunek — miejsce pracy w Prusach jest nieznane.</li>
       <li>Osoby przypisuje się do miejsc po nazwach w danych drzewa (miejsce urodzenia, ślubu, zgonu), po parafii aktu i po tekstach osi czasu. Osoby żyjące i dziadkowie nie mają miejsc.</li>
     </ul>`;
 

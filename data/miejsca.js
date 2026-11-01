@@ -1,8 +1,9 @@
 /* MIEJSCA na mapie rodu (mapa.html). Nowe miejsce = nowy obiekt w DRZEWO.places. Pola:
      id      unikalny, ASCII, kebab-case (kotwica mapa.html#<id>)
      name    nazwa wyświetlana
-     lon/lat długość i szerokość geograficzna (stopnie dziesiętne). Wszystkie PRZYBLIŻONE — z wiedzy
-             ogólnej, nie z mapy geodezyjnej; miasta ±1 km, małe wsie ±3–5 km (pole approx).
+     lon/lat długość i szerokość geograficzna (stopnie dziesiętne). Źródło dla wsi strony babci, Sypniewa, Stylągów i Grabowa: OpenStreetMap/Nominatim
+             (sprawdzone 2026-11-01; zgodne z Wikipedią co do gminy i powiatu), ±1 km. Pozostałe — z wiedzy ogólnej,
+             miasta ±1 km, małe wsie ±3–5 km (pole approx).
      approx  true = położenie małej wsi tylko orientacyjne (±3–5 km)
      kind    "dom" (wieś rodziny) | "parafia" | "miasto" (punkt orientacyjny) | "cel" (dokąd wyjechali) | "wojna"
              | "region" (sam podpis, bez kropki — kierunek, nie konkretna miejscowość)
@@ -43,18 +44,24 @@ DRZEWO.places = [
   /* ── rodzina babci: okolice Ostrołęki, Kurpie ────── */
   { id: "ostroleka", name: "Ostrołęka", lon: 21.575, lat: 53.085, kind: "miasto", map: "main", re: "Ostrołęk(?!i\\b)",
     note: "Miasto nad Narwią; punkt orientacyjny dla parafii Nowa Wieś." },
-  { id: "nowa-wies", name: "Nowa Wieś k. Ostrołęki", lon: 21.70, lat: 53.06, kind: "parafia", map: "main", approx: true, match: ["Nowa Wieś k. Ostrołęki"], parish: "Nowa Wieś k. Ostrołęki", re: "Nowej Wsi|Nowa Wieś",
-    note: "Parafia rodziny Szczepanków — dziadków babci od strony matki. Tu w 1909 r. ślub Aleksandra i Katarzyny, w 1913 r. chrzest Zofii." },
-  { id: "chojniki", name: "Chojniki", lon: 21.75, lat: 53.10, kind: "dom", map: "zoom", approx: true, match: ["Chojniki"], re: "Chojnik",
-    note: "Wieś Szczepanków w parafii Nowa Wieś." },
-  { id: "rzaniec", name: "Rżaniec", lon: 21.73, lat: 53.15, kind: "dom", map: "zoom", approx: true, match: ["Rżaniec"], re: "Rżań|Rżaniec",
+  { id: "nowa-wies", name: "Nowa Wieś k. Ostrołęki", lon: 21.4126, lat: 53.0855, kind: "parafia", map: "main", match: ["Nowa Wieś k. Ostrołęki"], parish: "Nowa Wieś k. Ostrołęki", re: "Nowej Wsi|Nowa Wieś",
+    note: "Parafia rodziny Szczepanków — dziadków babci od strony matki. Ok. 10 km na zachód od Ostrołęki. Tu w 1909 r. ślub Aleksandra i Katarzyny w drewnianym kościele i w 1913 r. chrzest Zofii; na cmentarzu w Nowej Wsi chowano też zabitych w czasie okupacji." },
+  { id: "chojniki", name: "Chojniki", lon: 21.3800, lat: 53.1175, kind: "dom", map: "zoom", match: ["Chojniki"], re: "Chojnik",
+    note: "Wieś Szczepanków w parafii Nowa Wieś (gmina Sypniewo). Tu 6/19 stycznia 1913 r. urodziła się Zofia, matka babci." },
+  { id: "rzaniec", name: "Rżaniec", lon: 21.3194, lat: 53.0919, kind: "dom", map: "zoom", match: ["Rżaniec"], re: "Rżań|Rżaniec",
     note: "Wieś w parafii Nowa Wieś; stąd pochodziła Marianna z Płocharczyków, babka Zofii. Mieszkali tu też Mieszałowie." },
-  { id: "wyszel", name: "Wyszel", lon: 21.69, lat: 53.09, kind: "dom", map: "zoom", approx: true, match: ["Wyszel", "Wyszel albo Chojniki"], re: "Wyszel|Wyszl",
+  { id: "wyszel", name: "Wyszel", lon: 21.3805, lat: 53.1350, kind: "dom", map: "zoom", match: ["Wyszel", "Wyszel albo Chojniki"], re: "Wyszel|Wyszl",
     note: "Dawna „Ruda Wesliowa” (1582). Według jednego aktu tu urodził się Franciszek Szczepanek, dziadek Zofii." },
-  { id: "mostowo", name: "Mostowo", lon: 21.66, lat: 53.03, kind: "dom", map: "zoom", approx: true, match: ["Mostowo"], re: "Mostow",
+  { id: "mostowo", name: "Mostowo", lon: 21.3710, lat: 53.1015, kind: "dom", map: "zoom", match: ["Mostowo"], re: "Mostow",
     note: "Wieś w parafii Nowa Wieś; stąd pochodziła Katarzyna z Radziejewskich." },
-  { id: "grabowek", name: "Grabówek", lon: 21.73, lat: 53.13, kind: "dom", map: "zoom", approx: true, re: "Grabów",
-    note: "Wieś Mieszałów w parafii Nowa Wieś — trop do ojca babci (hipoteza, zob. strona Babcia)." },
+  { id: "grabowek", name: "Grabówek", lon: 21.3312, lat: 53.1154, kind: "dom", map: "zoom", match: ["Grabówek"], re: "Grabów",
+    note: "Wieś Mieszałów w parafii Nowa Wieś, w gminie Sypniewo; żyli tu od ok. 1848 r. W 1904 r. urodziło się tu dwóch Władysławów Mieszałów — trop do ojca babci (dwie ścieżki, A i B; hipoteza, zob. strona Babcia)." },
+  { id: "sypniewo", name: "Sypniewo", lon: 21.3064, lat: 53.0052, kind: "miasto", map: "zoom", re: "Sypniew",
+    note: "Siedziba gminy, do której należały Grabówek, Chojniki, Wyszel i Mostowo. W czasie okupacji Amtsbezirk Sypniewo w Landkreis Mackeim, z posterunkiem żandarmerii." },
+  { id: "stylagi", name: "Stylągi", lon: 21.7487, lat: 52.9822, kind: "dom", map: "main", match: ["Stylągi"], re: "Styląg",
+    note: "Wieś w parafii Czerwin (gmina Czerwin), na południowy wschód od Ostrołęki. 4 sierpnia 1915 r. urodził się tu Eugeniusz Mieszała „w czasie ruchu wojennego” — rodzina uciekała przed frontem." },
+  { id: "grabowo", name: "Grabowo k. Krasnosielca", lon: 21.2178, lat: 53.0826, kind: "wojna", map: "zoom", re: "Grabow[ie]",
+    note: "Wieś w gminie Krasnosielc. 8 stycznia 1943 r. zginął tu żandarm, 9 stycznia Niemcy rozstrzelali 7 mężczyzn z Grabowa, a 12 stycznia zabrali zakładników z sąsiednich wsi, m.in. z Wyszla i Rżańca (odwet; Mieszały wśród znanych ofiar nie ma). Nie mylić z Grabówkiem." },
   { id: "myszyniec", name: "Myszyniec", lon: 21.35, lat: 53.38, kind: "parafia", map: "main", parish: "Myszyniec", re: "Myszyni",
     note: "Stolica Puszczy Zielonej, parafia kurpiowska. Drugi trop Mieszałów." },
   { id: "dabrowy", name: "Dąbrowy", lon: 21.42, lat: 53.46, kind: "dom", map: "main", approx: true, re: "Dąbrow",
@@ -94,5 +101,5 @@ DRZEWO.migrations = [
   { from: "pilec", to: "szymany", label: "potem na stałe", who: "Wincenty i Eleonora", c: "prawd" },
   { from: "polon", to: "usa", label: "do USA: 1903, 1905, 1907, 1913", who: "emigranci z Połoni", c: "ok" },
   { from: "nowa-wies", to: "prusy", label: "saksy 1906–1908", who: "Aleksander i Katarzyna Szczepankowie", c: "ok" },
-  { from: "nowa-wies", to: "mazury", label: "kiedy? hipoteza", who: "rodzina babci (Szczepankowie, Mieszałowie)", c: "hyp" },
+  { from: "nowa-wies", to: "mazury", label: "po wojnie? hipoteza", who: "rodzina babci (Kurpie → Mazury: Szczytno, Szymany?)", c: "hyp" },
 ];
