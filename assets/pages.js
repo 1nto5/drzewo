@@ -168,7 +168,7 @@
     if (opt.bare) return diagram;
     return `<h2>${title}</h2>
       <p class="intro">${esc(A.fullName(A.byId.get(id)))} to ${esc(A.rel(id))}. Poniżej ścieżka od ${K.kind === "dbl" ? "tej osoby " + A.TO + " — dwiema liniami, które łączą się niżej w drzewie" : K.kind === "anc" ? "tej osoby " + A.TO : K.spouse ? "małżonka tej osoby " + A.TO + " przez wspólnego przodka" : "wspólnego przodka do tej osoby i " + A.TO}.</p>
-      ${diagram}${alt}${TWO.has(id) ? `<p class="small" style="margin-top:8px"><a href="dwie-linie.html">Dwa razy od Pawła i Jadwigi — opisane dokładniej →</a></p>` : ""}`;
+      ${diagram}${alt}${TWO.has(id) ? `<p class="small mt-2"><a href="dwie-linie.html">Dwa razy od Pawła i Jadwigi — opisane dokładniej →</a></p>` : ""}`;
   }
   const TWO = new Set(["pawel", "jadwiga", "adam-p", "ewa-antosiak-debek", "wincenty", "eleonora"]);
 
@@ -202,18 +202,18 @@
         <div class="gn">${g ? "pokolenie " + g.n + " · " : ""}${LINE[p.line]}</div>
         <div class="person-name"><h1>${esc(p.given + (p.surname ? " " + p.surname : ""))}</h1>${p.maiden ? `<span class="maiden">${esc(p.maiden)}</span>` : ""}</div>
         ${A.rel(id) ? `<p class="relline">${A.FOR}: ${esc(A.rel(id))}</p>` : ""}
-        <p class="small" style="margin-top:6px"><button class="toggle" type="button" data-contribute='${esc(JSON.stringify({ type: "osoba", id }))}'>[ wiesz coś o tej osobie? dodaj informację lub zdjęcie ]</button></p>
-        <div style="margin-top:10px">${A.certBadge(p.certainty)}${p.parentsCert ? ` &nbsp; <span class="badge">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}</span>` : ""}</div>
+        <p class="small mt-2"><button class="toggle" type="button" data-contribute='${esc(JSON.stringify({ type: "osoba", id }))}'>[ wiesz coś o tej osobie? dodaj informację lub zdjęcie ]</button></p>
+        <div class="mt-3">${A.certBadge(p.certainty)}${p.parentsCert ? ` &nbsp; <span class="badge">${A.mark(p.parentsCert)}powiązanie z rodzicami: ${A.CERT[p.parentsCert]}</span>` : ""}</div>
         ${life.length || p.burial ? `<div class="life">${life.map(([a, b]) => `<div><b>${a}</b> ${esc(b)}</div>`).join("")}${p.burial ? `<div><b>pochówek</b><span class="burials">${A.burial(p.burial)}</span></div>` : ""}</div>` : ""}
-        <p style="margin-top:16px"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>
+        <p class="mt-4"><a class="btn" href="drzewo.html?id=${encodeURIComponent(id)}${p.line === "prosta" ? "" : "&tryb=wszyscy"}">Pokaż w drzewie</a></p>
       </section>
       ${kinship(id)}
       <h2>Rodzina</h2>
-      <div class="rel">${(alts.length ? "" : relBlock("Rodzice", A.parents(id))) + relBlock("Małżonkowie", A.spouses(id).map(s => s.id)) + relBlock("Dzieci", A.children(id)) + (alts.length ? "" : relBlock("Rodzeństwo", A.siblings(id))) || `<p class="muted">Brak znanych krewnych w drzewie.</p>`}</div>
+      <div class="rels">${(alts.length ? "" : relBlock("Rodzice", A.parents(id))) + relBlock("Małżonkowie", A.spouses(id).map(s => s.id)) + relBlock("Dzieci", A.children(id)) + (alts.length ? "" : relBlock("Rodzeństwo", A.siblings(id))) || `<p class="muted">Brak znanych krewnych w drzewie.</p>`}</div>
       ${alts.length ? `<h2>${alts.length === 2 ? "Dwie możliwe ścieżki" : "Możliwe ścieżki"}</h2>
         <p class="intro">Rodziców nie rozstrzygnięto. ${alts.map(a => `${esc(a.label)}: ${a.parents.map(pid => A.plink(pid, A.byId.get(pid).given)).join(" i ")}`).join("; ")} — ${alts.every(a => a.c === "prawd") ? "obie prawdopodobne" : "zob. ocenę"}. Krewni z obu ścieżek mają przy pokrewieństwie dopisek ścieżki.</p>
         ${pathsTable(id)}
-        <div class="rel">${alts.map(a => relBlock(`Rodzice — ścieżka ${esc(a.key)}`, a.parents) + relBlock(`Rodzeństwo — ścieżka ${esc(a.key)}`, A.children(a.parents[0]).filter(c => c !== id))).join("")}</div>` : ""}
+        <div class="rels">${alts.map(a => relBlock(`Rodzice — ścieżka ${esc(a.key)}`, a.parents) + relBlock(`Rodzeństwo — ścieżka ${esc(a.key)}`, A.children(a.parents[0]).filter(c => c !== id))).join("")}</div>` : ""}
       ${(p.facts || []).length ? `<h2>Fakty</h2><ul class="facts">${p.facts.map(f => `<li>${A.fact(f)}</li>`).join("")}</ul>` : ""}
       ${g ? `<h2>Pokolenie ${g.n}</h2><ul class="facts">${g.facts.map(f => `<li>${esc(f)}</li>`).join("")}</ul>${g.more ? `<details><summary>szczegóły z aktów</summary><div class="more">${g.more.map(m => `<p>${esc(m)}</p>`).join("")}</div></details>` : ""}${g.src ? `<div class="src">akty: ${esc(g.src)}</div>` : ""}` : ""}
       ${ev.length > 1 ? `<h2>Oś życia</h2><ol class="lifeline">${ev.map(e => `<li class="${e.own ? "own" : ""}"><span class="y">${e.y}</span>${e.t}${e.own || e.hist ? "" : ""}${!e.own ? age(e.y) : ""}</li>`).join("")}</ol>` : ""}
@@ -254,7 +254,7 @@
       <h2>Skąd wiemy</h2>
       <p class="intro">Powiązanie dwóch linii opiera się na kilku aktach. Kluczowe jest to, że ${P("adam-p")}, mąż Marianny Samsłówny, był synem Pawła i Jadwigi — a jego córką była Ewa Dębkowa.</p>
       <ol class="acts">${sources.map(a => A.actHTML(a, { anchor: true })).join("")}</ol>
-      <ul class="facts" style="margin-top:14px">
+      <ul class="facts mt-3">
         <li>${A.mark("ok")}Chrzest Ewy (1810) podaje jej rodziców: Adama Antosiaka i Mariannę Samsłównę.</li>
         <li>${A.mark("ok")}Zgon Adama (1832) mówi, że był synem Pawła i Jadwigi. Skorowidz z 1759 r. zapisuje Kacpra jako dziecko Pawła i Jadwigi, więc obaj są braćmi.</li>
         <li>${A.mark("ok")}Zgon Ewy (1880) potwierdza, że była córką Adama i Marianny, a chrzest Grzegorza (1847) — że Ewa była żoną Józefa Dębka i matką Grzegorza, dziadka Eleonory.</li>
@@ -266,7 +266,7 @@
         <p>To zupełnie normalne w małych wsiach. Przez setki lat żeniło się tu kilka tych samych rodzin: Antosiakowie, Dębkowie, Kutowie, Chudzikowie, Bańkowie. Przy kilku pokoleniach odległości ludzie zwykle nie wiedzieli o pokrewieństwie — pięć pokoleń to dawno zapomniana rodzina.</p>
         <p>${A.certBadge("prawd")} Ciekawostka z ogólnej wiedzy, nie z aktów: według kodeksu prawa kanonicznego z 1917 r. małżeństwo blokowało pokrewieństwo tylko do bliższych stopni (mniej więcej do drugich kuzynów). Wincenty i Eleonora byli kuzynami 4. stopnia, więc w 1925 r. dyspensa raczej nie była potrzebna. W streszczeniu aktu ślubu (${A.actRefs(["s1925-40"])}) o dyspensie nie ma wzmianki.</p>
       </div>
-      <p class="small" style="margin-top:22px"><a href="ciekawostki.html">← Ciekawostki</a> · <a href="historie.html">Historie</a></p>`;
+      <p class="small mt-5"><a href="ciekawostki.html">← Ciekawostki</a> · <a href="historie.html">Historie</a></p>`;
     for (const k of document.querySelectorAll(".kin-scroll")) k.scrollLeft = (k.scrollWidth - k.clientWidth) / 2;
   }
 
@@ -346,7 +346,7 @@
   function todaySection(T) {
     return `<h2>Rodzina w USA dziś</h2>
       <p class="intro">Ilu żyjących krewnych — potomków emigrantów z Połoni — wymieniają publiczne nekrologi ich krewnych z lat 2010–2025. Na stronie tylko liczby, bez imion i nazwisk. Stan „podany” — źródło przypisuje go tej osobie; „wnioskowany” — to stan zmarłego krewnego.</p>
-      <dl class="stats" style="margin:8px 0 18px"><div><dt>żyjących krewnych</dt><dd>${T.total}</dd></div><div><dt>gałęzie</dt><dd>${T.branches}</dd></div><div><dt>niepewnych, niewliczonych</dt><dd>${T.uncertain}</dd></div></dl>
+      <dl class="stats stats-tight"><div><dt>żyjących krewnych</dt><dd>${T.total}</dd></div><div><dt>gałęzie</dt><dd>${T.branches}</dd></div><div><dt>niepewnych, niewliczonych</dt><dd>${T.uncertain}</dd></div></dl>
       <div class="scroll"><table class="today"><thead><tr><th>Gałąź</th><th>Osób</th><th>Kim są dla Adriana</th><th>Wspólni przodkowie z Adrianem</th><th>Stany</th><th>Źródła z lat</th></tr></thead><tbody>
       ${T.rows.map(r => `<tr><td>${esc(r.branch)}</td><td>${r.count}</td><td>${esc(r.adrian || "")}</td><td>${esc(r.common)}</td><td>${esc(r.states)}</td><td>${esc(r.years)}</td></tr>`).join("")}
       <tr><td><b>Razem</b></td><td><b>${T.total}</b></td><td></td><td></td><td>NC, MO, FL, IL, TN</td><td></td></tr>
@@ -371,7 +371,7 @@
     const placeRows = Object.keys(P).filter(k => !P[k].port).map(k => [k, all.filter(e => (e.places || []).includes(k))]).filter(([, v]) => v.length);
     $("#main").innerHTML = `<section class="page-h"><h1>Ameryka<span class="dot">.</span></h1>
         <p class="lead">Wątek emigracji: kto z Połoni wyjechał do USA, dokąd trafił i co z tego wiemy. Cel — odnaleźć ślady krewnych.</p>
-        <p class="status" style="margin-top:14px">poszukiwania w toku</p></section>
+        <p class="status mt-3">poszukiwania w toku</p></section>
       <h2>Co wiemy</h2>${listC(I.known)}
       <h2>Emigranci z Połoni</h2>
       <p class="intro">Połoń stoi w ich dokumentach: na liście pasażerów, w karcie poborowej albo w petycji o obywatelstwo.</p>
@@ -393,14 +393,14 @@
   /* ── babcia ────────────────────────────────────── */
   const shootingHTML = S => `<h2>${esc(S.title)}</h2>
       ${S.key ? `<div class="note key"><p>${A.mark(S.key.c)}<b>${esc(S.key.title)}</b> — ${esc(S.key.label || A.CERT[S.key.c])}</p>${S.key.t.map(t => `<p>${esc(t)}</p>`).join("")}${S.key.note ? `<p class="muted small">${esc(S.key.note)}</p>` : ""}</div>` : ""}
-      <div style="height:14px"></div>${listC(S.items)}
-      <p class="muted small" style="margin-top:12px">co to rozstrzygnie</p><ol class="todo">${S.resolve.map(t => `<li>${esc(t)}</li>`).join("")}</ol>
-      <p class="src" style="display:flex;flex-wrap:wrap;gap:2px 12px">${A.srcLinks(S.sources)}</p>`;
+      <div class="mt-3">${listC(S.items)}</div>
+      <p class="muted small mt-3">co to rozstrzygnie</p><ol class="todo">${S.resolve.map(t => `<li>${esc(t)}</li>`).join("")}</ol>
+      <p class="src row">${A.srcLinks(S.sources)}</p>`;
   function babcia() {
     const G = D.grandma;
     $("#main").innerHTML = `<section class="page-h"><h1>Babcia Henryka<span class="dot">.</span></h1>
         <p class="lead">Henryka z domu Mieszała, żona dziadka ${A.plink("marian", "Mariana")}, córka Władysława Mieszały i Zofii ze Szczepanków. Imiona rodziców i dziadków znamy z relacji rodzinnej; dokumenty prowadzą do parafii Nowa Wieś koło Ostrołęki. Rodzina Zofii jest ustalona; Władysław był synem Adama i Elżbiety z Gąsków. Formalnie potwierdzi to akt chrztu babci lub akt ślubu Władysława i Zofii (USC Olszewo-Borki).</p>
-        <p class="status" style="margin-top:14px">${esc(G.status.replace(/\.$/, ""))}</p>
+        <p class="status mt-3">${esc(G.status.replace(/\.$/, ""))}</p>
         ${A.legend()}</section>
       <h2>Rodzina babci</h2>
       <ol class="gens">${[["prapradziadkowie (rodzice Władysława)", A.parents("wladyslaw-m")], ["prapradziadkowie (rodzice Zofii)", ["aleksander-sz", "katarzyna-sz"]], ["pradziadkowie (rodzice babci)", ["wladyslaw-m", "zofia-m"]], ["dziadkowie", ["henryka", "marian"]]].map(([l, ids, c]) => { const nm = p => `<span><a class="who" href="osoba.html?id=${p.id}">${esc(p.given + (p.maiden || !p.surname ? "" : " " + p.surname))}</a>${p.maiden ? ` <span class="maiden">${esc(p.maiden)}</span>` : ""}</span>`; const [a, b] = ids.map(id => A.byId.get(id)); return `<li class="gen ${l === "dziadkowie" ? "me" : c || "ok"}"><div class="yr"></div><div class="body"><div class="gn">${l}</div><div class="couple">${nm(a)}<span class="x">×</span>${nm(b)}</div></div></li>`; }).join("")}</ol>
@@ -410,8 +410,8 @@
       <h2>Tropy</h2>
       ${G.leads.map(l => `<div class="note"><p>${A.mark(l.c)}<b>${esc(l.title)}</b> — ${A.CERT[l.c]}</p>
         <p class="muted small">co za tym przemawia</p>${listC(l.for)}
-        <p class="muted small" style="margin-top:8px">co przeciw</p>${listC(l.against)}
-        <p class="src" style="display:flex;flex-wrap:wrap;gap:2px 12px">${A.srcLinks(l.sources)}</p></div>`).join("")}
+        <p class="muted small mt-2">co przeciw</p>${listC(l.against)}
+        <p class="src row">${A.srcLinks(l.sources)}</p></div>`).join("")}
       ${G.shooting ? shootingHTML(G.shooting) : ""}
       <h2>Uwaga na imienniczki</h2>${listC(G.pitfalls)}
       <h2>Co to rozstrzygnie</h2><ol class="todo">${G.resolve.map(t => `<li>${esc(t)}</li>`).join("")}</ol>`;
@@ -422,7 +422,7 @@
     const GR = [["rodzina", "Rodzina"], ["archiwa", "Archiwa i indeksy"], ["kontekst", "Historia i kontekst"], ["ameryka", "Ameryka"], ["nazwiska", "Nazwiska"], ["robocze", "Materiały robocze"]];
     $("#main").innerHTML = `<section class="page-h"><h1>Źródła i metoda<span class="dot">.</span></h1>
         <p class="lead">Skąd pochodzą dane, jak je czytamy i oznaczamy oraz co zostało do sprawdzenia.</p></section>
-      <h2>Metoda</h2>${A.legend()}<div style="height:12px"></div>${listC(D.method)}
+      <h2>Metoda</h2>${A.legend()}<div class="mt-3">${listC(D.method)}</div>
       ${GR.map(([g, t]) => { const ss = D.sources.filter(s => s.group === g); return ss.length ? `<h2>${t}</h2><ul class="facts">${ss.map(s => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : esc(s.label)}</li>`).join("")}</ul>` : ""; }).join("")}
       <h2>Imiennicy i pułapki</h2>${listC(D.pitfalls)}
       <h2>Do zrobienia</h2><ol class="todo">${D.todo.map(t => `<li>${esc(t)}</li>`).join("")}</ol>`;

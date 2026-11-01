@@ -259,7 +259,7 @@
               <label>Twoje imię (opcjonalnie)<input id="v-name" maxlength="40" autocomplete="given-name" value="${V.def ? "" : esc(V.name)}"></label>
             </div>
             <p class="small muted">Wybór zostaje tylko w tej przeglądarce — nic nie jest wysyłane.</p>
-            <p><button class="btn" type="submit">Zapisz</button> <button class="btn" type="button" id="v-cancel">Anuluj</button> <span id="v-err" class="small"></span></p>
+            <p class="btns"><button class="btn" type="submit">Zapisz</button> <button class="btn" type="button" id="v-cancel">Anuluj</button> <span id="v-err" class="small"></span></p>
           </form></div>
         <div class="site-search" id="site-search" hidden><input id="ss-q" type="search" placeholder="Imię, nazwisko lub miejsce" autocomplete="off" aria-label="Szukaj na stronie"><div id="ss-out" aria-live="polite"></div></div>`;
       siteSearch(); viewerPicker();
@@ -346,9 +346,9 @@
     t = t || currentTarget();
     let dlg = document.getElementById("contrib");
     if (dlg) dlg.remove();
-    dlg = document.createElement("dialog"); dlg.id = "contrib"; dlg.className = "contrib";
+    dlg = document.createElement("dialog"); dlg.id = "contrib"; dlg.className = "contrib"; dlg.setAttribute("aria-labelledby", "contrib-h");
     dlg.innerHTML = `<form method="dialog" class="contrib-f">
-      <h2>Dodaj informację lub zdjęcie</h2>
+      <h2 id="contrib-h">Dodaj informację lub zdjęcie</h2>
       <p class="small muted">Dotyczy: <b>${esc(targetLabel(t) || "całej strony")}</b>. Zgłoszenie najpierw czytamy i sprawdzamy w aktach — na stronę nic nie trafia automatycznie.</p>
       <label>Co wiesz?<textarea name="tresc" rows="5" maxlength="5000" placeholder="np. daty, miejsca, kto z kim, wspomnienia, gdzie jest grób"></textarea></label>
       <label>Skąd to wiesz?<select name="skad"><option value="wspomnienie">wspomnienie rodzinne</option><option value="dokument">dokument</option><option value="nagrobek">nagrobek</option><option value="zdjecie">zdjęcie</option><option value="inne">inne</option></select></label>
@@ -358,7 +358,7 @@
       <label class="vrow small"><input type="checkbox" name="podziekowanie" value="1"> Można mi podziękować z imienia na stronie</label>
       <input name="www" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       <p class="small muted">Dane widzi tylko autor strony; służą wyłącznie do uzupełnienia drzewa. Nie publikujemy danych osób żyjących ani kontaktu.</p>
-      <p class="contrib-btns"><button class="btn" type="submit" value="send">Wyślij</button> <button class="btn" type="button" value="cancel" data-close>Anuluj</button> <span class="small" data-msg aria-live="polite"></span></p>
+      <p class="btns contrib-btns"><button class="btn" type="submit" value="send">Wyślij</button> <button class="btn" type="button" value="cancel" data-close>Anuluj</button> <span class="small" data-msg aria-live="polite"></span></p>
     </form>`;
     document.body.append(dlg);
     const f = dlg.querySelector("form"), msg = dlg.querySelector("[data-msg]");
@@ -378,7 +378,7 @@
       try {
         const r = await fetch(API, { method: "POST", body: fd }); const j = await r.json().catch(() => ({}));
         if (!r.ok) throw new Error(j.error || "Błąd " + r.status);
-        f.innerHTML = `<h2>Dziękujemy!</h2><p>Zgłoszenie dotarło. Sprawdzimy je w aktach i uzupełnimy drzewo.</p><p><button class="btn" type="button" data-close>Zamknij</button></p>`;
+        f.innerHTML = `<h2 id="contrib-h">Dziękujemy!</h2><p>Zgłoszenie dotarło. Sprawdzimy je w aktach i uzupełnimy drzewo.</p><p class="btns"><button class="btn" type="button" data-close>Zamknij</button></p>`;
         f.querySelector("[data-close]").addEventListener("click", () => dlg.close());
       } catch (x) { msg.textContent = "Nie udało się wysłać: " + x.message; btn.disabled = false; }
     });
@@ -413,7 +413,7 @@
         if (!res.every(re => re.test(all))) continue;
         hits.push({ it, score: res.filter(re => re.test(" " + it.k1)).length * 10 + (it.k1.startsWith(words[0]) ? 5 : 0) });
       }
-      if (!hits.length) { out.innerHTML = `<p class="muted">Nic nie znaleziono.</p>`; return; }
+      if (!hits.length) { out.innerHTML = `<p class="empty">Nic nie znaleziono.</p>`; return; }
       const groups = { Osoby: [], Akty: [], Historie: [], Ciekawostki: [] };
       for (const h of hits.sort((a, b) => b.score - a.score)) (groups[h.it.g] = groups[h.it.g] || []).push(h.it);
       out.innerHTML = Object.entries(groups).filter(([, l]) => l.length).map(([g, list]) => `<h3>${g} <span class="muted">${list.length}</span></h3><ul>${list.slice(0, 12).map(it =>

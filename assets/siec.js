@@ -91,7 +91,7 @@
     const p1 = bapt(1826, 1849), p2 = bapt(1850, 1865);
     return `<div class="prose"><p>W ${uniq(g.map(r => r.akt))} chrztach jest ${g.length} chrzestnych. Najczęściej byli to sąsiedzi z Połoni.</p></div>
     <div class="charts">${rows.map(([zw, v]) => `<div class="hb"><div class="hb-h"><span class="hb-l">${esc(zw)}</span><b class="hb-v">${v}</b></div>${bar(v, mx, `${zw}: ${v}`, zw === SL ? "" : "alt")}</div>`).join("")}</div>
-    <h3 style="margin:28px 0 4px">Ojciec chrzestny z kościoła</h3>
+    <h3 class="h3-sec">Ojciec chrzestny z kościoła</h3>
     <div class="prose"><p><b>W latach 1826–1849 ojcem chrzestnym był często organista albo sługa kościelny z Chorzel.</b> Organiści: Mikołaj Piekarski, Mikołaj Fiałkowski, Franciszek Cieciorski[?]; słudzy: Jan Kostrzewski, Marcin Jenański[?], Maciej Białobrzeski. Możliwe, że rodzina przychodziła do kościoła bez chrzestnego i brała go na miejscu (hipoteza). Po 1850 r. tak nie było ani razu — wtedy chrzestnymi byli zwykle krewni.</p></div>
     <div class="charts">
       <div class="hb"><div class="hb-h"><span class="hb-l">1826–1849 <span class="hb-n">chrzty z ojcem chrzestnym: ${p1.n}</span></span><b class="hb-v">${p1.org} z ${p1.n} — służba kościelna</b></div>${bar(p1.org, p1.n, `1826–1849: ${p1.org} z ${p1.n}`)}</div>
@@ -158,7 +158,7 @@
 
     <h2>Ród pomagał sobie sam</h2>
     <div class="prose"><p>${rod.length} z ${R.length} wpisów (${pc(rod.length, R.length)}) to sami Antosiakowie, w ${uniq(rod.map(r => r.akt))} aktach. Bracia zgłaszali zgon ojca: ${A.plink("wojciech-k", "Wojciech")} i ${A.plink("walenty", "Walenty")} przy zgonie ${A.plink("kacper", "Kacpra")} (D 174/1828), a przy zgonie matki ${A.plink("helena", "Heleny")} — Wojciech i ${A.plink("stanislaw-k", "Stanisław")} (D 99/1848). Walenty był chrzestnym wnuczki ${A.plink("anna-j", "Anny")} (B 109/1854).</p></div>
-    <h3 style="margin:24px 0 4px">Osoby najczęściej (bez służby kościelnej)</h3>
+    <h3 class="h3-sec">Osoby najczęściej (bez służby kościelnej)</h3>
     ${people()}
 
     <h2>Kto trzymał do chrztu</h2>
