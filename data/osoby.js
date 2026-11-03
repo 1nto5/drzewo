@@ -395,8 +395,8 @@ DRZEWO.people = [
     facts: [{ t: "Siostra Marcjanny; w 1897 r. wyszła za Adama Bączka — wg strony FB I. Antosiaka.", c: "prawd" }] },
 
   /* rodzeństwo Wincentego (dzieci Franciszka i Marcjanny) — indeks Geneteki; bez potomków, którzy mogą żyć */
-  { id: "katarzyna-f", given: "Katarzyna", surname: "Antosiak", sex: "f", line: "boczna", certainty: "ok", born: { y: 1892, place: "Połoń" }, parents: ["franciszek", "marcjanna-l"],
-    facts: ["Najstarsze dziecko Franciszka i Marcjanny — chrzest 274/1892 (indeks Geneteki)."] },
+  { id: "katarzyna-f", given: "Katarzyna", surname: "Antosiak", sex: "f", line: "boczna", certainty: "ok", born: { y: 1892, place: "Połoń" }, died: { y: 1894, date: "15/27.04.1894", place: "Połoń" }, parents: ["franciszek", "marcjanna-l"],
+    facts: ["Najstarsze dziecko Franciszka i Marcjanny — chrzest 274/1892 (indeks Geneteki).", "Zmarła w Połoni 15/27 kwietnia 1894 r., mając rok (akt 76/1894, po rosyjsku); zgon zgłosił ojciec Franciszek."] },
   { id: "jan-f", given: "Jan", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1897, place: "Połoń" }, parents: ["franciszek", "marcjanna-l"],
     facts: ["Chrzest 248/1897 (indeks Geneteki)."] },
   { id: "wladyslaw-f", given: "Władysław", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1900, place: "Połoń" }, died: { y: 1982 }, parents: ["franciszek", "marcjanna-l"],
@@ -538,7 +538,11 @@ DRZEWO.people = [
     facts: ["Brat prababci Eleonory: rekord PCK podaje ojca Adama i matkę z domu Obrębską, urodzonego w Połoni.", "Żołnierz 4 pułku piechoty. Od 5.10.1939 w niewoli niemieckiej (Modlin), Stalag I A Stablack koło Królewca, numer jeniecki 32112.", "Po wojnie pierwszy naczelnik OSP w Połoni (1949)."],
     refs: [{ label: "straty.pl — rekord jeniecki (PCK)", url: "https://straty.pl/" }] },
   { id: "antonina-prusik", given: "Antonina", surname: "Dębek", maiden: "z Prusików", sex: "f", line: "powinowaci", certainty: "ok", born: { y: 1912, approx: true },
-    facts: ["Córka Wojciecha Prusika i Franciszki z Kutów. W 1935 r. miała 23 lata, gdy wyszła za Wincentego Dębka, brata Eleonory (akt 25/1935).", "Siostra Eleonory z Prusików (zm. 1929), żony Franciszka Antosiaka — dwie siostry Prusikówny weszły do rodziny."] },
+    facts: ["Córka Wojciecha Prusika i Franciszki z Kutów. W 1935 r. miała 23 lata, gdy wyszła za Wincentego Dębka, brata Eleonory (akt 25/1935).", "Siostra Eleonory z Prusików (zm. 1929), żony Franciszka Antosiaka z innej gałęzi rodu — syna Wincentego i Marianny z Mierzejewskich (akt ślubu 5/1927)."] },
+  { id: "zofia-af", given: "Zofia", surname: "Antosiak", sex: "f", line: "boczna", certainty: "ok", born: { y: 1927, text: "ok. XI 1927", place: "Połoń" }, died: { y: 1928, date: "21.08.1928", place: "Połoń" }, parents: ["aleksander-f", "marianna-f"],
+    facts: ["Córka Aleksandra (brata pradziadka Wincentego) i Marianny z Folgów. Zmarła w Połoni 21 sierpnia 1928 r., mając 9 miesięcy (akt 86/1928)."] },
+  { id: "teofil-wf", given: "Teofil", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1930, text: "ok. IV 1930", place: "Połoń" }, died: { y: 1930, date: "13.08.1930", place: "Połoń" }, parents: ["wladyslaw-f", "marcjanna-pog"],
+    facts: ["Syn Władysława (brata pradziadka Wincentego, późniejszego wójta) i Marianny z Pogorzelskich. Zmarł w Połoni 13 sierpnia 1930 r., mając 4,5 miesiąca (akt 69/1930)."] },
   { id: "wincenty-stanislaw", given: "Wincenty Stanisław", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1926, text: "ok. VI 1926", place: "Połoń" }, died: { y: 1926, date: "4.09.1926", place: "Połoń" }, parents: ["wincenty", "eleonora"],
     facts: ["Pierwsze znane dziecko Wincentego i Eleonory. Zmarł w wieku 3 miesięcy (akt zgonu 97/1926). Zgon zgłosili Władysław Antosiak (26 lat — stryj, brat Wincentego) i Aleksander Antosiak (36 lat — wiek nie pasuje do brata Wincentego ur. 1902, może inny krewny).", "Kilkanaście dni później, 23.09.1926, zmarł jego dziadek Franciszek."] },
   /* ── Pokolenie 1: dziadkowie (bez dat i miejsc) ─────────────── */
