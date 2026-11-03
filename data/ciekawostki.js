@@ -156,8 +156,8 @@ DRZEWO.trivia = [
     sources: ["ijp-mieszala"] },
 
   /* ── hipotezy ── */
-  { title: "Sprawa żandarma Wendlera", kind: "hipoteza", year: 1943,
-    text: "W 1943 r. Niemcy zatrzymali w związku z zastrzeleniem żandarma Wendlera dwóch Antosiaków: Stanisława (ur. 11.12.1910) — „zastrzelonego podczas próby ucieczki” — i Czesława (ur. 29.10.1916), zwolnionego 26 czerwca, podejrzanego o kontakty z przemytnikami. Sprawę prowadziła żandarmeria z Jednorożca, więc byli prawdopodobnie z Połoni. Czy to bracia pradziadka Wincentego — hipoteza: strona FB wymienia wśród rodzeństwa Stanisława (choć z aktem chrztu z 1908 r.).",
+  { title: "Sprawa żandarma Wendlera", kind: "kontekst", year: 1943,
+    text: "W 1943 r. Niemcy zatrzymali w związku z zastrzeleniem żandarma Wendlera dwóch Antosiaków z Połoni: Stanisława (ur. 1910) — „zastrzelonego podczas próby ucieczki” — i Czesława (ur. 29.10.1916), zwolnionego 26 czerwca, podejrzanego o kontakty z przemytnikami. Akty chrztu (295/1910 i 124/1916) pokazują, że byli braćmi — synami Walentego Antosiaka i Marianny z Przybyłków — a nie braćmi pradziadka Wincentego. Czesław przeżył wojnę i zmarł w 1991 r. (adnotacja na marginesie aktu).",
     sources: ["straty", "fb-matecznik"] },
   { title: "Troje dzieci w jednym miesiącu", kind: "hipoteza", year: 1832, people: ["stanislaw-k"],
     text: "W czerwcu 1832 r. zmarło troje dzieci Stanisława, brata Walentego. Tyle zgonów w jednej rodzinie w ciągu miesiąca może wskazywać na chorobę zakaźną — ale akty nie podają przyczyny.",
