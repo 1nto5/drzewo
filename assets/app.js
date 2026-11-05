@@ -108,7 +108,8 @@
         const { x, a, b } = best; path = pathOf.get(x) || null;
         const ancAt = t => { let cur = x; while (dist.get(cur) > t) { const nx = children(cur).find(c => dist.get(c) === dist.get(cur) - 1); if (!nx) return null; cur = nx; } return cur; };
         const t = a - b;
-        if (b === 1 && a - 1 >= 2) { const c = ancAt(a - 1); if (c) { const tail = `${ANC(a - 1, byId.get(c).sex, "gen")} ${nameGen(c)}`; r = { nom: `${f ? "siostra" : "brat"} ${tail}`, gen: `${f ? "siostry" : "brata"} ${tail}`, kind: "sib" }; } }
+        if (b === 1 && a === 2) { const lbl = `${f ? "córka" : "syn"} ${GP.gen}`; r = { nom: lbl, gen: f ? "córki " + GP.gen : "syna " + GP.gen, kind: "sib" }; } /* dziecko dziadków = pokolenie rodziców odwiedzającego */
+        if (!r && b === 1 && a - 1 >= 2) { const c = ancAt(a - 1); if (c) { const tail = `${ANC(a - 1, byId.get(c).sex, "gen")} ${nameGen(c)}`; r = { nom: `${f ? "siostra" : "brat"} ${tail}`, gen: `${f ? "siostry" : "brata"} ${tail}`, kind: "sib" }; } }
         if (!r && t >= 2) { const c = ancAt(t); if (c) { const deg = b - 1, st = deg > 1 ? ` ${deg}. stopnia` : ""; const tail = `${ANC(t, byId.get(c).sex, "gen")} ${nameGen(c)}`; r = { nom: `${f ? "kuzynka" : "kuzyn"}${st} ${tail}`, gen: `${f ? "kuzynki" : "kuzyna"}${st} ${tail}`, kind: "cousin" }; } }
         if (!r) { const deg = Math.min(a, b) - 1, rem = Math.abs(a - b); const st = `${deg}. stopnia${rem ? `, ${rem}× ${f ? "usunięta" : "usunięty"}` : ""}`; r = { nom: `${f ? "kuzynka" : "kuzyn"} ${st}`, gen: `${f ? "kuzynki" : "kuzyna"} ${st}`, kind: "cousin" }; }
       } else if (!depth) {
@@ -240,7 +241,7 @@
     ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["historie.html", "Historie"], ["dwie-linie.html", "Dwie linie"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
     ["os-czasu.html", "Oś czasu"], ["mapa.html", "Mapa"], ["ciekawostki.html", "Ciekawostki"], ["kurpie.html", "Kurpie"],
     ["obrazy.html", "Obrazy"], ["siec.html", "Sieć"], ["statystyki.html", "Statystyki"], ["ameryka.html", "Ameryka"],
-    ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"], ["drzewo-mama.html", "Drzewo mamy"],
+    ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"], ["drzewo-mama.html", "Drzewo mamy"], ["drzewo-pac.html", "Drzewo Paców"],
   ];
   const here = (location.pathname.split("/").pop() || "index.html");
   function chrome() {

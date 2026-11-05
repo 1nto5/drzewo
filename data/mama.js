@@ -7,7 +7,7 @@ window.DRZEWO = {
   gp: { gen: "Ryszarda i Zofii", nom: "Ryszard i Zofia" },
   viewerKey: "aa_viewer_mama",
   personPage: "drzewo-mama.html",
-  pages: [["index.html", "Drzewo Antosiaków"], ["drzewo.html", "Drzewo taty"], ["drzewo-mama.html", "Drzewo mamy"], ["akty-mama.html", "Akty (mama)"], ["ciekawostki-mama.html", "Ciekawostki (mama)"]],
+  pages: [["index.html", "Drzewo Antosiaków"], ["drzewo.html", "Drzewo taty"], ["drzewo-mama.html", "Drzewo mamy"], ["drzewo-pac.html", "Drzewo Paców"], ["akty-mama.html", "Akty (mama)"], ["ciekawostki-mama.html", "Ciekawostki (mama)"]],
   actsPage: "akty-mama.html",
   triviaPage: "ciekawostki-mama.html",
   asof: "5 listopada 2026",

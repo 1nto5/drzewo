@@ -428,5 +428,5 @@
       <h2>Do zrobienia</h2><ol class="todo">${D.todo.map(t => `<li>${esc(t)}</li>`).join("")}</ol>`;
   }
 
-  ({ start, osoba, "dwie-linie": dwieLinie, akty, "akty-mama": akty, "ciekawostki-mama": ciekawostki, ciekawostki, ameryka, babcia, zrodla })[page]?.();
+  ({ start, osoba, "dwie-linie": dwieLinie, akty, "akty-mama": akty, "ciekawostki-mama": ciekawostki, "ciekawostki-pac": ciekawostki, ciekawostki, ameryka, babcia, zrodla })[page]?.();
 })();
