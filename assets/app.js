@@ -49,21 +49,24 @@
 
   // przodkowie dziadków = linia prosta
   const direct = new Set();
-  (function walk(ids) { for (const id of ids) { if (!id || direct.has(id)) continue; direct.add(id); walk(parents(id)); } })(["marian", "henryka"]);
+  (function walk(ids) { for (const id of ids) { if (!id || direct.has(id)) continue; direct.add(id); walk(parents(id)); } })(D.anchors || ["marian", "henryka"]);
 
   /* ── pokrewieństwo z perspektywy Adriana ─────────
      Adrian (wirtualny węzeł) = wnuk Mariana i Henryki. dist = liczba pokoleń od Adriana:
      2 dziadek, 3 pradziadek, 4 prapradziadek, 5+ „(dist−2)× pradziadek”. Rodzica Adriana nie pokazujemy. */
   /* Odwiedzający (V): domyślnie Adrian = 2 pokolenia pod Marianem i Henryką. Inny członek rodziny wybiera
      najbliższego przodka z drzewa (anchors) i ile pokoleń jest pod nim (k); zapis tylko w tej przeglądarce. */
-  const VDEF = { anchors: ["marian", "henryka"], k: 2, name: "", def: true };
+  /* Drugie drzewo (np. drzewo-mama.html) podaje w danych: anchors, gp ({ gen: "Ryszarda i Zofii", nom: "Ryszard i Zofia" }),
+     viewerKey, personPage, pages — dzięki temu oba drzewa mają osobne dane i osobny wybór odwiedzającego. */
+  const GP = D.gp || { gen: "Mariana i Henryki", nom: "Mariana i Henryki" }, VKEY = D.viewerKey || "aa_viewer", PPAGE = D.personPage || "osoba.html";
+  const VDEF = { anchors: D.anchors || ["marian", "henryka"], k: 2, name: "", def: true };
   let V = VDEF;
   try {
-    const s = JSON.parse(localStorage.getItem("aa_viewer") || "null");
+    const s = JSON.parse(localStorage.getItem(VKEY) || "null");
     if (s && Array.isArray(s.anchors) && s.anchors.length && s.anchors.every(a => byId.has(a)) && s.k >= 1 && s.k <= 12)
       V = { anchors: s.anchors, k: s.k | 0, name: String(s.name || "").slice(0, 40), def: false };
   } catch (e) {}
-  const FOR = V.def ? "dla wnuka Mariana i Henryki" : "dla Ciebie", TO = V.def ? "do wnuka Mariana i Henryki" : "do Ciebie";
+  const FOR = V.def ? "dla wnuka " + GP.gen : "dla Ciebie", TO = V.def ? "do wnuka " + GP.gen : "do Ciebie";
   const dist = new Map(), pathOf = new Map(); // pathOf: id przodka -> para z altParents (ścieżka A/B)
   (function () {
     const q = V.anchors.map(a => [a, V.k, null]);
@@ -157,7 +160,7 @@
 
   const rel = id => { const r = relOf(id); return r ? r.nom : ""; };
   const DESC = k => k === 1 ? "dziecko" : k === 2 ? "wnuk lub wnuczka" : k === 3 ? "prawnuk lub prawnuczka" : k === 4 ? "praprawnuk lub praprawnuczka" : `${k - 2}× prawnuk lub prawnuczka`;
-  const viewerDesc = () => V.def ? "wnuk lub wnuczka Mariana i Henryki" : `${DESC(V.k)} ${V.anchors.map(nameGen).join(" i ")}`;
+  const viewerDesc = () => V.def ? "wnuk lub wnuczka " + GP.gen : `${DESC(V.k)} ${V.anchors.map(nameGen).join(" i ")}`;
   const genPl = (n, c = "pl") => ANC(n + 1, "m", c);
 
   /* ── opis osoby ────────────────────────────────── */
@@ -197,7 +200,7 @@
     return `${mark(b.c)}${b.who ? `<span>${esc(b.who)}: </span>` : ""}<span>${where}</span>${links}${short ? "" : ` <span class="badge">${CERT[b.c] || ""}</span>`}${short || !b.note ? "" : `<span class="muted small"> · ${esc(b.note)}</span>`}`;
   };
   const burial = (b, short) => (Array.isArray(b) ? b : b ? [b] : []).map(x => `<span class="burial">${burial1(x, short)}</span>`).join("");
-  const plink = (id, txt) => { const p = byId.get(id); return p ? `<a href="osoba.html?id=${encodeURIComponent(id)}">${esc(txt || fullName(p))}</a>` : esc(txt || id); };
+  const plink = (id, txt) => { const p = byId.get(id); return p ? `<a href="${PPAGE}?id=${encodeURIComponent(id)}">${esc(txt || fullName(p))}</a>` : esc(txt || id); };
 
   /* ── akty ──────────────────────────────────────── */
   const SW = "https://www.szukajwarchiwach.gov.pl/jednostka/-/jednostka/";
@@ -237,7 +240,7 @@
     ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["historie.html", "Historie"], ["dwie-linie.html", "Dwie linie"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
     ["os-czasu.html", "Oś czasu"], ["mapa.html", "Mapa"], ["ciekawostki.html", "Ciekawostki"], ["kurpie.html", "Kurpie"],
     ["obrazy.html", "Obrazy"], ["siec.html", "Sieć"], ["statystyki.html", "Statystyki"], ["ameryka.html", "Ameryka"],
-    ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"],
+    ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"], ["drzewo-mama.html", "Drzewo mamy"],
   ];
   const here = (location.pathname.split("/").pop() || "index.html");
   function chrome() {
@@ -246,10 +249,10 @@
       el.innerHTML = `<header class="top"><a href="index.html"><span class="brand-host">adrianantosiak.pl/</span>drzewo</a>
         <span class="top-btns"><button class="toggle" id="search-btn" type="button" aria-expanded="false" aria-controls="site-search">[ szukaj ]</button><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
         <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></span></header>
-        <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${PAGES.map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>
-        <div class="viewer"><span>Pokrewieństwo liczone dla: <b>${V.def ? "wnuka lub wnuczki Mariana i Henryki" : esc(V.name ? V.name + " — " + viewerDesc() : viewerDesc())}</b></span> <button class="toggle" id="viewer-btn" type="button" aria-expanded="false" aria-controls="viewer-panel">[ zmień ]</button>
+        <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${(D.pages || PAGES).map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>
+        <div class="viewer"><span>Pokrewieństwo liczone dla: <b>${V.def ? "wnuka lub wnuczki " + GP.gen : esc(V.name ? V.name + " — " + viewerDesc() : viewerDesc())}</b></span> <button class="toggle" id="viewer-btn" type="button" aria-expanded="false" aria-controls="viewer-panel">[ zmień ]</button>
           <form class="viewer-panel" id="viewer-panel" hidden>
-            <label class="vrow"><input type="radio" name="vm" value="def"${V.def ? " checked" : ""}> Wnuk lub wnuczka Mariana i Henryki</label>
+            <label class="vrow"><input type="radio" name="vm" value="def"${V.def ? " checked" : ""}> Wnuk lub wnuczka ${GP.gen}</label>
             <label class="vrow"><input type="radio" name="vm" value="own"${V.def ? "" : " checked"}> Ktoś inny z rodziny</label>
             <div class="vown">
               <label>Twój najbliższy przodek, który jest w drzewie<input id="v-anc" list="v-list" type="search" autocomplete="off" placeholder="zacznij pisać imię lub nazwisko…"></label>
@@ -313,11 +316,11 @@
       e.preventDefault(); err.textContent = "";
       const mode = (f.querySelector('input[name="vm"]:checked') || {}).value;
       try {
-        if (mode === "def") localStorage.removeItem("aa_viewer");
+        if (mode === "def") localStorage.removeItem(VKEY);
         else {
           const id = idOf(inp.value); if (!id) { err.textContent = "Wybierz osobę z listy podpowiedzi."; return; }
           const anchors = [id, ...[...spBox.querySelectorAll("input:checked")].map(x => x.value)];
-          localStorage.setItem("aa_viewer", JSON.stringify({ anchors, k: +document.getElementById("v-k").value, name: document.getElementById("v-name").value.trim() }));
+          localStorage.setItem(VKEY, JSON.stringify({ anchors, k: +document.getElementById("v-k").value, name: document.getElementById("v-name").value.trim() }));
         }
       } catch (x) { err.textContent = "Przeglądarka nie pozwala zapisać wyboru."; return; }
       location.reload();
@@ -395,7 +398,7 @@
     let idx = null;
     const build = () => {
       const r = [];
-      for (const p of D.people || []) r.push({ g: "Osoby", h: "osoba.html?id=" + encodeURIComponent(p.id), t: fullName(p), sub: lifeShort(p),
+      for (const p of D.people || []) r.push({ g: "Osoby", h: PPAGE + "?id=" + encodeURIComponent(p.id), t: fullName(p), sub: lifeShort(p),
         k1: norm(fullName(p) + " " + (p.nick || "")), k2: norm([p.born && p.born.place, p.died && p.died.place, p.burial && p.burial.place, p.private ? "" : facts(p)].join(" ")) });
       for (const a of D.acts || []) r.push({ g: "Akty", h: "akty.html#" + a.id, t: a.t, sub: a.k + " " + a.y, k1: norm(a.t), k2: norm((a.q || "") + " " + (a.tr || "")) });
       for (const s of D.stories || []) r.push({ g: "Historie", h: "historie.html#" + s.id, t: s.title, sub: "", k1: norm(s.title), k2: norm(strip((s.paragraphs || []).join(" "))) });

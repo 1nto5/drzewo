@@ -363,7 +363,7 @@
       ${relList("Dzieci", A.children(id))}
       ${alts.length ? altBlocks : relList("Rodzeństwo", A.siblings(id))}
       ${acts.length ? `<div class="sec"><h3>Akty (${acts.length})</h3><ul class="act-mini">${acts.map(a => `<li><span class="k">${A.esc(a.k)}</span><a href="akty.html#${a.id}">${a.y} · ${A.esc(a.t)}</a></li>`).join("")}</ul></div>` : ""}
-      <p class="go"><a class="btn" href="osoba.html?id=${encodeURIComponent(id)}">Otwórz stronę osoby</a></p>`;
+      ${D.personPage ? "" : `<p class="go"><a class="btn" href="osoba.html?id=${encodeURIComponent(id)}">Otwórz stronę osoby</a></p>`}`;
   }
   function select(id, center) {
     if (!A.byId.get(id)) return;
