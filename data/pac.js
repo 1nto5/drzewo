@@ -21,6 +21,7 @@ window.DRZEWO = {
     { id: "ipn-1914", group: "archiwa", label: "Inwentarz archiwalny IPN, sygn. IPN GK 629/4466 — akta Gestapo Ciechanów: Józef Pac s. Józefa, ur. 12.04.1914", url: "https://inwentarz.ipn.gov.pl/print/pdf/node/5257148", short: "IPN GK 629/4466" },
     { id: "wiki-ksiezy-lasek", group: "kontekst", label: "Wikipedia — Księży Lasek (Fürstenwalde), gm. Rozogi", url: "https://pl.wikipedia.org/wiki/Ksi%C4%99%C5%BCy_Lasek", short: "Wikipedia: Księży Lasek" },
     { id: "wiki-pelty", group: "kontekst", label: "Wikipedia — Pełty (gm. Myszyniec)", url: "https://en.wikipedia.org/wiki/Pe%C5%82ty,_Masovian_Voivodeship", short: "Wikipedia: Pełty" },
+    { id: "kudrzycki", group: "kontekst", label: "Z. Kudrzycki, Rozogi — wieś mazurska a Kurpie, Zeszyty Naukowe Ostrołęckiego TN 10 (1996), s. 129–141", url: "https://bazhum.muzhp.pl/media/texts/zeszyty-naukowe-ostroeckiego-towarzystwa-naukowego/1996-tom-10/zeszyty_naukowe_ostroleckiego_towarzystwa_naukowego-r1996-t10-s129-141.pdf", short: "Kudrzycki 1996" },
     { id: "grobonet-nasiadka", group: "archiwa", label: "Grobonet — groby Nasiadków i Nasiadków w Szczytnie, Pieckach, Nidzicy i Pasymiu", url: "https://grobonet.com/wyszukiwanie?nazw=Nasiadka&wojewodztwo=warmi%C5%84sko-mazurskie", short: "Grobonet" },
   ],
   trivia: [
@@ -30,6 +31,9 @@ window.DRZEWO = {
     { title: "Z Pełt na Kurpiach — przez Księży Lasek — do Świętajna", kind: "fakt o rodzinie", c: "ok", year: 1940, people: ["jozef-pac"],
       text: "Józef Pac urodził się 15 maja 1925 r. w Pełtach, kurpiowskiej wsi ok. 9 km na zachód od Myszyńca, jako syn Ignacego i Anny. W marcu 1940 r. — miał wtedy 14 lat — trafił na roboty przymusowe do gospodarstwa w Księżym Lasku (niem. Fürstenwalde), wsi tuż za dawną granicą Prus Wschodnich, przy drodze z Rozóg na Myszyniec. Pracował tam w rolnictwie do stycznia 1945 r., czyli do przyjścia frontu. Po wojnie został na Mazurach — w powiecie szczycieńskim, w Świętajnie.",
       sources: ["straty", "wiki-ksiezy-lasek", "wiki-pelty"] },
+    { title: "Pełty i Księży Lasek: dwie strony dawnej granicy", kind: "kontekst", c: "ok", year: 1930, people: ["jozef-pac", "ignacy-pac"],
+      text: "Między wojnami tuż obok Pełt biegła granica polsko-niemiecka. Po polskiej stronie punkty kontrolne Straży Granicznej stały w Dąbrowach i w Pełtach, a po pruskiej był punkt celny w Księżym Lasku. Kurpie od XIX w. jeździli sezonowo na Mazury do żniw, sianokosów i wykopków, a na pograniczu kwitł przemyt. W czasie wojny okupant kierował Kurpiów do przymusowej pracy po drugiej stronie dawnej granicy; wielu wolało pracować u znajomych Mazurów, niż trafić w głąb Niemiec. Tak 14-letni Józef z Pełt znalazł się w gospodarstwie w Księżym Lasku.",
+      sources: ["kudrzycki", "straty", "wiki-ksiezy-lasek"] },
     { title: "Pełty: wieś Paców", kind: "kontekst", c: "ok", year: 1902, people: ["jozef-pac", "ignacy-pac"],
       text: "W indeksie urodzeń parafii Myszyniec z lat 1902–1909 nazwisko Pac pojawia się kilkadziesiąt razy, prawie zawsze ze wsią Pełty — mieszkało tam wiele rodzin o tym nazwisku. Jeden z mieszkańców Pełt, Józef Pac ur. 1914 (syn Józefa i Rozalii), też był w 1940 r. na robotach w powiecie szczycieńskim: Gestapo aresztowało go za porzucenie pracy i osadziło w obozach w Ostrołęce i Działdowie. Czy był krewnym dziadka Józefa — nie wiemy.",
       sources: ["geneteka", "ipn-1914"] },
