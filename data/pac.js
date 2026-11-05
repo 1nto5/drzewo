@@ -55,7 +55,7 @@ window.DRZEWO = {
       burial: { cemetery: "cmentarz", place: "Świętajno (pow. szczycieński)", plot: "grób rodzinny", c: "ok", note: "Grób rodzinny; nagrobek bez dat urodzenia." },
       parents: ["ignacy-pac", "anna-pac"], parentsCert: "prawd", spouses: [{ id: "janina-pac" }],
       facts: ["Dziadek, mąż Janiny (relacja rodzinna, 2026).",
-        "Urodził się 15.05.1925 w Pełtach (parafia Myszyniec, Kurpie), syn Ignacego i Anny (straty.pl, IPN — rekord robotnika przymusowego; data śmierci 4.03.1997 zgadza się z relacją rodziny).",
+        "Urodził się 15.05.1925 w Pełtach (parafia Myszyniec, Kurpie), syn Ignacego i Anny (straty.pl, IPN — rekord robotnika przymusowego; data śmierci 4.03.1997 zgadza się z relacją rodziny). Rodzina mówi „miał 72 lata” — wg dat skończył 71 (był w 72. roku życia).",
         "Od marca 1940 do stycznia 1945, od 14. roku życia, pracował przymusowo w rolnictwie w Księżym Lasku (Fürstenwalde, pow. szczycieński — wtedy Prusy Wschodnie) (AAN, Fundacja „Polsko-Niemieckie Pojednanie”, nr 466277).",
         { t: "Rodzice to najpewniej Ignacy Pac i Anna z Samselów, którzy pobrali się w Myszyńcu w 1916 r. — to jedyna para Ignacy Pac i Anna w indeksie parafii przed 1925 r.; ich syn Stanisław urodził się w Pełtach w 1919 r. Aktu urodzenia Józefa nie ma w sieci.", c: "prawd" }] },
     { id: "janina-pac", given: "Janina", surname: "Pac", maiden: "z Nasiadków (?)", sex: "f", gen: 1, line: "prosta", certainty: "ok",
