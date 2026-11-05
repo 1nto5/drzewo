@@ -58,7 +58,7 @@
      najbliższego przodka z drzewa (anchors) i ile pokoleń jest pod nim (k); zapis tylko w tej przeglądarce. */
   /* Drugie drzewo (np. drzewo-mama.html) podaje w danych: anchors, gp ({ gen: "Ryszarda i Zofii", nom: "Ryszard i Zofia" }),
      viewerKey, personPage, pages — dzięki temu oba drzewa mają osobne dane i osobny wybór odwiedzającego. */
-  const GP = D.gp || { gen: "Mariana i Henryki", nom: "Mariana i Henryki" }, VKEY = D.viewerKey || "aa_viewer", PPAGE = D.personPage || "osoba.html";
+  const GP = D.gp || { gen: "Mariana i Henryki", nom: "Mariana i Henryki" }, VKEY = D.viewerKey || "aa_viewer", PPAGE = D.personPage || "osoba.html", APAGE = D.actsPage || "akty.html", CPAGE = D.triviaPage || "ciekawostki.html";
   const VDEF = { anchors: D.anchors || ["marian", "henryka"], k: 2, name: "", def: true };
   let V = VDEF;
   try {
@@ -221,12 +221,12 @@
         ${a.q ? `<p class="act-q" lang="pl">„${esc(a.q)}”</p>` : ""}
         <p class="act-tr"><b>${a.idx ? "indeks" : "po współczesnemu"}</b>${esc(a.tr)}</p>
         ${opt.people !== false ? `<div class="act-people">${a.osoby.map(id => `<span>${plink(id, shortName(byId.get(id)))}${rel(id) ? ` <span class="rel">${esc(rel(id))}</span>` : ""}</span>`).join("")}</div>` : ""}
-        <div class="act-links">${actLinks(a)}${opt.anchor ? `<a href="akty.html#${esc(a.id)}">w przeglądarce aktów</a>` : ""}</div>
+        <div class="act-links">${actLinks(a)}${opt.anchor ? `<a href="${APAGE}#${esc(a.id)}">w przeglądarce aktów</a>` : ""}</div>
       </div>
     </li>`;
   const srcLinks = ids => (ids || []).map(id => { const s = srcById.get(id); if (!s) return ""; return s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>` : `<span>${esc(s.label)}</span>`; }).join(" ");
   const srcShort = ids => (ids || []).map(id => { const s = srcById.get(id); if (!s) return ""; const t = s.short || s.label.split(/ — |, /)[0]; return s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.label)}">${esc(t)}</a>` : `<span title="${esc(s.label)}">${esc(t)}</span>`; }).join(" ");
-  const actRefs = ids => (ids || []).map(id => { const a = actById.get(id); return a ? `<a href="akty.html#${esc(id)}">akt: ${esc(a.k)} ${a.no === "—" ? a.y : a.no + "/" + a.y}</a>` : ""; }).join(" ");
+  const actRefs = ids => (ids || []).map(id => { const a = actById.get(id); return a ? `<a href="${APAGE}#${esc(id)}">akt: ${esc(a.k)} ${a.no === "—" ? a.y : a.no + "/" + a.y}</a>` : ""; }).join(" ");
   const refLinks = refs => (refs || []).map(r => r.scan ? `<a href="${scanUrl(r.scan)}" target="_blank" rel="noopener">${esc(r.label)} ↗</a>` : r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)} ↗</a>` : `<span>${esc(r.label)}</span>`).join(" ");
 
   const legend = (extra = "") => `<div class="legend" aria-label="Legenda pewności">
@@ -331,10 +331,10 @@
   function currentTarget() {
     const qs = new URLSearchParams(location.search);
     if (here === "osoba.html" && qs.get("id") && byId.has(qs.get("id"))) return { type: "osoba", id: qs.get("id") };
-    if (here === "akty.html" && location.hash && actById.has(location.hash.slice(1))) return { type: "akt", id: location.hash.slice(1) };
+    if (here === APAGE && location.hash && actById.has(location.hash.slice(1))) return { type: "akt", id: location.hash.slice(1) };
     return { type: "strona", id: "" };
   }
-  const targetLabel = t => t.type === "osoba" ? fullName(byId.get(t.id)) : t.type === "akt" ? (actById.get(t.id) || {}).t : document.title.replace(/ — Drzewo Antosiaków$/, "");
+  const targetLabel = t => t.type === "osoba" ? fullName(byId.get(t.id)) : t.type === "akt" ? (actById.get(t.id) || {}).t : document.title.replace(/ — Drzewo (Antosiaków|mamy)$/, "");
   async function shrink(file) {
     if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 1.5e6) return file;
     try {
@@ -400,9 +400,9 @@
       const r = [];
       for (const p of D.people || []) r.push({ g: "Osoby", h: PPAGE + "?id=" + encodeURIComponent(p.id), t: fullName(p), sub: lifeShort(p),
         k1: norm(fullName(p) + " " + (p.nick || "")), k2: norm([p.born && p.born.place, p.died && p.died.place, p.burial && p.burial.place, p.private ? "" : facts(p)].join(" ")) });
-      for (const a of D.acts || []) r.push({ g: "Akty", h: "akty.html#" + a.id, t: a.t, sub: a.k + " " + a.y, k1: norm(a.t), k2: norm((a.q || "") + " " + (a.tr || "")) });
+      for (const a of D.acts || []) r.push({ g: "Akty", h: APAGE + "#" + a.id, t: a.t, sub: a.k + " " + a.y, k1: norm(a.t), k2: norm((a.q || "") + " " + (a.tr || "")) });
       for (const s of D.stories || []) r.push({ g: "Historie", h: "historie.html#" + s.id, t: s.title, sub: "", k1: norm(s.title), k2: norm(strip((s.paragraphs || []).join(" "))) });
-      for (const c of D.trivia || []) r.push({ g: "Ciekawostki", h: "ciekawostki.html", t: c.title, sub: c.year || "", k1: norm(c.title), k2: norm(c.text) });
+      for (const c of D.trivia || []) r.push({ g: "Ciekawostki", h: CPAGE, t: c.title, sub: c.year || "", k1: norm(c.title), k2: norm(c.text) });
       return r;
     };
     const run = () => {
@@ -437,5 +437,5 @@
   chrome();
 
   window.APP = { contribute, V, FOR, TO, DESC, viewerDesc, rel, relOf, kinPath, genPl, dist, pathOf, altParents, altOf, nameGen, D, esc, plural, byId, actById, srcById, person, children, spouses, parents, siblings, actsFor, triviaFor, genFor,
-    direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, burial, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
+    APAGE, CPAGE, direct, fullName, shortName, yr, lifeShort, dateStr, CERT, mark, certBadge, burial, fact, plink, actHTML, actLinks, srcLinks, srcShort, actRefs, refLinks, legend, scanUrl };
 })();
