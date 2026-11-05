@@ -3,7 +3,7 @@
    Pola osób jak w osoby.js. Zasady: bez osób żyjących (poza imieniem babci, private: true), bez rodzeństwa,
    które może żyć; okoliczności śmierci tylko w prywatnych notatkach. */
 window.DRZEWO = {
-  anchors: ["ryszard-domian", "zofia-domian"],
+  anchors: ["ryszard-domian", "zofia-babcia"],
   gp: { gen: "Ryszarda i Zofii", nom: "Ryszard i Zofia" },
   viewerKey: "aa_viewer_mama",
   personPage: "drzewo-mama.html",
@@ -15,9 +15,9 @@ window.DRZEWO = {
     { id: "ryszard-domian", given: "Ryszard", surname: "Domian", sex: "m", gen: 1, line: "prosta", certainty: "ok",
       born: { y: 1952, date: "22.02.1952", c: "ok" }, died: { y: 1976, date: "2.05.1976", c: "ok" },
       burial: { cemetery: "cmentarz komunalny, ul. Śląska", place: "Szczytno", plot: "AIV/XI/1 (dawniej VII/X/2)", url: "https://szczytno.grobonet.com/osoba/158", c: "ok", note: "Wspólny grób Ryszarda, Stanisławy i Stanisława Domianów (potwierdzony w rodzinie)." },
-      parents: ["stanislaw-domian", "stanislawa-domian"], spouses: [{ id: "zofia-domian" }],
+      parents: ["stanislaw-domian", "stanislawa-domian"], spouses: [{ id: "zofia-babcia" }],
       facts: ["Dziadek, syn Stanisława i Stanisławy Domianów (relacja rodzinna, 2026).", "Miał czworo rodzeństwa.", { t: "Daty z grobu w Szczytnie: ur. 22.02.1952, zm. 2.05.1976 („żył lat 24”).", c: "ok" }] },
-    { id: "zofia-domian", given: "Zofia", surname: "Domian", maiden: "z Myślaków", sex: "f", gen: 1, line: "prosta", certainty: "ok", private: true,
+    { id: "zofia-babcia", given: "Zofia", maiden: "z Myślaków", sex: "f", gen: 1, line: "prosta", certainty: "ok", private: true,
       parents: ["witold-myslak", "krystyna-myslak"],
       facts: ["Babcia, z domu Myślak, córka Witolda Myślaka i Krystyny z Miecznikowskich (relacja rodzinna, 2026).", "Dat i miejsc jej życia na stronie nie podajemy."] },
 
@@ -91,7 +91,7 @@ window.DRZEWO = {
       facts: ["Matka Stanisławy (straty.pl: m. Antonina).", "Ur. w Czarni, córka Pawła Gorącego i Anny (nazwisko rodowe niepewne, może Szydlik); w 1920 r. miała ok. 20 lat."] },
   ],
   generations: [
-    { n: 1, yr: "", c: "ok", man: "ryszard-domian", woman: "zofia-domian", sum: "Dziadkowie.", facts: [] },
+    { n: 1, yr: "", c: "ok", man: "ryszard-domian", woman: "zofia-babcia", sum: "Dziadkowie.", facts: [] },
     { n: 2, yr: "", c: "ok", man: "stanislaw-domian", woman: "stanislawa-domian", sum: "Pradziadkowie — rodzice Ryszarda. Oboje z Kurpiów (Czarnia), jako dzieci na robotach przymusowych pod Szczytnem.", facts: [] },
     { n: 3, yr: "1925", c: "prawd", man: "stanislaw-domian-st", woman: "anna-domian", sum: "Rodzice Stanisława (prawdopodobnie) — Brzozowy Kąt, ślub w Myszyńcu 1925.", facts: [] },
     { n: 4, yr: "1901", c: "prawd", man: "jozef-domian", woman: "franciszka-domian", sum: "Dziadkowie Stanisława (prawdopodobnie) — ślub w Czarni 1901.", facts: [] },
