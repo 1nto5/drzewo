@@ -546,8 +546,10 @@ DRZEWO.people = [
   { id: "wincenty-stanislaw", given: "Wincenty Stanisław", surname: "Antosiak", sex: "m", line: "boczna", certainty: "ok", born: { y: 1926, text: "ok. VI 1926", place: "Połoń" }, died: { y: 1926, date: "4.09.1926", place: "Połoń" }, parents: ["wincenty", "eleonora"],
     facts: ["Pierwsze znane dziecko Wincentego i Eleonory. Zmarł w wieku 3 miesięcy (akt zgonu 97/1926). Zgon zgłosili Władysław Antosiak (26 lat — stryj, brat Wincentego) i Aleksander Antosiak (36 lat — wiek nie pasuje do brata Wincentego ur. 1902, może inny krewny).", "Kilkanaście dni później, 23.09.1926, zmarł jego dziadek Franciszek."] },
   /* ── Pokolenie 1: dziadkowie (bez dat i miejsc) ─────────────── */
-  { id: "marian", given: "Marian", surname: "Antosiak", sex: "m", gen: 1, line: "prosta", certainty: "ok", private: true,
-    parents: ["wincenty", "eleonora"], spouses: [{ id: "henryka" }], facts: ["Dziadek."] },
+  { id: "marian", given: "Marian", surname: "Antosiak", sex: "m", gen: 1, line: "prosta", certainty: "ok",
+    born: { y: 1931, date: "01.09.1931" }, died: { y: 2014, date: "29.11.2014" },
+    parents: ["wincenty", "eleonora"], spouses: [{ id: "henryka" }],
+    facts: ["Dziadek.", "Daty urodzenia i śmierci z tabliczki na krzyżu z jego pogrzebu: „żył lat 83, ur. 01.09.1931, zm. 29.11.2014” (zdjęcie rodzinne). O odpis aktu urodzenia zapytaliśmy USC w Chorzelach (2026)."] },
   { id: "henryka", given: "Henryka", surname: "Antosiak", maiden: "z Mieszałów", sex: "f", gen: 1, line: "prosta", certainty: "ok", private: true,
     parents: ["wladyslaw-m", "zofia-m"],
     facts: ["Babcia, z domu Mieszała, córka Władysława Mieszały i Zofii ze Szczepanków (relacja rodzinna, 2026).", "Dat i miejsc jej życia na stronie nie podajemy."] },
