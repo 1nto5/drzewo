@@ -241,13 +241,13 @@
     ["index.html", "Start"], ["drzewo.html", "Drzewo"], ["historie.html", "Historie"], ["dwie-linie.html", "Dwie linie"], ["osoba.html", "Osoby"], ["akty.html", "Akty"],
     ["os-czasu.html", "Oś czasu"], ["mapa.html", "Mapa"], ["ciekawostki.html", "Ciekawostki"], ["kurpie.html", "Kurpie"],
     ["obrazy.html", "Obrazy"], ["siec.html", "Sieć"], ["statystyki.html", "Statystyki"], ["ameryka.html", "Ameryka"],
-    ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"], ["drzewo-mama.html", "Drzewo mamy"], ["drzewo-pac.html", "Drzewo Paców"],
+    ["babcia.html", "Babcia"], ["zrodla.html", "Źródła"],
   ];
   const here = (location.pathname.split("/").pop() || "index.html");
   function chrome() {
     const el = document.getElementById("chrome");
     if (el) {
-      el.innerHTML = `<header class="top"><a href="index.html"><span class="brand-host">adrianantosiak.pl/</span>drzewo</a>
+      el.innerHTML = `<header class="top"><a href="${D.home || "index.html"}"><span class="brand-host">adrianantosiak.pl/</span>drzewo</a>
         <span class="top-btns"><button class="toggle" id="search-btn" type="button" aria-expanded="false" aria-controls="site-search">[ szukaj ]</button><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
         <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></span></header>
         <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${(D.pages || PAGES).map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>
