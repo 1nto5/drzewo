@@ -247,7 +247,7 @@
   function chrome() {
     const el = document.getElementById("chrome");
     if (el) {
-      el.innerHTML = `<header class="top"><a href="${D.home || "index.html"}"><span class="brand-host">adrianantosiak.pl/</span>drzewo</a>
+      el.innerHTML = `<header class="top"><a href="${D.home || "index.html"}"><span class="brand-host">adrianantosiak.pl/</span>${D.brand || "drzewo"}</a>
         <span class="top-btns"><button class="toggle" id="search-btn" type="button" aria-expanded="false" aria-controls="site-search">[ szukaj ]</button><button class="toggle menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">[ menu ]</button>
         <button class="toggle" id="theme" type="button" aria-label="Zmień motyw">[ motyw ]</button></span></header>
         <nav class="nav" id="site-nav" aria-label="Sekcje"><ul>${(D.pages || PAGES).map(([h, t]) => `<li><a href="${h}"${h === here ? ' aria-current="page"' : ""}>${t}</a></li>`).join("")}</ul></nav>
@@ -335,7 +335,7 @@
     if (here === APAGE && location.hash && actById.has(location.hash.slice(1))) return { type: "akt", id: location.hash.slice(1) };
     return { type: "strona", id: "" };
   }
-  const targetLabel = t => t.type === "osoba" ? fullName(byId.get(t.id)) : t.type === "akt" ? (actById.get(t.id) || {}).t : document.title.replace(/ — Drzewo (Antosiaków|mamy)$/, "");
+  const targetLabel = t => t.type === "osoba" ? fullName(byId.get(t.id)) : t.type === "akt" ? (actById.get(t.id) || {}).t : document.title.replace(/ — Drzewo (Antosiaków|mamy|Paców)$/, "");
   async function shrink(file) {
     if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 1.5e6) return file;
     try {
@@ -376,7 +376,7 @@
       const fd = new FormData();
       for (const k of ["tresc", "skad", "imie", "kontakt", "www"]) fd.append(k, f[k].value);
       fd.append("podziekowanie", f.podziekowanie.checked ? "1" : "0");
-      fd.append("target_type", t.type); fd.append("target_id", t.id || ""); fd.append("page", location.pathname.split("/").pop() + location.search + location.hash);
+      fd.append("target_type", t.type); fd.append("target_id", t.id || ""); fd.append("page", location.pathname + location.search + location.hash);
       fd.append("kto", JSON.stringify(V.def ? { opis: viewerDesc() } : { opis: viewerDesc(), anchors: V.anchors, k: V.k, imie: V.name }));
       for (const x of files) { const y = await shrink(x); if (y.size > 6 * 1024 * 1024) { msg.textContent = "Zdjęcie „" + x.name + "” jest za duże (max 6 MB)."; btn.disabled = false; return; } fd.append("zdjecia", y, y.name); }
       try {
